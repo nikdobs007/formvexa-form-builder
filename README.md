@@ -137,7 +137,6 @@ Upcoming features include:
 - Google Sheets Integration
 - Mailchimp Integration
 - HubSpot Integration
-- Export Entries (CSV/Excel)
 - Spam Protection Improvements
 
 ---
