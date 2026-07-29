@@ -1,0 +1,988 @@
+/* =====================================================
+   FormNova Builder UI v2
+===================================================== */
+
+body {
+    background: #f3f5f9;
+}
+
+/*----------------------------
+Top Bar
+-----------------------------*/
+
+.formnova-topbar {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    background: #fff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    margin: 20px 20px 15px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .04);
+
+}
+
+#formnova-title {
+
+    width: 420px;
+
+    height: 42px;
+
+    border-radius: 8px;
+
+    border: 1px solid #d0d7de;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    padding: 0 14px;
+
+}
+
+.formnova-shortcode-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+#formnova-shortcode {
+
+    width: 260px;
+
+    background: #f8fafc;
+
+    border: 1px solid #d0d7de;
+
+}
+
+/*----------------------------
+Tabs
+-----------------------------*/
+
+.fn-builder-tabs {
+
+    background: #fff;
+
+    padding: 12px;
+
+    margin: 0 20px 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.fn-builder-tab {
+
+    border: none;
+
+    background: #eef2f7;
+
+    color: #475569;
+
+    padding: 10px 22px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    font-weight: 600;
+
+}
+
+.fn-builder-tab:hover {
+
+    background: #dbeafe;
+
+}
+
+.fn-builder-tab.active {
+
+    background: #2271b1;
+
+    color: #fff;
+
+}
+
+/*----------------------------
+Panel
+-----------------------------*/
+
+.fn-tab-panel {
+
+    margin: 0 20px 30px;
+    display: none;
+
+}
+
+.fn-tab-panel.active {
+
+    display: block;
+
+}
+
+/*----------------------------
+Cards
+-----------------------------*/
+
+.fn-card {
+
+    background: #fff;
+
+    border: none;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+
+        0 2px 6px rgba(0, 0, 0, .04),
+
+        0 12px 28px rgba(0, 0, 0, .05);
+
+}
+
+.fn-card-header {
+
+    background: linear-gradient(90deg, #2271b1, #3b82f6);
+
+    color: #fff;
+
+    padding: 16px 20px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+.fn-card-body {
+
+    padding: 22px;
+
+}
+
+/*----------------------------
+Form Controls
+-----------------------------*/
+
+.fn-card-body label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+.fn-card-body input[type=text],
+.fn-card-body input[type=email],
+.fn-card-body textarea,
+.fn-card-body select {
+
+    width: 100%;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    padding: 10px 12px;
+
+    background: #fff;
+
+    transition: .2s;
+
+}
+
+.fn-card-body textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+
+}
+
+.fn-card-body input:focus,
+.fn-card-body textarea:focus,
+.fn-card-body select:focus {
+
+    border-color: #2271b1;
+
+    box-shadow: 0 0 0 3px rgba(34, 113, 177, .15);
+
+    outline: none;
+
+}
+
+/*----------------------------
+Buttons
+-----------------------------*/
+
+.button {
+
+    border-radius: 8px !important;
+
+}
+
+.button-primary {
+
+    border-radius: 8px !important;
+
+}
+
+/*----------------------------
+Mail Toolbar
+-----------------------------*/
+
+.fn-mail-toolbar {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+}
+
+.fn-tag-btn {
+
+    border: none !important;
+
+    background: #eef4ff !important;
+
+    color: #2271b1 !important;
+
+    padding: 7px 12px !important;
+
+    border-radius: 20px !important;
+
+    transition: .2s;
+
+}
+
+.fn-tag-btn:hover {
+
+    background: #2271b1 !important;
+
+    color: #fff !important;
+
+}
+
+/*----------------------------
+Merge Tags
+-----------------------------*/
+
+#fn-mail-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+#fn-mail-tags code {
+
+    background: #eef4ff;
+
+    color: #2271b1;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    font-size: 13px;
+
+}
+
+#fn-mail-tags code:hover {
+
+    background: #2271b1;
+
+    color: #fff;
+
+}
+
+/*----------------------------
+Email Rows
+-----------------------------*/
+
+#fn-admin-to-list p,
+#fn-admin-cc-list p,
+#fn-admin-bcc-list p {
+
+    margin-bottom: 10px;
+
+}
+
+/*----------------------------
+Checkbox
+-----------------------------*/
+
+.fn-card-body input[type=checkbox] {
+
+    transform: scale(1.1);
+
+    margin-right: 8px;
+
+}
+
+/*----------------------------
+Save Bar
+-----------------------------*/
+
+.fn-savebar {
+
+    position: sticky;
+
+    top: 32px;
+
+    z-index: 1000;
+
+    margin: 0 20px 20px;
+
+    background: #fff;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+
+}
+
+.fn-savebar .button-primary {
+
+    min-width: 180px;
+
+    height: 42px;
+
+    font-size: 15px;
+
+}
+
+/*----------------------------
+Unsaved Animation
+-----------------------------*/
+
+.fn-unsaved {
+
+    animation: fnPulse 1s infinite;
+
+}
+
+@keyframes fnPulse {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.04);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+}
+
+/*----------------------------
+Responsive
+-----------------------------*/
+
+@media(max-width:900px) {
+
+    .formnova-topbar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    #formnova-title {
+
+        width: 100%;
+
+    }
+
+    .fn-builder-tabs {
+
+        flex-wrap: wrap;
+
+    }
+
+}
+
+/*==================================================
+Builder Layout
+==================================================*/
+
+.fn-builder-layout {
+
+    display: grid;
+
+    grid-template-columns: 260px 1fr 320px;
+
+    gap: 24px;
+
+    align-items: start;
+
+}
+
+/* LEFT */
+
+.fn-builder-left {
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+
+    position: sticky;
+
+    top: 90px;
+
+}
+
+/* Field */
+
+.formnova-draggable {
+
+    background: #f8fafc;
+
+    border: 1px solid #dbe4ef;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    margin-bottom: 12px;
+
+    cursor: grab;
+
+    transition: .25s;
+
+    font-weight: 600;
+
+}
+
+.formnova-draggable:hover {
+
+    background: #2271b1;
+
+    color: #fff;
+
+    border-color: #2271b1;
+
+    transform: translateY(-2px);
+
+}
+
+/* CENTER */
+
+.fn-builder-canvas {
+
+    background: #fff;
+
+    border: 2px dashed #dbe4ef !important;
+
+    border-radius: 14px;
+
+    min-height: 700px;
+
+    padding: 25px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+
+}
+
+/* Builder Fields */
+
+.formnova-builder-field {
+
+    background: #fff;
+
+    border: 1px solid #dbe4ef;
+
+    border-radius: 12px;
+
+    margin-bottom: 16px;
+
+    padding: 16px;
+
+    transition: .25s;
+
+}
+
+.formnova-builder-field:hover {
+
+    border-color: #2271b1;
+
+    box-shadow: 0 10px 24px rgba(34, 113, 177, .10);
+
+}
+
+/* Selected */
+
+.formnova-builder-field.active {
+
+    border: 2px solid #2271b1;
+
+}
+
+.formnova-field .fn-delete-field {
+    min-height: 25px !important;
+    width: 25px !important;
+    font-size: 16px !important;
+    line-height: 0px !important;
+    padding: 5px !important;
+    background: red !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+/* RIGHT */
+
+.fn-builder-right {
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    border: 1px solid #e5e7eb;
+
+    padding: 20px;
+
+    position: sticky;
+
+    top: 90px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+
+}
+
+.fn-builder-right input,
+.fn-builder-right textarea,
+.fn-builder-right select {
+
+    width: 100%;
+
+    border-radius: 8px;
+
+}
+
+.fn-builder-right input[type="checkbox"],
+.fn-builder-right input[type="radio"] {
+
+    width: auto;
+
+    border-radius: 8px;
+
+}
+
+/* Sortable Placeholder */
+
+.formnova-sort-placeholder {
+
+    height: 70px;
+
+    border: 2px dashed #2271b1;
+
+    border-radius: 10px;
+
+    background: #eef5ff;
+
+    margin-bottom: 15px;
+
+}
+
+@media(max-width:1200px) {
+
+    .fn-builder-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .fn-builder-left,
+
+    .fn-builder-right {
+
+        position: relative;
+
+        top: auto;
+
+    }
+
+}
+
+/* =====================================================
+   FormNova Canvas UI
+===================================================== */
+
+.fn-builder-canvas {
+
+    background: #f8fafc;
+
+    border: 2px dashed #d7dee8 !important;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    min-height: 650px;
+
+    transition: .25s;
+
+}
+
+.fn-builder-canvas.drag-over {
+
+    border-color: #2271b1 !important;
+
+    background: #eef6ff;
+
+}
+
+/* =====================================================
+   Drop Zone
+===================================================== */
+
+.formnova-drop-zone {
+
+    height: 15px;
+
+    margin: 10px 0;
+
+    border-radius: 10px;
+
+    transition: .25s;
+
+    position: relative;
+
+}
+
+.formnova-drop-zone span {
+
+    display: none;
+
+}
+
+.formnova-drop-zone.drag-hover {
+
+    height: 70px;
+
+    border: 2px dashed #2271b1;
+
+    background: #eef6ff;
+
+}
+
+.formnova-drop-zone.drag-hover span {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 100%;
+
+    color: #2271b1;
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+}
+
+/* =====================================================
+   Builder Field
+===================================================== */
+
+.formnova-field {
+
+    background: #fff;
+
+    border: 1px solid #dbe4ef;
+
+    border-radius: 12px;
+
+    padding: 10px;
+
+    margin-bottom: 5px;
+
+    position: relative;
+
+    cursor: move;
+
+    transition: .25s;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+
+}
+
+.formnova-field:hover {
+
+    border-color: #2271b1;
+
+    box-shadow: 0 10px 25px rgba(34, 113, 177, .10);
+
+    transform: translateY(-2px);
+
+}
+
+.formnova-field.selected {
+
+    border: 2px solid #2271b1;
+
+    box-shadow: 0 0 0 4px rgba(34, 113, 177, .12);
+
+}
+
+/* =====================================================
+   Drag Handle
+===================================================== */
+
+.formnova-field-header {
+
+    position: absolute;
+
+    top: 7px;
+
+    right: 12px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eef4ff;
+
+    color: #2271b1;
+
+    font-size: 16px;
+
+    cursor: move;
+
+    transition: .2s;
+
+}
+
+.formnova-field:hover .formnova-field-header {
+
+    background: #2271b1;
+
+    color: #fff;
+
+}
+
+/* =====================================================
+   Labels
+===================================================== */
+
+.formnova-field label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #1f2937;
+
+}
+
+/* =====================================================
+   Preview Controls
+===================================================== */
+
+.formnova-field input:not([type=checkbox]):not([type=radio]):not([type=file]),
+.formnova-field textarea,
+.formnova-field select {
+
+    width: 100%;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    padding: 10px 12px;
+
+    background: #f9fafb;
+
+    color: #6b7280;
+
+}
+
+.formnova-field textarea {
+
+    min-height: 90px;
+
+}
+
+.formnova-field input[type=file] {
+
+    width: 100%;
+
+}
+
+.formnova-field input:disabled,
+.formnova-field textarea:disabled,
+.formnova-field select:disabled {
+
+    opacity: 1;
+
+    background: #f8fafc;
+
+    cursor: default;
+
+}
+
+/* =====================================================
+   Empty Canvas
+===================================================== */
+
+.fn-builder-canvas:empty {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #94a3b8;
+
+    font-size: 16px;
+
+}
+
+/* =====================================================
+   Animation
+===================================================== */
+
+.formnova-field {
+
+    animation: fnFade .15s ease;
+
+}
+
+@keyframes fnFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
+}
+
+.fn-drag-handle {
+
+    cursor: move;
+
+    user-select: none;
+
+    font-size: 18px;
+
+    padding: 4px 8px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+}
+
+.fn-drag-handle:active {
+
+    cursor: grabbing;
+
+}
+
+.formnova-field.dragging {
+
+    opacity: .45;
+
+}
+
+.formnova-drop-zone.active {
+
+    height: 42px;
+
+    border: 2px dashed #2271b1;
+
+    background: #eef6ff;
+
+}

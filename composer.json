@@ -1,0 +1,20 @@
+{
+    "name": "formnova/formnova-form",
+    "description": "FormNova WordPress Form Builder",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "FormNova\\": "app/"
+        },
+        "classmap": [
+            "includes/"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

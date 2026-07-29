@@ -1,17 +1,689 @@
+# Copyright (C) 2026 Nikunj Dobariya
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FormNova 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23\n"
+"Project-Id-Version: FormNova – Drag & Drop Contact Form Builder 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/formnova-form\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-29T11:17:13+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: formnova-form\n"
 
-#: app/Views/admin/dashboard.php:10
-msgid "Dashboard"
+#. Plugin Name of the plugin
+#: formnova.php
+msgid "FormNova – Drag & Drop Contact Form Builder"
 msgstr ""
 
-#: app/Views/admin/forms.php:20
-msgid "Add New Form"
+#. Plugin URI of the plugin
+#: formnova.php
+msgid "https://github.com/nikdobs/formnova-form"
+msgstr ""
+
+#. Description of the plugin
+#: formnova.php
+msgid "Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management."
+msgstr ""
+
+#. Author of the plugin
+#: formnova.php
+msgid "Nikunj Dobariya"
+msgstr ""
+
+#. Author URI of the plugin
+#: formnova.php
+msgid "https://profiles.wordpress.org/nikdobs/"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesController.php:46
+#: app/Controllers/Ajax/SubmissionAjaxController.php:92
+msgid "Security check failed."
+msgstr ""
+
+#: app/Controllers/Admin/EntriesController.php:95
+msgid "Invalid form selected."
+msgstr ""
+
+#: app/Controllers/Admin/EntriesController.php:107
+msgid "No entries found."
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:25
+msgid "Entry"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:26
+msgid "Entries"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:39
+msgid "Form"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:41
+msgid "Status"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:43
+msgid "Submitted"
+msgstr ""
+
+#: app/Controllers/Admin/EntriesListTable.php:65
+#: app/Controllers/Admin/FormsListTable.php:198
+msgid "Delete"
+msgstr ""
+
+#: app/Controllers/Admin/FormsListTable.php:233
+msgid "Selected forms deleted successfully."
+msgstr ""
+
+#: app/Controllers/Admin/SettingsController.php:50
+msgid "You are not allowed to perform this action."
+msgstr ""
+
+#: app/Controllers/Admin/SettingsController.php:119
+msgid "Settings saved successfully."
+msgstr ""
+
+#: app/Controllers/Ajax/BuilderAjaxController.php:52
+msgid "Unauthorized"
+msgstr ""
+
+#: app/Controllers/Ajax/BuilderAjaxController.php:75
+msgid "Invalid builder JSON"
+msgstr ""
+
+#: app/Controllers/Ajax/SettingsAjaxController.php:30
+msgid "Permission denied."
+msgstr ""
+
+#: app/Controllers/Ajax/SettingsAjaxController.php:51
+msgid "Google reCAPTCHA configuration looks good."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:113
+msgid "Spam detected."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:132
+#: app/Services/EntryService.php:268
+msgid "Invalid form."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:167
+msgid "Too many submissions. Please wait one minute and try again."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:195
+#: app/Core/Shortcodes.php:72
+msgid "Form not found."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:250
+msgid "Submission data missing."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:267
+msgid "Invalid request payload."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:289
+msgid "Form builder not found."
+msgstr ""
+
+#: app/Controllers/Ajax/SubmissionAjaxController.php:323
+msgid "Form submitted successfully."
+msgstr ""
+
+#: app/Core/Shortcodes.php:59
+msgid "Invalid form ID"
+msgstr ""
+
+#: app/Core/Shortcodes.php:85
+msgid "Please select at least one field."
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:25
+#: app/Fields/Checkbox/CheckboxField.php:55
+msgid "Checkbox"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:90
+#: app/Fields/Date/DateField.php:84
+#: app/Fields/Email/EmailField.php:81
+#: app/Fields/File/FileField.php:71
+#: app/Fields/Number/NumberField.php:86
+#: app/Fields/Paragraph/ParagraphField.php:78
+#: app/Fields/Phone/PhoneField.php:87
+#: app/Fields/Radio/RadioField.php:92
+#: app/Fields/Select/SelectField.php:95
+#: app/Fields/Text/TextField.php:92
+#: app/Fields/Textarea/TextareaField.php:83
+#: app/Fields/Url/UrlField.php:80
+msgid "Label"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:95
+#: app/Fields/Date/DateField.php:89
+#: app/Fields/Email/EmailField.php:86
+#: app/Fields/File/FileField.php:73
+#: app/Fields/Number/NumberField.php:91
+#: app/Fields/Phone/PhoneField.php:92
+#: app/Fields/Radio/RadioField.php:97
+#: app/Fields/Select/SelectField.php:100
+#: app/Fields/Text/TextField.php:97
+#: app/Fields/Textarea/TextareaField.php:88
+#: app/Fields/Url/UrlField.php:85
+msgid "Name"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:100
+#: app/Fields/Date/DateField.php:94
+#: app/Fields/Email/EmailField.php:91
+#: app/Fields/File/FileField.php:75
+#: app/Fields/Number/NumberField.php:96
+#: app/Fields/Paragraph/ParagraphField.php:88
+#: app/Fields/Phone/PhoneField.php:97
+#: app/Fields/Radio/RadioField.php:102
+#: app/Fields/Select/SelectField.php:105
+#: app/Fields/Text/TextField.php:102
+#: app/Fields/Textarea/TextareaField.php:93
+#: app/Fields/Url/UrlField.php:90
+msgid "CSS Class"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:105
+#: app/Fields/Date/DateField.php:109
+#: app/Fields/Email/EmailField.php:106
+#: app/Fields/File/FileField.php:77
+#: app/Fields/Number/NumberField.php:111
+#: app/Fields/Phone/PhoneField.php:112
+#: app/Fields/Radio/RadioField.php:107
+#: app/Fields/Select/SelectField.php:115
+#: app/Fields/Text/TextField.php:117
+#: app/Fields/Textarea/TextareaField.php:118
+#: app/Fields/Url/UrlField.php:105
+msgid "Required"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:114
+#: app/Fields/Radio/RadioField.php:113
+#: app/Fields/Radio/RadioField.php:119
+#: app/Fields/Select/SelectField.php:124
+msgid "Options"
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:152
+msgid "Please select at least one option."
+msgstr ""
+
+#: app/Fields/Checkbox/CheckboxField.php:180
+#: app/Fields/Radio/RadioField.php:175
+msgid "Invalid option selected."
+msgstr ""
+
+#: app/Fields/Date/DateField.php:25
+#: app/Fields/Date/DateField.php:55
+msgid "Date"
+msgstr ""
+
+#: app/Fields/Date/DateField.php:99
+#: app/Fields/Email/EmailField.php:96
+#: app/Fields/Number/NumberField.php:101
+#: app/Fields/Phone/PhoneField.php:102
+#: app/Fields/Select/SelectField.php:110
+#: app/Fields/Text/TextField.php:107
+#: app/Fields/Textarea/TextareaField.php:98
+#: app/Fields/Url/UrlField.php:95
+msgid "Placeholder"
+msgstr ""
+
+#: app/Fields/Date/DateField.php:104
+msgid "Default Date"
+msgstr ""
+
+#: app/Fields/Date/DateField.php:117
+msgid "Minimum Date"
+msgstr ""
+
+#: app/Fields/Date/DateField.php:122
+msgid "Maximum Date"
+msgstr ""
+
+#: app/Fields/Date/DateField.php:146
+msgid "Date is required."
+msgstr ""
+
+#: app/Fields/Date/DateField.php:156
+msgid "Invalid date."
+msgstr ""
+
+#. translators: %s: Date in YYYY-MM-DD format.
+#: app/Fields/Date/DateField.php:167
+#, php-format
+msgid "Date must be after %s."
+msgstr ""
+
+#. translators: %s: Date in YYYY-MM-DD format.
+#: app/Fields/Date/DateField.php:180
+#, php-format
+msgid "Date must be before %s."
+msgstr ""
+
+#: app/Fields/Email/EmailField.php:25
+#: app/Fields/Email/EmailField.php:55
+msgid "Email"
+msgstr ""
+
+#: app/Fields/Email/EmailField.php:101
+#: app/Fields/Number/NumberField.php:106
+#: app/Fields/Phone/PhoneField.php:107
+#: app/Fields/Radio/RadioField.php:124
+#: app/Fields/Select/SelectField.php:135
+#: app/Fields/Text/TextField.php:112
+#: app/Fields/Textarea/TextareaField.php:103
+#: app/Fields/Url/UrlField.php:100
+msgid "Default Value"
+msgstr ""
+
+#: app/Fields/Email/EmailField.php:135
+msgid "Email is required."
+msgstr ""
+
+#: app/Fields/Email/EmailField.php:143
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: app/Fields/File/FileField.php:19
+#: app/Fields/File/FileField.php:40
+msgid "File Upload"
+msgstr ""
+
+#: app/Fields/File/FileField.php:68
+#: app/Fields/Radio/RadioField.php:86
+msgid "General"
+msgstr ""
+
+#: app/Fields/File/FileField.php:82
+msgid "File Settings"
+msgstr ""
+
+#: app/Fields/File/FileField.php:87
+msgid "Allowed Extensions (comma separated)"
+msgstr ""
+
+#: app/Fields/File/FileField.php:92
+msgid "Allowed MIME Types"
+msgstr ""
+
+#: app/Fields/File/FileField.php:97
+msgid "Max Size (MB)"
+msgstr ""
+
+#: app/Fields/File/FileField.php:102
+msgid "Allow Multiple Files"
+msgstr ""
+
+#: app/Fields/File/FileField.php:107
+msgid "Min Files"
+msgstr ""
+
+#: app/Fields/File/FileField.php:112
+msgid "Max Files"
+msgstr ""
+
+#: app/Fields/Number/NumberField.php:25
+#: app/Fields/Number/NumberField.php:55
+msgid "Number"
+msgstr ""
+
+#: app/Fields/Number/NumberField.php:119
+msgid "Minimum Value"
+msgstr ""
+
+#: app/Fields/Number/NumberField.php:124
+msgid "Maximum Value"
+msgstr ""
+
+#: app/Fields/Number/NumberField.php:129
+msgid "Step"
+msgstr ""
+
+#: app/Fields/Paragraph/ParagraphField.php:25
+#: app/Fields/Paragraph/ParagraphField.php:55
+msgid "Paragraph"
+msgstr ""
+
+#: app/Fields/Paragraph/ParagraphField.php:57
+msgid "This is a paragraph."
+msgstr ""
+
+#: app/Fields/Paragraph/ParagraphField.php:83
+msgid "Content"
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:25
+#: app/Fields/Phone/PhoneField.php:55
+msgid "Phone"
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:120
+msgid "Minimum Length"
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:125
+msgid "Maximum Length"
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:130
+msgid "Pattern"
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:161
+msgid "Phone number is required."
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:177
+msgid "Invalid phone number."
+msgstr ""
+
+#. translators: %d: Minimum number of digits allowed.
+#: app/Fields/Phone/PhoneField.php:203
+#, php-format
+msgid "Minimum %d digits required."
+msgstr ""
+
+#. translators: %d: Maximum number of digits allowed.
+#: app/Fields/Phone/PhoneField.php:214
+#, php-format
+msgid "Maximum %d digits allowed."
+msgstr ""
+
+#: app/Fields/Phone/PhoneField.php:232
+msgid "Invalid phone number format."
+msgstr ""
+
+#: app/Fields/Radio/RadioField.php:25
+msgid "Radio"
+msgstr ""
+
+#: app/Fields/Radio/RadioField.php:55
+msgid "Radio Field"
+msgstr ""
+
+#: app/Fields/Radio/RadioField.php:153
+#: app/Fields/Select/SelectField.php:181
+msgid "This field is required."
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:25
+msgid "Select"
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:55
+msgid "Select Field"
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:61
+msgid "Select..."
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:70
+msgid "Option 1"
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:75
+msgid "Option 2"
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:126
+msgid "Add, remove and reorder options."
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:137
+msgid "Default option value."
+msgstr ""
+
+#: app/Fields/Select/SelectField.php:206
+msgid "Invalid selection."
+msgstr ""
+
+#: app/Fields/Text/TextField.php:29
+msgid "Text"
+msgstr ""
+
+#: app/Fields/Text/TextField.php:65
+msgid "Text Field"
+msgstr ""
+
+#: app/Fields/Textarea/TextareaField.php:25
+#: app/Fields/Textarea/TextareaField.php:55
+msgid "Textarea"
+msgstr ""
+
+#: app/Fields/Textarea/TextareaField.php:108
+msgid "Rows"
+msgstr ""
+
+#: app/Fields/Url/UrlField.php:25
+#: app/Fields/Url/UrlField.php:55
+msgid "URL"
+msgstr ""
+
+#: app/Services/CaptchaService.php:125
+msgid "Captcha verification is required."
+msgstr ""
+
+#: app/Services/CaptchaService.php:156
+#: app/Services/CaptchaService.php:196
+#: app/Services/CaptchaService.php:329
+msgid "Captcha verification failed."
+msgstr ""
+
+#: app/Services/CaptchaService.php:170
+#: app/Services/CaptchaService.php:210
+msgid "Invalid captcha hostname."
+msgstr ""
+
+#: app/Services/CaptchaService.php:221
+msgid "Invalid captcha action."
+msgstr ""
+
+#: app/Services/CaptchaService.php:232
+msgid "Captcha verification score is too low."
+msgstr ""
+
+#: app/Services/CaptchaService.php:255
+msgid "Captcha Secret Key is missing."
+msgstr ""
+
+#: app/Services/CaptchaService.php:284
+msgid "Captcha server returned an invalid response."
+msgstr ""
+
+#: app/Services/CaptchaService.php:296
+#: app/Services/CaptchaService.php:348
+msgid "Invalid captcha response."
+msgstr ""
+
+#: app/Services/CaptchaService.php:336
+msgid "Captcha secret key is missing."
+msgstr ""
+
+#: app/Services/CaptchaService.php:340
+msgid "Invalid captcha secret key."
+msgstr ""
+
+#: app/Services/CaptchaService.php:344
+msgid "Captcha response is missing."
+msgstr ""
+
+#: app/Services/CaptchaService.php:352
+msgid "Captcha expired. Please try again."
+msgstr ""
+
+#: app/Services/CaptchaService.php:356
+msgid "Invalid captcha request."
+msgstr ""
+
+#: app/Services/CaptchaService.php:380
+msgid "Captcha is disabled."
+msgstr ""
+
+#: app/Services/CaptchaService.php:388
+msgid "Site Key is missing."
+msgstr ""
+
+#: app/Services/CaptchaService.php:396
+msgid "Secret Key is missing."
+msgstr ""
+
+#: app/Services/CaptchaService.php:419
+msgid "Unable to connect to Google."
+msgstr ""
+
+#: app/Services/EntryService.php:275
+msgid "No form fields found."
+msgstr ""
+
+#: app/Services/EntryService.php:282
+msgid "Invalid request."
+msgstr ""
+
+#: app/Services/EntryService.php:328
+msgid "Please fill at least one field before submitting."
+msgstr ""
+
+#. translators: %s: Field label.
+#: app/Services/EntryService.php:384
+#: app/Services/EntryService.php:455
+#: app/Services/EntryService.php:470
+#, php-format
+msgid "%s is required."
+msgstr ""
+
+#. translators: %s: Field label.
+#: app/Services/EntryService.php:397
+#, php-format
+msgid "Unable to upload %s."
+msgstr ""
+
+#. translators: %s: Field label.
+#: app/Services/EntryService.php:436
+#, php-format
+msgid "%s is invalid."
+msgstr ""
+
+#: app/Services/EntryService.php:638
+msgid "Unable to create entry."
+msgstr ""
+
+#: app/Services/EntryService.php:662
+msgid "Unable to save entry fields."
+msgstr ""
+
+#. translators: %d: PHP file upload error code.
+#: app/Services/FileUploadService.php:110
+#, php-format
+msgid "File upload failed. Error Code: %d"
+msgstr ""
+
+#: app/Services/FileUploadService.php:119
+msgid "Invalid uploaded file."
+msgstr ""
+
+#. translators: %d: Maximum allowed file size in megabytes.
+#: app/Services/FileUploadService.php:139
+#, php-format
+msgid "Maximum file size is %d MB."
+msgstr ""
+
+#: app/Services/FileUploadService.php:190
+msgid "This file type is not allowed."
+msgstr ""
+
+#. translators: %s: Comma-separated list of allowed file extensions.
+#: app/Services/FileUploadService.php:228
+#, php-format
+msgid "Allowed file types: %s"
+msgstr ""
+
+#: app/Services/FileUploadService.php:250
+msgid "The uploaded file could not be validated."
+msgstr ""
+
+#: app/Services/FileUploadService.php:272
+msgid "This file type is not supported by WordPress."
+msgstr ""
+
+#: app/Services/FileUploadService.php:299
+msgid "Uploaded file type is not allowed."
+msgstr ""
+
+#: app/Services/FileUploadService.php:338
+msgid "Invalid image file."
+msgstr ""
+
+#: app/Services/FormService.php:539
+msgid "Untitled Form"
+msgstr ""
+
+#. translators: %d: Number of deleted entries.
+#: app/Views/admin/entries/index.php:22
+#, php-format
+msgid "%d entry deleted successfully."
+msgid_plural "%d entries deleted successfully."
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Views/admin/entries/index.php:69
+msgid "Filter"
+msgstr ""
+
+#: app/Views/admin/entries/index.php:100
+msgid "Export CSV"
+msgstr ""
+
+#: app/Views/admin/entries/index.php:127
+msgid "Search Entries"
+msgstr ""
+
+#: app/Views/admin/forms/index.php:28
+msgid "Search Forms"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:14
+msgid "FormNova Settings"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:37
+msgid "Provider"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:56
+msgid "None"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:93
+msgid "Site Key"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:120
+msgid "Secret Key"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:148
+msgid "Minimum Score"
+msgstr ""
+
+#: app/Views/admin/settings/index.php:171
+msgid "Used only for Google reCAPTCHA v3."
+msgstr ""
+
+#: app/Views/admin/settings/index.php:189
+msgid "Save Settings"
 msgstr ""

@@ -1,60 +1,39 @@
 <?php
-/*
-Plugin Name: FormNova – Drag & Drop Contact Form Builder
-Plugin URI: https://github.com/nikdobs/formnova-form
-Description: Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management.
-Version: 1.0.0
-Author: Nikunj Dobariya
-Author URI: https://profiles.wordpress.org/nikdobs/
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: formnova-form
-Domain Path: /languages
-Requires at least: 6.7
-Requires PHP: 7.4
-*/
+/**
+ * Plugin Name: FormNova – Drag & Drop Contact Form Builder
+ * Plugin URI: https://github.com/nikdobs/formnova-form
+ * Description: Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management.
+ * Version: 1.0.0
+ * Author: Nikunj Dobariya
+ * Author URI: https://profiles.wordpress.org/nikdobs/
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: formnova-form
+ * Domain Path: /languages
+ * Requires at least: 6.5
+ * Requires PHP: 8.1
+ */
 
-if (!defined('ABSPATH')) {
-    exit;
+defined('ABSPATH') || exit;
+
+define( 'NDFB_VERSION', '1.0.0' );
+define( 'NDFB_DB_VERSION', '1.0.0' );
+define('NDFB_PLUGIN_FILE', __FILE__);
+define('NDFB_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('NDFB_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+if (file_exists(NDFB_PLUGIN_PATH . 'vendor/autoload.php')) {
+    require_once NDFB_PLUGIN_PATH . 'vendor/autoload.php';
 }
 
-/*
-|--------------------------------------------------------------------------
-| Constants
-|--------------------------------------------------------------------------
-*/
-
-define(
-    'FORMNOVA_PATH',
-    plugin_dir_path(__FILE__)
+register_activation_hook(
+    NDFB_PLUGIN_FILE,
+    [FormNova\Activator::class, 'activate']
 );
 
-define(
-    'FORMNOVA_URL',
-    plugin_dir_url(__FILE__)
+register_deactivation_hook(
+    NDFB_PLUGIN_FILE,
+    [FormNova\Deactivator::class, 'deactivate']
 );
 
-define(
-    'FORMNOVA_VERSION',
-    '1.0.0'
-);
-
-/*
-|--------------------------------------------------------------------------
-| Load Core Classes
-|--------------------------------------------------------------------------
-*/
-
-require_once FORMNOVA_PATH .
-    'app/Core/FormNova_Autoloader.php';
-
-require_once FORMNOVA_PATH .
-    'app/Core/FormNova_Loader.php';
-
-/*
-|--------------------------------------------------------------------------
-| Start Plugin
-|--------------------------------------------------------------------------
-*/
-
-new FormNova_Loader();
+add_action('plugins_loaded', [FormNova\Core\Plugin::class, 'boot']);

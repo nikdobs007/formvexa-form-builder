@@ -1,13 +1,24 @@
 <?php
+/**
+ * Plugin deactivator.
+ *
+ * @package FormNova
+ */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
+namespace FormNova;
 
-class FormNova_Deactivator
+defined('ABSPATH') || exit;
+
+final class Deactivator
 {
-    public static function deactivate()
+
+    /**
+     * Deactivate plugin.
+     *
+     * @return void
+     */
+    public static function deactivate(): void
     {
-        flush_rewrite_rules();
+        // Reserved for future cleanup tasks.
     }
 }

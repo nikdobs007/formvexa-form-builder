@@ -1,97 +1,149 @@
 # FormNova – Drag & Drop Contact Form Builder
 
-FormNova is a modern drag-and-drop WordPress form builder plugin designed for fast, secure, and flexible form creation.
+FormNova is a modern, lightweight, and developer-friendly WordPress form builder that allows you to create responsive forms using an intuitive drag-and-drop interface.
+
+The plugin is built following WordPress Coding Standards and PSR-4 architecture, making it easy to maintain and extend.
+
+---
 
 ## Features
 
 - Drag & Drop Form Builder
 - AJAX Form Submission
-- File Upload Fields
+- Unlimited Forms
+- Unlimited Fields
 - Email Notifications
-- Submission Management
-- Built-in Analytics Dashboard
-- Custom Validation
-- Contact Forms
-- Lead Generation Forms
-- Registration Forms
-- Survey Forms
-- Secure File Upload Handling
+- Form Entry Management
+- File Upload Support
+- Form Validation
+- Responsive Design
+- Shortcode Support
+- Google reCAPTCHA Integration
+- Custom Form Settings
+- Secure Form Processing
+- WordPress Coding Standards (WPCS)
+- PSR-4 Autoloading
+- Developer Friendly MVC Architecture
 
-## Installation
+---
 
-1. Upload the plugin to your WordPress plugins directory.
-2. Activate the plugin.
-3. Open FormNova in the WordPress admin panel.
-4. Create your form.
-5. Use the generated shortcode.
-
-## Supported Form Fields
+## Supported Fields
 
 - Text
 - Email
-- Number
 - Phone
+- Number
 - Textarea
 - Select
 - Radio
 - Checkbox
-- Date
-- URL
 - File Upload
+- Hidden
+- HTML
+- Submit Button
 
-## Why FormNova?
+---
 
-FormNova is built to provide a cleaner and more flexible alternative to traditional form plugins.
+## Requirements
 
-It is ideal for:
+- WordPress 6.5 or higher
+- PHP 8.1 or higher
+- MySQL 5.7+ / MariaDB 10+
 
-- Contact forms
-- Registration forms
-- Lead forms
-- Survey forms
-- Feedback forms
-- File upload forms
+---
+
+## Installation
+
+1. Download the plugin.
+2. Upload it to:
+
+```
+wp-content/plugins/
+```
+
+3. Activate **FormNova** from the Plugins page.
+4. Open **FormNova** from the WordPress Admin menu.
+5. Create a new form.
+6. Copy the generated shortcode.
+7. Paste the shortcode into any page or post.
+
+---
+
+## Usage
+
+Example shortcode:
+
+```text
+[formnova id="1"]
+```
+
+You can place the shortcode inside:
+
+- Pages
+- Posts
+- Widgets
+- Templates
+
+---
+
+## Email Notifications
+
+Supports:
+
+- Admin Email
+- User Auto Reply
+- Reply-To
+- CC
+- BCC
+- Custom Subject
+- HTML Email Templates
+
+---
 
 ## Security
 
-FormNova follows WordPress security standards:
+FormNova follows WordPress security best practices.
 
-- Nonce verification
-- Capability checks
-- Input sanitization
-- Output escaping
-- Secure file upload validation
-- SQL injection prevention
+- Nonce Verification
+- Input Sanitization
+- Output Escaping
+- Capability Checks
+- SQL Prepared Statements
+- Secure File Upload Validation
 
-## FAQ
+---
 
-### Is FormNova better than Contact Form 7?
+## Developer Features
 
-FormNova offers drag-and-drop form building, AJAX submissions, file uploads, and analytics.
+- PSR-4 Autoloading
+- Composer Support
+- MVC Architecture
+- Namespaces
+- Extensible Code Structure
+- WordPress Hooks
+- Filters & Actions
 
-### Can I use file uploads?
+---
 
-Yes.
+## Roadmap
 
-### Does it support AJAX?
+Upcoming features include:
 
-Yes.
+- Conditional Logic
+- Multi-step Forms
+- Payment Integrations
+- Webhooks
+- REST API
+- Google Sheets Integration
+- Mailchimp Integration
+- HubSpot Integration
+- Export Entries (CSV/Excel)
+- Spam Protection Improvements
 
-### Can I manage submissions?
-
-Yes.
-
-## Changelog
-
-### 1.0.0
-
-- Initial release
-- Drag & drop form builder
-- AJAX submission support
-- File uploads
-- Analytics dashboard
-- Submission management
+---
 
 ## License
 
-GPLv2 or later
+GPL-2.0-or-later
+
+Released under the GNU General Public License.

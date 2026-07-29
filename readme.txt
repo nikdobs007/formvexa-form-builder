@@ -1,106 +1,139 @@
 === FormNova – Drag & Drop Contact Form Builder ===
 Contributors: nikdobs
-Github link: https://github.com/nikdobs/formnova-form
-Tags: contact form, form builder, drag and drop, ajax form, file upload
+Tags: contact form, form builder, drag and drop, ajax forms, file upload, contact forms
+Requires at least: 6.5
 Tested up to: 7.0
-Requires at least: 6.7
-Requires PHP: 7.4
+Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Create drag-and-drop WordPress forms with AJAX, file uploads, email notifications, analytics, and submission management.
+Create responsive contact forms with a modern drag-and-drop builder, AJAX submissions, file uploads, email notifications, and entry management.
 
 == Description ==
 
-FormNova is a modern drag-and-drop WordPress contact form builder plugin designed for fast, secure, and flexible form creation.
+FormNova is a modern WordPress form builder designed for users and developers who need a fast, secure, and flexible way to create contact forms without writing code.
 
-Whether you need simple contact forms, lead generation forms, registration forms, file upload forms, or surveys, FormNova makes it easy.
+Using the intuitive drag-and-drop builder, you can create unlimited forms, manage submissions, configure email notifications, and embed forms anywhere using shortcodes.
 
-FormNova is built as a lightweight and powerful alternative to Contact Form 7 with a user-friendly drag-and-drop builder.
+The plugin follows WordPress Coding Standards and uses a PSR-4 architecture for clean and maintainable code.
 
 = Key Features =
 
-✓ Drag & Drop Form Builder  
-✓ AJAX Form Submission  
-✓ File Upload Fields  
-✓ Email Notifications  
-✓ Submission Management  
-✓ Built-in Analytics Dashboard  
-✓ Custom Validation  
-✓ Contact Forms  
-✓ Lead Generation Forms  
-✓ Registration Forms  
-✓ Survey Forms  
-✓ Easy Shortcode Integration  
-✓ Secure File Upload Handling  
-✓ Spam Protection Ready  
-✓ Developer Friendly Structure  
+* Drag & Drop Form Builder
+* Unlimited Forms
+* Unlimited Fields
+* AJAX Form Submission
+* Email Notifications
+* Entry Management
+* File Upload Support
+* Responsive Forms
+* Form Validation
+* Shortcode Support
+* Google reCAPTCHA Support
+* Secure Form Processing
+* PSR-4 Autoloading
+* WordPress Coding Standards
+* Developer Friendly Architecture
 
-= Why FormNova? =
+= Supported Fields =
 
-FormNova provides a faster and cleaner form-building experience compared to traditional shortcode-based plugins.
+* Text
+* Email
+* Phone
+* Number
+* Textarea
+* Select
+* Radio
+* Checkbox
+* File Upload
+* Hidden
+* HTML
+* Submit Button
 
-Perfect for:
+= Security =
 
-- Contact forms
-- Job application forms
-- File upload forms
-- Customer feedback forms
-- Registration forms
-- Survey forms
+* Nonce Verification
+* Input Sanitization
+* Output Escaping
+* Prepared SQL Statements
+* Capability Checks
+* Secure File Upload Validation
 
 == Installation ==
 
-1. Upload the FormNova plugin to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the WordPress plugins screen.
-3. Navigate to FormNova in the admin panel.
-4. Create your first form.
-5. Copy and paste the shortcode anywhere.
+1. Upload the plugin to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the WordPress Plugins screen.
+3. Open **FormNova** from the admin menu.
+4. Create a new form.
+5. Copy the generated shortcode.
+6. Paste the shortcode into any page or post.
 
 == Frequently Asked Questions ==
 
-= Is FormNova better than Contact Form 7? =
+= Is coding knowledge required? =
 
-FormNova provides drag-and-drop form building, AJAX submissions, built-in analytics, and file upload support.
+No. Forms can be created using the visual drag-and-drop builder.
 
-= Can I create file upload forms? =
+= Can I create multiple forms? =
 
-Yes. FormNova supports secure file uploads with validation.
+Yes. There is no limit on the number of forms you can create.
 
-= Does FormNova support AJAX? =
+= Does it support AJAX submissions? =
 
-Yes. All form submissions are handled using AJAX.
+Yes.
 
-= Can I build forms without coding? =
+= Can users upload files? =
 
-Yes. FormNova provides a drag-and-drop builder.
+Yes.
 
-= Can I manage submissions in WordPress admin? =
+= Are entries stored in WordPress? =
 
-Yes. FormNova stores and manages all submissions.
+Yes. All form submissions are stored securely inside WordPress.
+
+= Does it support email notifications? =
+
+Yes. Both administrator notifications and user auto-replies are supported.
+
+= Is Google reCAPTCHA supported? =
+
+Yes.
+
+= Can I use shortcodes? =
+
+Yes.
 
 == Screenshots ==
 
-1. Drag & Drop Form Builder
-2. Frontend Form Preview
-3. Add new form
-4. All form list
-5. All submission list 
-6. View submission
-7. Settings
+1. Forms List
+2. Drag & Drop Form Builder
+3. Field Settings
+4. Form Settings
+5. Email Notification Settings
+6. Frontend Form
+7. Entry Management
 
 == Changelog ==
 
 = 1.0.0 =
-* Initial release
-* Drag & drop form builder
-* AJAX form submissions
-* File upload support
-* Analytics dashboard
-* Submission management
+
+* Initial public release.
+* Drag & Drop Form Builder.
+* Unlimited Forms.
+* AJAX Form Submission.
+* Entry Management.
+* Email Notifications.
+* File Upload Support.
+* Form Validation.
+* Responsive Forms.
+* Shortcode Support.
+* Google reCAPTCHA Integration.
+* Secure Form Processing.
+* PSR-4 Architecture.
+* WordPress Coding Standards.
 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial stable release.
+
+Initial stable release of FormNova.

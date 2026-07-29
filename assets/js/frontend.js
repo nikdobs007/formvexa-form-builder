@@ -1,469 +1,678 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-    const forms =
-        document.querySelectorAll(".formnova-form");
-
-    function clearMessage(box, delay = 4000) {
-        setTimeout(() => {
-            if (box) {
-                box.innerHTML = "";
-            }
-        }, delay);
-    }
+(function ($) {
 
     /*
-     * Remove all field errors
-     */
-    function clearFieldErrors(form) {
-        form.querySelectorAll(
-            ".formnova-field-error"
-        ).forEach(el => el.remove());
-    }
+    |--------------------------------------------------------------------------
+    | Validation Helpers
+    |--------------------------------------------------------------------------
+    */
 
-    function showCaptchaError(form, message) {
+    function showMessage(form, message, type) {
 
-        const box =
-            form.querySelector(
-                ".formnova-captcha-error"
-            );
+        let box = $(form).find('.formnova-message');
 
-        if (box) {
+        if (!box.length) {
 
-            box.innerHTML =
-                '<small class="formnova-field-error">' +
-                message +
-                '</small>';
+            box = $('<div class="formnova-message"></div>');
+
+            $(form)
+                .find('[type="submit"]')
+                .after(box);
         }
+
+        box.removeClass(
+            'success error'
+        );
+
+        box.addClass(type);
+
+        box.html(message);
+
     }
 
-    /*
-     * Show field error below input
-     */
+    function clearErrors(form) {
+
+        $(form)
+            .find('.formnova-error')
+            .remove();
+
+    }
+
     function showFieldError(field, message) {
-        const oldError =
-            field.parentNode.querySelector(
-                ".formnova-field-error"
-            );
 
-        if (oldError) {
-            oldError.remove();
-        }
+        field.next('.formnova-error').remove();
 
-        const error =
-            document.createElement("small");
+        $('<div class="formnova-error"></div>')
+            .text(message)
+            .insertAfter(field);
 
-        error.className =
-            "formnova-field-error";
-
-        error.innerText = message;
-
-        field.parentNode.appendChild(error);
     }
 
-    forms.forEach(form => {
+    function clearMessage(form) {
 
-        form.addEventListener(
-            "submit",
-            async function (e) {
+        $(form)
+            .find('.formnova-message')
+            .remove();
 
-                e.preventDefault();
+    }
 
-                clearFieldErrors(form);
+    function validateField(field) {
 
-                const submitBtn =
-                    form.querySelector(
-                        'button[type="submit"]'
+        let value = '';
+
+        let type = (
+            field.attr('type') || ''
+        ).toLowerCase();
+
+        let required = field.prop('required');
+
+        /*
+|--------------------------------------------------------------------------
+| File
+|--------------------------------------------------------------------------
+*/
+
+        if (type === 'file') {
+
+            const input = field[0];
+
+            if (required && input.files.length === 0) {
+                return field.data('label') + ' is required.';
+            }
+
+            if (!input.files.length) {
+                return true;
+            }
+
+            const file = input.files[0];
+
+            /*
+            |--------------------------------------------------------------------------
+            | Extension
+            |--------------------------------------------------------------------------
+            */
+
+            const allowed = (
+                field.data('extensions') || ''
+            )
+                .toLowerCase()
+                .split(',')
+                .map(v => $.trim(v))
+                .filter(Boolean);
+
+            if (allowed.length) {
+
+                const ext = file.name
+                    .split('.')
+                    .pop()
+                    .toLowerCase();
+
+                if (!allowed.includes(ext)) {
+
+                    return 'Allowed file types: ' + allowed.join(', ').toUpperCase();
+
+                }
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Max Size
+            |--------------------------------------------------------------------------
+            */
+
+            const maxSize = parseFloat(
+                field.data('max-size')
+            );
+
+            if (
+                maxSize &&
+                file.size > (maxSize * 1024 * 1024)
+            ) {
+
+                return 'Maximum file size is ' + maxSize + ' MB.';
+
+            }
+
+            return true;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Checkbox
+        |--------------------------------------------------------------------------
+        */
+
+        if (type === 'checkbox') {
+
+            if (!required) {
+                return true;
+            }
+
+            let checked = $('input[name="' + field.attr('name') + '"]:checked');
+
+            if (!checked.length) {
+
+                return field.data('label') + ' is required.';
+
+            }
+
+            return true;
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Radio
+        |--------------------------------------------------------------------------
+        */
+
+        if (type === 'radio') {
+
+            if (!required) {
+                return true;
+            }
+
+            let checked = $('input[name="' + field.attr('name') + '"]:checked');
+
+            if (!checked.length) {
+
+                return field.data('label') + ' is required.';
+
+            }
+
+            return true;
+
+        }
+
+        value = $.trim(field.val());
+
+        /*
+        |--------------------------------------------------------------------------
+        | Required
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            required &&
+            value === ''
+        ) {
+
+            return field.data('label') + ' is required.';
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Optional Empty Field
+        |--------------------------------------------------------------------------
+        */
+
+        if (!required && value === '') {
+            return true;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Email
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            type === 'email' &&
+            value !== ''
+        ) {
+
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!regex.test(value)) {
+
+                return 'Invalid email address.';
+
+            }
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | URL
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            type === 'url' &&
+            value !== ''
+        ) {
+
+            try {
+
+                new URL(value);
+
+            } catch (e) {
+
+                return 'Invalid URL.';
+
+            }
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Phone
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            type === 'tel' &&
+            value !== ''
+        ) {
+
+            let regex = /^[0-9+\-\s()]+$/;
+
+            if (!regex.test(value)) {
+
+                return 'Invalid phone number.';
+
+            }
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Minlength
+        |--------------------------------------------------------------------------
+        */
+
+        let min = field.attr('minlength');
+
+        if (
+            min &&
+            value.length < parseInt(min)
+        ) {
+
+            return 'Minimum ' + min + ' characters required.';
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Maxlength
+        |--------------------------------------------------------------------------
+        */
+
+        let max = field.attr('maxlength');
+
+        if (
+            max &&
+            value.length > parseInt(max)
+        ) {
+
+            return 'Maximum ' + max + ' characters allowed.';
+
+        }
+
+        return true;
+
+    }
+
+    'use strict';
+
+    $(document).on('submit', '.formnova-frontend', function (e) {
+
+        e.preventDefault();
+
+        var form = this;
+        var $form = $(form);
+        var $submit = $form.find('[type="submit"]');
+
+        if ($submit.prop('disabled')) {
+            return;
+        }
+
+        $submit.prop('disabled', true);
+
+        if (!$submit.next('.formnova-loader').length) {
+
+            $submit.after(
+                '<span class="formnova-loader"></span>'
+            );
+
+        }
+        clearMessage(form);
+
+        clearErrors(form);
+
+        let valid = true;
+
+        $form
+            .find(':input[name]')
+            .each(function () {
+
+                let result = validateField($(this));
+
+                if (result !== true) {
+
+                    showFieldError(
+                        $(this),
+                        result
                     );
 
-                const responseTop =
-                    form.querySelector(
-                        '.formnova-response-top'
-                    );
+                    this.focus();
 
-                const responseBottom =
-                    form.querySelector(
-                        '.formnova-response-bottom'
-                    );
+                    valid = false;
 
-                submitBtn.disabled = true;
-                submitBtn.innerText =
-                    "Submitting...";
+                    return false;
 
-                const formData =
-                    new FormData(form);
+                }
 
-                formData.append(
-                    "action",
-                    "formnova_submit"
-                );
+            });
 
-                formData.append(
-                    "nonce",
-                    formnova_ajax.nonce
-                );
+        if (!valid) {
 
-                /*
-                * Generate reCAPTCHA v3 token
-                */
-                if (
-                    formnova_ajax.recaptcha_version === "v3"
-                    &&
-                    typeof grecaptcha !== "undefined"
-                    &&
-                    document.getElementById(
-                        "formnova-recaptcha-token"
-                    )
-                ) {
+            $submit.prop('disabled', false);
 
-                    try {
+            $form.find('.formnova-loader').remove();
 
-                        const token =
-                            await new Promise(
-                                (resolve, reject) => {
+            return;
+        }
 
-                                    grecaptcha.ready(
-                                        function () {
+        var formData = new FormData(form);
 
-                                            grecaptcha.execute(
-                                                formnova_ajax.site_key,
-                                                {
-                                                    action: "submit"
-                                                }
-                                            )
-                                                .then(resolve)
-                                                .catch(reject);
+        formData.append(
+            'action',
+            'ndfb_submit_entry'
+        );
 
-                                        }
-                                    );
+        formData.append(
+            'form_id',
+            $form.data('form-id')
+        );
 
-                                }
-                            );
+        formData.append(
+            'nonce',
+            formnova.nonce
+        );
 
-                        document.getElementById(
-                            "formnova-recaptcha-token"
-                        ).value = token;
+        /*
+        |--------------------------------------------------------------------------
+        | Google reCAPTCHA
+        |--------------------------------------------------------------------------
+        */
 
-                        formData.set(
-                            "g-recaptcha-response",
+        if (
+            typeof FormNovaCaptcha !== 'undefined' &&
+            FormNovaCaptcha.enabled
+        ) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | v3
+            |--------------------------------------------------------------------------
+            */
+
+            if (FormNovaCaptcha.type === 'v3') {
+
+                grecaptcha.ready(function () {
+
+                    grecaptcha.execute(
+                        FormNovaCaptcha.site_key,
+                        {
+                            action: 'submit'
+                        }
+                    ).then(function (token) {
+
+                        formData.append(
+                            'captcha_token',
                             token
                         );
 
-                    } catch (error) {
+                        sendAjax();
 
-                        responseTop.innerHTML =
-                            `<div class="formnova-error-box">
-                                Failed to verify captcha.
-                            </div>`;
+                    });
 
-                        submitBtn.disabled = false;
-                        submitBtn.innerText = "Submit";
+                });
 
-                        return;
-                    }
-                }
+                return;
 
-                const fields =
-                    form.querySelectorAll(
-                        "input, textarea, select"
-                    );
-
-                /*
-                 * Field validation
-                 */
-                for (let field of fields) {
-
-                    const type = field.type;
-                    const value =
-                        field.value.trim();
-
-                    const label =
-                        field.dataset.label ||
-                        field.name;
-
-                    /*
-                     * Required
-                     */
-                    if (
-                        field.required &&
-                        value === ""
-                    ) {
-                        showFieldError(
-                            field,
-                            `${label} is required.`
-                        );
-
-                        submitBtn.disabled = false;
-                        submitBtn.innerText =
-                            "Submit";
-                        return;
-                    }
-
-                    /*
-                     * Email
-                     */
-                    if (
-                        type === "email" &&
-                        value !== ""
-                    ) {
-                        const emailRegex =
-                            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                        if (
-                            !emailRegex.test(value)
-                        ) {
-                            showFieldError(
-                                field,
-                                `${label} invalid email format.`
-                            );
-
-                            submitBtn.disabled =
-                                false;
-
-                            submitBtn.innerText =
-                                "Submit";
-
-                            return;
-                        }
-                    }
-
-                    /*
-                     * Number
-                     */
-                    if (
-                        type === "number" &&
-                        value !== "" &&
-                        isNaN(value)
-                    ) {
-                        showFieldError(
-                            field,
-                            `${label} only numeric value allowed.`
-                        );
-
-                        submitBtn.disabled = false;
-                        submitBtn.innerText =
-                            "Submit";
-
-                        return;
-                    }
-
-                    /*
-                     * Phone
-                     */
-                    if (
-                        type === "tel" &&
-                        value !== ""
-                    ) {
-                        const digitsOnly =
-                            value.replace(
-                                /\D/g,
-                                ''
-                            );
-
-                        if (
-                            digitsOnly.length < 7 ||
-                            digitsOnly.length > 15
-                        ) {
-                            showFieldError(
-                                field,
-                                `${label} must be between 7 and 15 digits.`
-                            );
-
-                            submitBtn.disabled =
-                                false;
-
-                            submitBtn.innerText =
-                                "Submit";
-
-                            return;
-                        }
-                    }
-
-                    /*
-                     * URL
-                     */
-                    if (
-                        type === "url" &&
-                        value !== ""
-                    ) {
-                        try {
-                            new URL(value);
-                        } catch {
-                            showFieldError(
-                                field,
-                                `${label} invalid URL.`
-                            );
-
-                            submitBtn.disabled =
-                                false;
-
-                            submitBtn.innerText =
-                                "Submit";
-
-                            return;
-                        }
-                    }
-                }
-
-                /*
-                 * File Validation
-                 */
-                const fileFields =
-                    form.querySelectorAll(
-                        ".formnova-file-field"
-                    );
-
-                for (let field of fileFields) {
-
-                    const allowed =
-                        (field.dataset.allowed || '')
-                            .split(',')
-                            .map(v =>
-                                v.trim().toLowerCase()
-                            )
-                            .filter(Boolean);
-
-                    if (!allowed.length) {
-                        continue;
-                    }
-
-                    for (let file of field.files) {
-
-                        const ext =
-                            file.name
-                                .split('.')
-                                .pop()
-                                .toLowerCase();
-
-                        if (
-                            !allowed.includes(ext)
-                        ) {
-                            showFieldError(
-                                field,
-                                `Allowed file types: ${allowed.join(', ')}`
-                            );
-
-                            submitBtn.disabled =
-                                false;
-
-                            submitBtn.innerText =
-                                "Submit";
-
-                            return;
-                        }
-
-                        const maxSize =
-                            parseInt(
-                                field.dataset.maxSize || 5
-                            );
-
-                        if (
-                            file.size >
-                            maxSize *
-                            1024 *
-                            1024
-                        ) {
-                            showFieldError(
-                                field,
-                                `Maximum file size allowed is ${maxSize} MB.`
-                            );
-
-                            submitBtn.disabled =
-                                false;
-
-                            submitBtn.innerText =
-                                "Submit";
-
-                            return;
-                        }
-                    }
-                }
-                
-                /*
-                 * Submit via AJAX
-                 */
-                try {
-
-                    const response =
-                        await fetch(
-                            formnova_ajax.ajax_url,
-                            {
-                                method: "POST",
-                                body: formData
-                            }
-                        );
-
-                    const text =
-                        await response.text();
-
-                    let result;
-
-                    try {
-
-                        result =
-                            JSON.parse(text);
-
-                        if (
-                            result.success
-                        ) {
-
-                            responseBottom.innerHTML =
-                                `<div class="formnova-success-box"></div>`;
-
-                            responseBottom.querySelector(
-                                ".formnova-success-box"
-                            ).textContent =
-                                result.data.message;
-
-                            form.reset();
-
-                        } else {
-
-                            if (
-                                result.data &&
-                                result.data.field === 'captcha'
-                            ) {
-
-                                showCaptchaError(
-                                    form,
-                                    result.data.message
-                                );
-
-                                return;
-                            }
-
-                            responseTop.innerHTML =
-                                `<div class="formnova-error-box"></div>`;
-
-                            responseTop.querySelector(
-                                ".formnova-error-box"
-                            ).textContent =
-                                result.data.message;
-                        }
-
-                    } catch (e) {
-
-                        responseTop.innerHTML =
-                            `<div class="formnova-error-box">
-                                Server Error
-                            </div>`;
-                       }
-
-                } catch (error) {
-
-                    responseTop.innerHTML =
-                        `<div class="formnova-error-box">
-                            Something went wrong.
-                        </div>`;
-
-                } finally {
-
-                    submitBtn.disabled =
-                        false;
-
-                    submitBtn.innerText =
-                        "Submit";
-                }
             }
+
+            /*
+            |--------------------------------------------------------------------------
+            | v2
+            |--------------------------------------------------------------------------
+            */
+
+            const widget = $('.g-recaptcha', form);
+
+            if (widget.length) {
+
+                const token = grecaptcha.getResponse();
+
+                if (!token) {
+
+                    showMessage(
+                        form,
+                        'Please complete Google reCAPTCHA.',
+                        'error'
+                    );
+
+                    $submit.prop('disabled', false);
+
+                    $form.find('.formnova-loader').remove();
+
+                    return;
+                }
+
+                formData.append(
+                    'captcha_token',
+                    token
+                );
+            }
+
+        }
+
+        var fields = {};
+
+        $form
+            .find(':input[name]')
+            .each(function () {
+
+                var field = $(this);
+
+                if (
+                    field.attr('name') === 'g-recaptcha-response'
+                ) {
+                    return;
+                }
+
+                if (
+                    field.attr('type') === 'file'
+                ) {
+                    return;
+                }
+
+                if (
+                    field.attr('type') === 'checkbox'
+                ) {
+
+                    if (!field.is(':checked')) {
+                        return;
+                    }
+
+                    const name = field.attr('name').replace(/\[\]$/, '').toLowerCase();
+
+                    if (!fields[name]) {
+                        fields[name] = [];
+                    }
+
+                    fields[name].push(field.val());
+
+                    return;
+                }
+
+                if (
+                    field.attr('type') === 'radio'
+                ) {
+
+                    if (field.is(':checked')) {
+                        fields[field.attr('name').toLowerCase()] = field.val();
+                    }
+
+                    return;
+                }
+
+                fields[field.attr('name').toLowerCase()] = field.val();
+
+            });
+
+        formData.append(
+            'data',
+            JSON.stringify(fields)
         );
+
+        /*
+        |--------------------------------------------------------------------------
+        | At least one field must have a value
+        |--------------------------------------------------------------------------
+        */
+
+        let hasValue = false;
+
+        Object.keys(fields).forEach(function (key) {
+
+            if (key === 'g-recaptcha-response') {
+                return;
+            }
+
+            const value = fields[key];
+
+            if (Array.isArray(value)) {
+
+                if (value.length) {
+                    hasValue = true;
+                }
+
+            } else if (
+                value !== null &&
+                value !== undefined &&
+                String(value).trim() !== ''
+            ) {
+
+                hasValue = true;
+
+            }
+
+        });
+
+        if (!hasValue) {
+
+            showMessage(
+                form,
+                'Please fill at least one field.',
+                'error'
+            );
+
+            $submit.prop('disabled', false);
+
+            $form.find('.formnova-loader').remove();
+
+            return;
+
+        }
+
+        function sendAjax() {
+
+            $.ajax({
+
+                url: formnova.ajax_url,
+
+                type: 'POST',
+
+                data: formData,
+
+                processData: false,
+
+                contentType: false,
+
+                success: function (response) {
+
+                    if (response.success) {
+
+                        showMessage(
+
+                            form,
+
+                            response.data.message,
+
+                            'success'
+
+                        );
+
+                        form.reset();
+
+                        if (
+                            typeof grecaptcha !== 'undefined' &&
+                            $('.g-recaptcha', form).length
+                        ) {
+                            grecaptcha.reset();
+                        }
+
+                    } else {
+
+                        let msg = 'Submission failed.';
+
+                        if (
+                            response.data &&
+                            response.data.message
+                        ) {
+                            msg = response.data.message;
+                        }
+
+                        showMessage(
+                            form,
+                            msg,
+                            'error'
+                        );
+
+                    }
+
+                    if (
+                        typeof grecaptcha !== 'undefined' &&
+                        $('.g-recaptcha', form).length
+                    ) {
+                        grecaptcha.reset();
+                    }
+
+                    $submit.prop('disabled', false);
+
+                    $form.find('.formnova-loader').remove();
+
+                },
+
+                error: function (xhr) {
+
+                    showMessage(
+                        form,
+                        xhr.responseJSON?.data?.message || 'Submission failed.',
+                        'error'
+                    );
+
+                    if (
+                        typeof grecaptcha !== 'undefined' &&
+                        $('.g-recaptcha', form).length
+                    ) {
+                        grecaptcha.reset();
+                    }
+
+                    $submit.prop('disabled', false);
+
+                    $form.find('.formnova-loader').remove();
+
+                }
+
+            });
+        }
+
+        sendAjax();
+
     });
-});
+
+})(jQuery);
