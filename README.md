@@ -74,7 +74,7 @@ wp-content/plugins/
 Example shortcode:
 
 ```text
-[formnova id="1"]
+[formnova_form id="1"]
 ```
 
 You can place the shortcode inside:
