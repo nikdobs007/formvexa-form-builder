@@ -26,7 +26,7 @@ final class TextField extends BaseField
      */
     public function title(): string
     {
-        return __('Text', 'formnova-form');
+        return __('Text', 'formnova-form-builder');
     }
 
     /**
@@ -62,7 +62,7 @@ final class TextField extends BaseField
 
             'type' => 'text',
 
-            'label' => __('Text Field', 'formnova-form'),
+            'label' => __('Text Field', 'formnova-form-builder'),
 
             'name' => 'text_' . strtolower(wp_generate_password(6, false)),
 
@@ -89,32 +89,32 @@ final class TextField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form')
+                    __('Default Value', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
             ],
         ];

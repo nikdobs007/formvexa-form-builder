@@ -22,8 +22,8 @@ final class EntriesListTable extends WP_List_Table
         $this->form_repository = $form_repository;
 
         parent::__construct([
-            'singular' => __('Entry', 'formnova-form'),
-            'plural' => __('Entries', 'formnova-form'),
+            'singular' => __('Entry', 'formnova-form-builder'),
+            'plural' => __('Entries', 'formnova-form-builder'),
             'ajax' => false,
         ]);
     }
@@ -36,11 +36,11 @@ final class EntriesListTable extends WP_List_Table
 
             'id' => 'ID',
 
-            'form_name' => __('Form', 'formnova-form'),
+            'form_name' => __('Form', 'formnova-form-builder'),
 
-            'status' => __('Status', 'formnova-form'),
+            'status' => __('Status', 'formnova-form-builder'),
 
-            'submitted_at' => __('Submitted', 'formnova-form'),
+            'submitted_at' => __('Submitted', 'formnova-form-builder'),
 
         ];
     }
@@ -62,7 +62,7 @@ final class EntriesListTable extends WP_List_Table
     {
         return [
 
-            'delete' => __('Delete', 'formnova-form')
+            'delete' => __('Delete', 'formnova-form-builder')
 
         ];
     }

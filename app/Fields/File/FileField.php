@@ -16,7 +16,7 @@ final class FileField extends BaseField
 
     public function title(): string
     {
-        return __('File Upload', 'formnova-form');
+        return __('File Upload', 'formnova-form-builder');
     }
 
     public function group(): string
@@ -37,7 +37,7 @@ final class FileField extends BaseField
 
             'type' => 'file',
 
-            'label' => __('File Upload', 'formnova-form'),
+            'label' => __('File Upload', 'formnova-form-builder'),
 
             'name' => 'file_' . strtolower(wp_generate_password(6, false)),
 
@@ -65,51 +65,51 @@ final class FileField extends BaseField
         return [
 
             [
-                'title' => __('General', 'formnova-form'),
+                'title' => __('General', 'formnova-form-builder'),
                 'fields' => [
 
-                    Setting::text('label', __('Label', 'formnova-form')),
+                    Setting::text('label', __('Label', 'formnova-form-builder')),
 
-                    Setting::text('name', __('Name', 'formnova-form')),
+                    Setting::text('name', __('Name', 'formnova-form-builder')),
 
-                    Setting::text('class', __('CSS Class', 'formnova-form')),
+                    Setting::text('class', __('CSS Class', 'formnova-form-builder')),
 
-                    Setting::checkbox('required', __('Required', 'formnova-form')),
+                    Setting::checkbox('required', __('Required', 'formnova-form-builder')),
                 ]
             ],
 
             [
-                'title' => __('File Settings', 'formnova-form'),
+                'title' => __('File Settings', 'formnova-form-builder'),
                 'fields' => [
 
                     Setting::text(
                         'allowed_extensions',
-                        __('Allowed Extensions (comma separated)', 'formnova-form')
+                        __('Allowed Extensions (comma separated)', 'formnova-form-builder')
                     ),
 
                     Setting::text(
                         'allowed_mimes',
-                        __('Allowed MIME Types', 'formnova-form')
+                        __('Allowed MIME Types', 'formnova-form-builder')
                     ),
 
                     Setting::number(
                         'max_size',
-                        __('Max Size (MB)', 'formnova-form')
+                        __('Max Size (MB)', 'formnova-form-builder')
                     ),
 
                     Setting::checkbox(
                         'multiple',
-                        __('Allow Multiple Files', 'formnova-form')
+                        __('Allow Multiple Files', 'formnova-form-builder')
                     ),
 
                     Setting::number(
                         'min_files',
-                        __('Min Files', 'formnova-form')
+                        __('Min Files', 'formnova-form-builder')
                     ),
 
                     Setting::number(
                         'max_files',
-                        __('Max Files', 'formnova-form')
+                        __('Max Files', 'formnova-form-builder')
                     ),
                 ]
             ],

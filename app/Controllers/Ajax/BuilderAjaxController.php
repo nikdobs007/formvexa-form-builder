@@ -49,7 +49,7 @@ final class BuilderAjaxController
 		if (!current_user_can('manage_options')) {
 			wp_send_json_error(
 				array(
-					'message' => __('Unauthorized', 'formnova-form'),
+					'message' => __('Unauthorized', 'formnova-form-builder'),
 				)
 			);
 		}
@@ -72,18 +72,18 @@ final class BuilderAjaxController
 		if (JSON_ERROR_NONE !== json_last_error() || !is_array($decoded)) {
 			wp_send_json_error(
 				array(
-					'message' => __('Invalid builder JSON', 'formnova-form'),
+					'message' => __('Invalid builder JSON', 'formnova-form-builder'),
 				)
 			);
 		}
 
 		$builder = isset($decoded['builder']) && is_array($decoded['builder'])
 			? $decoded['builder']
-			: array();
+			: [];
 
 		$settings = isset($decoded['settings']) && is_array($decoded['settings'])
 			? $decoded['settings']
-			: array();
+			: [];
 
 		$form_id = $this->service->save(
 			$form_id,

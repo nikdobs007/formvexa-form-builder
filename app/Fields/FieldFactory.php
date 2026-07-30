@@ -14,7 +14,7 @@ final class FieldFactory
      * @param string $type Field type.
      * @param array  $data Field data.
      *
-     * @return FieldInterface
+     * @return \FormNova\Contracts\FieldInterface
      *
      * @throws \RuntimeException When the field type is not registered.
      */
@@ -23,9 +23,9 @@ final class FieldFactory
         array $data = []
     ): FieldInterface {
 
-        $class = Registry::get($type);
+        $field = Registry::get($type);
 
-        if (!$class) {
+        if (!$field) {
             throw new \RuntimeException(
                 sprintf(
                     'Field "%s" is not registered.',
@@ -34,6 +34,12 @@ final class FieldFactory
             );
         }
 
-        return new $class($data);
+        $object = clone $field;
+
+        if (method_exists($object, 'fill')) {
+            $object->fill($data);
+        }
+
+        return $object;
     }
 }

@@ -26,15 +26,7 @@ final class Registry
     /**
      * Register field.
      *
-     * @param string $type
-     * @param string $class
-     *
-     * @return void
-     */
-    /**
-     * Register field.
-     *
-     * @param \FormNova\Contracts\FieldInterface $field
+     * @param \FormNova\Contracts\FieldInterface $field Field instance.
      *
      * @return void
      */

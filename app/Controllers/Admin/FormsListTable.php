@@ -195,7 +195,7 @@ final class FormsListTable extends WP_List_Table
     public function get_bulk_actions(): array
     {
         return [
-            'delete' => __('Delete', 'formnova-form'),
+            'delete' => __('Delete', 'formnova-form-builder'),
         ];
     }
 
@@ -230,7 +230,7 @@ final class FormsListTable extends WP_List_Table
         add_settings_error(
             'formnova',
             'form_deleted',
-            __('Selected forms deleted successfully.', 'formnova-form'),
+            __('Selected forms deleted successfully.', 'formnova-form-builder'),
             'updated'
         );
 

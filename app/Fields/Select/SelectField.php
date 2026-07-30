@@ -22,7 +22,7 @@ final class SelectField extends BaseField
      */
     public function title(): string
     {
-        return __('Select', 'formnova-form');
+        return __('Select', 'formnova-form-builder');
     }
 
     /**
@@ -52,13 +52,13 @@ final class SelectField extends BaseField
 
             'type' => 'select',
 
-            'label' => __('Select Field', 'formnova-form'),
+            'label' => __('Select Field', 'formnova-form-builder'),
 
             'name' => 'select_' . strtolower(wp_generate_password(6, false)),
 
             'class' => '',
 
-            'placeholder' => __('Select...', 'formnova-form'),
+            'placeholder' => __('Select...', 'formnova-form-builder'),
 
             'required' => false,
 
@@ -67,12 +67,12 @@ final class SelectField extends BaseField
             'options' => [
 
                 [
-                    'label' => __('Option 1', 'formnova-form'),
+                    'label' => __('Option 1', 'formnova-form-builder'),
                     'value' => 'option_1',
                 ],
 
                 [
-                    'label' => __('Option 2', 'formnova-form'),
+                    'label' => __('Option 2', 'formnova-form-builder'),
                     'value' => 'option_2',
                 ],
 
@@ -92,27 +92,27 @@ final class SelectField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
 
             ],
@@ -121,22 +121,22 @@ final class SelectField extends BaseField
 
                 Setting::options(
                     'options',
-                    __('Options', 'formnova-form'),
+                    __('Options', 'formnova-form-builder'),
                     [
                         'description' => __(
                             'Add, remove and reorder options.',
-                            'formnova-form'
+                            'formnova-form-builder'
                         ),
                     ]
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form'),
+                    __('Default Value', 'formnova-form-builder'),
                     [
                         'description' => __(
                             'Default option value.',
-                            'formnova-form'
+                            'formnova-form-builder'
                         ),
                     ]
                 ),
@@ -180,7 +180,7 @@ final class SelectField extends BaseField
         ) {
             return __(
                 'This field is required.',
-                'formnova-form'
+                'formnova-form-builder'
             );
         }
 
@@ -205,7 +205,7 @@ final class SelectField extends BaseField
 
         return __(
             'Invalid selection.',
-            'formnova-form'
+            'formnova-form-builder'
         );
     }
 

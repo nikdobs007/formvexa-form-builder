@@ -22,7 +22,7 @@ final class ParagraphField extends BaseField
      */
     public function title(): string
     {
-        return __('Paragraph', 'formnova-form');
+        return __('Paragraph', 'formnova-form-builder');
     }
 
     /**
@@ -52,11 +52,11 @@ final class ParagraphField extends BaseField
 
             'type' => 'paragraph',
 
-            'label' => __('Paragraph', 'formnova-form'),
+            'label' => __('Paragraph', 'formnova-form-builder'),
 
             'content' => __(
                 'This is a paragraph.',
-                'formnova-form'
+                'formnova-form-builder'
             ),
 
             'class' => '',
@@ -75,17 +75,17 @@ final class ParagraphField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::textarea(
                     'content',
-                    __('Content', 'formnova-form')
+                    __('Content', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
             ],

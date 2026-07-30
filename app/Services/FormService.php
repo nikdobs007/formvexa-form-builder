@@ -448,6 +448,9 @@ final class FormService
 
         $form = $this->validate($form);
 
+        $builder = $this->sanitize_builder($builder);
+        $settings = $this->sanitize_settings($settings);
+
         /*
         |--------------------------------------------------------------------------
         | CREATE
@@ -536,7 +539,7 @@ final class FormService
     ): array {
 
         if (!$updating && empty($data['title'])) {
-            $data['title'] = __('Untitled Form', 'formnova-form');
+            $data['title'] = __('Untitled Form', 'formnova-form-builder');
         }
 
         $data['title'] = sanitize_text_field(
@@ -981,5 +984,101 @@ final class FormService
             'settings',
             $settings
         );
+    }
+
+    /**
+     * Recursively sanitize builder data.
+     *
+     * @param array $builder
+     *
+     * @return array
+     */
+    private function sanitize_builder(array $builder): array
+    {
+        foreach ($builder as $key => $value) {
+
+            if (is_array($value)) {
+                $builder[$key] = $this->sanitize_builder($value);
+                continue;
+            }
+
+            if (is_bool($value) || is_numeric($value) || $value === null) {
+                $builder[$key] = $value;
+                continue;
+            }
+
+            $builder[$key] = sanitize_text_field((string) $value);
+        }
+
+        return $builder;
+    }
+
+    /**
+     * Recursively sanitize settings data.
+     *
+     * @param mixed $settings Settings array.
+     *
+     * @return mixed
+     */
+    private function sanitize_settings($settings)
+    {
+        if (!is_array($settings)) {
+            return is_string($settings)
+                ? sanitize_text_field($settings)
+                : $settings;
+        }
+
+        foreach ($settings as $key => $value) {
+
+            if (is_array($value)) {
+                $settings[$key] = $this->sanitize_settings($value);
+                continue;
+            }
+
+            if (
+                is_bool($value) ||
+                is_numeric($value) ||
+                $value === null
+            ) {
+                $settings[$key] = $value;
+                continue;
+            }
+
+            if (!is_string($value)) {
+                $settings[$key] = $value;
+                continue;
+            }
+
+            switch ($key) {
+
+                case 'email':
+                case 'from_email':
+                case 'reply_to':
+                case 'admin_to':
+                case 'admin_cc':
+                case 'admin_bcc':
+                    $settings[$key] = sanitize_email($value);
+                    break;
+
+                case 'redirect_url':
+                case 'success_url':
+                case 'url':
+                    $settings[$key] = esc_url_raw($value);
+                    break;
+
+                case 'admin_message':
+                case 'user_message':
+                case 'success_message':
+                case 'error_message':
+                    $settings[$key] = wp_kses_post($value);
+                    break;
+
+                default:
+                    $settings[$key] = sanitize_text_field($value);
+                    break;
+            }
+        }
+
+        return $settings;
     }
 }

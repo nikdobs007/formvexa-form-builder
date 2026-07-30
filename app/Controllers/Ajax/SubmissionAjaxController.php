@@ -91,7 +91,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Security check failed.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 403
@@ -112,7 +112,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Spam detected.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 400
@@ -131,7 +131,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Invalid form.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 400
@@ -166,7 +166,7 @@ final class SubmissionAjaxController
                     [
                         'message' => __(
                             'Too many submissions. Please wait one minute and try again.',
-                            'formnova-form'
+                            'formnova-form-builder'
                         ),
                     ],
                     429
@@ -192,7 +192,7 @@ final class SubmissionAjaxController
 
             wp_send_json_error(
                 [
-                    'message' => __('Form not found.', 'formnova-form'),
+                    'message' => __('Form not found.', 'formnova-form-builder'),
                 ],
                 404
             );
@@ -249,7 +249,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Submission data missing.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 400
@@ -261,17 +261,30 @@ final class SubmissionAjaxController
             true
         );
 
-        if (!is_array($request)) {
+        if (
+            JSON_ERROR_NONE !== json_last_error()
+            || !is_array($request)
+        ) {
             wp_send_json_error(
                 [
                     'message' => __(
                         'Invalid request payload.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 400
             );
         }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Sanitize Request Data
+        |--------------------------------------------------------------------------
+        */
+
+        $request = $this->sanitize_request_data(
+            $request
+        );
 
         /*
         |--------------------------------------------------------------------------
@@ -288,7 +301,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Form builder not found.',
-                        'formnova-form'
+                        'formnova-form-builder'
                     ),
                 ],
                 404
@@ -322,7 +335,7 @@ final class SubmissionAjaxController
                 'entry_id' => (int) $result,
                 'message' => __(
                     'Form submitted successfully.',
-                    'formnova-form'
+                    'formnova-form-builder'
                 ),
             ]
         );
@@ -335,40 +348,77 @@ final class SubmissionAjaxController
      */
     private function get_client_ip(): string
     {
-        $keys = [
-            'HTTP_CF_CONNECTING_IP', // Cloudflare
-            'HTTP_X_FORWARDED_FOR',  // Proxy / Load Balancer
-            'HTTP_CLIENT_IP',
-            'REMOTE_ADDR',
-        ];
+        // Cloudflare trusted header.
+        if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
 
-        foreach ($keys as $key) {
+            $ip = sanitize_text_field(
+                wp_unslash($_SERVER['HTTP_CF_CONNECTING_IP'])
+            );
 
-            if (empty($_SERVER[$key])) {
-                continue;
+            if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                return $ip;
             }
+        }
 
-            $server_value = sanitize_text_field(
-                wp_unslash(
-                    $_SERVER[$key]
-                )
+        // Default web server IP.
+        if (!empty($_SERVER['REMOTE_ADDR'])) {
+
+            $ip = sanitize_text_field(
+                wp_unslash($_SERVER['REMOTE_ADDR'])
             );
 
-            $ip_list = explode(
-                ',',
-                $server_value
-            );
-
-            foreach ($ip_list as $ip) {
-
-                $ip = trim($ip);
-
-                if (filter_var($ip, FILTER_VALIDATE_IP)) {
-                    return sanitize_text_field($ip);
-                }
+            if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                return $ip;
             }
         }
 
         return '';
+    }
+
+    /**
+     * Recursively sanitize submitted request data.
+     *
+     * @param mixed $data Request data.
+     *
+     * @return mixed
+     */
+    private function sanitize_request_data($data)
+    {
+        if (!is_array($data)) {
+
+            if (is_bool($data) || is_numeric($data) || $data === null) {
+                return $data;
+            }
+
+            return sanitize_text_field((string) $data);
+        }
+
+        foreach ($data as $key => $value) {
+
+            if (is_array($value)) {
+                $data[$key] = $this->sanitize_request_data($value);
+                continue;
+            }
+
+            if (is_bool($value) || is_numeric($value) || $value === null) {
+                $data[$key] = $value;
+                continue;
+            }
+
+            if (is_string($value)) {
+
+                if (strpos($key, 'email') !== false) {
+                    $data[$key] = sanitize_email($value);
+
+                } elseif (strpos($key, 'url') !== false) {
+                    $data[$key] = esc_url_raw($value);
+
+                } else {
+                    $data[$key] = sanitize_text_field($value);
+                }
+            }
+        }
+
+        return $data;
     }
 }

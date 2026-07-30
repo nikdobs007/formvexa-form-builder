@@ -33,33 +33,19 @@ final class EntriesController
             isset($_GET['action'], $_GET['id'], $_GET['_wpnonce'])
             && 'view' === sanitize_key(wp_unslash($_GET['action']))
         ) {
-            $id = absint(wp_unslash($_GET['id']));
-            $nonce = sanitize_text_field(wp_unslash($_GET['_wpnonce']));
 
-            if (
-                !wp_verify_nonce(
-                    $nonce,
-                    'formnova_view_entry_' . $id
-                )
-            ) {
+            if (!current_user_can('manage_options')) {
                 wp_die(
-                    esc_html__('Security check failed.', 'formnova-form')
+                    esc_html__('You do not have permission to view this entry.', 'formnova-form-builder')
                 );
             }
 
-            $this->view($id);
-
-            return;
-        }
-
-        if (
-            isset($_GET['action'], $_GET['id'])
-            && $_GET['action'] === 'view'
-        ) {
-
-            $this->view(
-                absint($_GET['id'])
+            $id = absint(wp_unslash($_GET['id']));
+            check_admin_referer(
+                'formnova_view_entry_' . $id
             );
+
+            $this->view($id);
 
             return;
         }
@@ -86,15 +72,28 @@ final class EntriesController
     {
         global $wpdb;
 
+        if (!current_user_can('manage_options')) {
+            wp_die(
+                esc_html__(
+                    'You do not have permission to export entries.',
+                    'formnova-form-builder'
+                )
+            );
+        }
+
         $form_id = isset($_GET['form_id'])
             ? absint(wp_unslash($_GET['form_id']))
             : 0;
+
+        check_admin_referer(
+            'formnova_export_csv_' . $form_id
+        );
 
         if ($form_id <= 0) {
             wp_die(
                 esc_html__(
                     'Invalid form selected.',
-                    'formnova-form'
+                    'formnova-form-builder'
                 )
             );
         }
@@ -102,11 +101,56 @@ final class EntriesController
         $rows = (new EntryRepository($wpdb))
             ->export_csv($form_id);
 
+        /*
+|--------------------------------------------------------------------------
+| Load Field Labels From Builder
+|--------------------------------------------------------------------------
+*/
+
+        $field_labels = [];
+
+        $form = $this->formService->find(
+            $form_id
+        );
+
+        if (
+            $form &&
+            !empty($form->builder['builder'])
+        ) {
+
+            foreach ($form->builder['builder'] as $field) {
+
+                $name = $field['name']
+                    ?? $field['settings']['name']
+                    ?? '';
+
+                if (empty($name)) {
+                    continue;
+                }
+
+                $label = $field['label']
+                    ?? $field['settings']['label']
+                    ?? $name;
+
+                $field_labels[$name] = $label;
+            }
+        }
+
+        if (empty($rows)) {
+
+            wp_die(
+                esc_html__(
+                    'No entries found.',
+                    'formnova-form-builder'
+                )
+            );
+        }
+
         if (empty($rows)) {
             wp_die(
                 esc_html__(
                     'No entries found.',
-                    'formnova-form'
+                    'formnova-form-builder'
                 )
             );
         }
@@ -124,8 +168,10 @@ final class EntriesController
 
             $field_key = (string) $row->field_key;
 
-            if (!in_array($field_key, $headers, true)) {
-                $headers[] = $field_key;
+            $field_label = $field_labels[$field_key] ?? $field_key;
+
+            if (!isset($headers[$field_key])) {
+                $headers[$field_key] = $field_label;
             }
 
             if (!isset($entries[$row->id])) {
@@ -138,7 +184,7 @@ final class EntriesController
 
             }
 
-            $entries[$row->id][$field_key] = $row->field_value;
+            $entries[$row->id][$field_label] = $row->field_value;
         }
 
         /*
@@ -153,9 +199,23 @@ final class EntriesController
 
         nocache_headers();
 
+        $form_title = 'form';
+
+        $form = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT title 
+        FROM {$wpdb->prefix}ndfb_forms 
+        WHERE id = %d",
+                $form_id
+            )
+        );
+
+        if (!empty($form)) {
+            $form_title = sanitize_title($form);
+        }
+
         $filename =
-            'form-' .
-            $form_id .
+            $form_title .
             '-entries-' .
             gmdate('Y-m-d-H-i-s') .
             '.csv';
@@ -194,6 +254,8 @@ final class EntriesController
             ]
         );
 
+
+
         fputcsv(
             $output,
             $csv_header
@@ -212,9 +274,9 @@ final class EntriesController
             $line[] = $entry['Entry ID'];
             $line[] = $entry['Form'];
 
-            foreach ($headers as $field_key) {
+            foreach ($headers as $field_label) {
 
-                $line[] = $entry[$field_key] ?? '';
+                $line[] = $entry[$field_label] ?? '';
 
             }
 
@@ -242,10 +304,28 @@ final class EntriesController
             (int) $entry->form_id
         );
 
-        View::render('admin/entries/view', [
-            'entry' => $entry,
-            'meta' => $meta,
-            'form_name' => $form->title ?? 'Unknown Form',
-        ]);
+        $fields = [];
+
+        if (!empty($form->builder['builder'])) {
+
+            foreach ($form->builder['builder'] as $field) {
+
+                if (empty($field['name'])) {
+                    continue;
+                }
+
+                $fields[$field['name']] = $field['label'] ?? $field['name'];
+            }
+        }
+
+        View::render(
+            'admin/entries/view',
+            [
+                'entry' => $entry,
+                'meta' => $meta,
+                'fields' => $fields,
+                'form_name' => $form->title ?? 'Unknown Form',
+            ]
+        );
     }
 }

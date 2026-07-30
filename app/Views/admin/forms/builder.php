@@ -4,25 +4,8 @@ defined('ABSPATH') || exit;
 
 ?>
 <div class="wrap">
-    <script>
-        window.FormNovaBuilderData = {
-
-            form_id: <?php echo (int) $form_id; ?>,
-
-            form: <?php echo wp_json_encode($form); ?>,
-
-            builder: <?php echo wp_json_encode($builder ?? []); ?>,
-
-            settings: <?php echo wp_json_encode($settings ?? []); ?>,
-
-            schemas: <?php echo wp_json_encode(
-                (new \FormNova\Services\FieldSchemaService())->all()
-            ); ?>
-
-        };
-    </script>
-    <div class="formnova-header"
-        style="display:block;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    
+    <div class="formnova-header">
 
         <h1 class="wp-heading-inline">
             <?php echo $form_id ? 'Edit Form' : 'Add New Form'; ?>

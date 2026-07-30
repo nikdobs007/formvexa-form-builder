@@ -49,7 +49,7 @@ final class SettingsController
             wp_die(
                 esc_html__(
                     'You are not allowed to perform this action.',
-                    'formnova-form'
+                    'formnova-form-builder'
                 )
             );
         }
@@ -118,7 +118,7 @@ final class SettingsController
             'settings_saved',
             __(
                 'Settings saved successfully.',
-                'formnova-form'
+                'formnova-form-builder'
             ),
             'updated'
         );

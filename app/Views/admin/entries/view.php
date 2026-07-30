@@ -1,6 +1,6 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 ?>
 
@@ -64,68 +64,69 @@ defined( 'ABSPATH' ) || exit;
 
                         <td width="250">
                             <strong>
-                                <?php echo esc_html($formnova_field['field_key']); ?>
-                            </strong>
-                        </td>
-
-                        <td>
-
-                            <?php
-
-                            $formnova_value  = $formnova_field['field_value'];
-
-                            // Checkbox values
-                            if (is_array($formnova_value )) {
-
+                                <?php
                                 echo esc_html(
-                                    implode(', ', $formnova_value )
+                                    $fields[$formnova_field['field_key']]
+                                    ?? $formnova_field['field_key']
                                 );
+                                ?>
+                            </strong>
+                                </td>
 
-                            }
+                                <td>
 
-                            // Uploaded file
-                            elseif (filter_var($formnova_value , FILTER_VALIDATE_URL)) {
+                                    <?php
 
-                                $formnova_ext = strtolower(pathinfo($formnova_value , PATHINFO_EXTENSION));
+                                    $formnova_value = $formnova_field['field_value'];
 
-                                if (in_array($formnova_ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
+                                    // Checkbox values
+                                    if (is_array($formnova_value)) {
 
-                                    echo '<img src="' . esc_url($formnova_value ) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
+                                        echo esc_html(
+                                            implode(', ', $formnova_value)
+                                        );
 
-                                }
+                                    }
 
-                                echo '<a href="' . esc_url($formnova_value ) . '" target="_blank">'
-                                    . esc_html(basename($formnova_value ))
-                                    . '</a>';
+                                    // Uploaded file
+                                    elseif (filter_var($formnova_value, FILTER_VALIDATE_URL)) {
 
-                            }
+                                        $formnova_ext = strtolower(pathinfo($formnova_value, PATHINFO_EXTENSION));
 
-                            // Normal text
-                            else {
+                                        if (in_array($formnova_ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
 
-                                echo nl2br(
-                                    esc_html($formnova_value )
-                                );
+                                            echo '<img src="' . esc_url($formnova_value) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
 
-                            }
+                                        }
 
-                            ?>
+                                        echo '<a href="' . esc_url($formnova_value) . '" target="_blank">'
+                                            . esc_html(basename($formnova_value))
+                                            . '</a>';
 
+                                    }
+
+                                    // Normal text
+                                    else {
+
+                                        echo nl2br(
+                                            esc_html($formnova_value)
+                                        );
+
+                                    }
+
+                                    ?>
+                                </td>
+
+                            </tr>
+
+                    <?php endforeach; ?>
+         <?php else: ?>
+                    <tr>
+                        <td colspan="2">
+                            No submitted fields found.
                         </td>
 
                     </tr>
-
-                <?php endforeach; ?>
-
-            <?php else: ?>
-
-                <tr>
-
-                    <td colspan="2">
-                        No submitted fields found.
-                    </td>
-
-                </tr>
 
             <?php endif; ?>
 

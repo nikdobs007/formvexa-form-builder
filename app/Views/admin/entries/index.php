@@ -23,7 +23,7 @@ defined('ABSPATH') || exit;
                             '%d entry deleted successfully.',
                             '%d entries deleted successfully.',
                             $deleted,
-                            'formnova-form'
+                            'formnova-form-builder'
                         ),
                         $deleted
                     )
@@ -66,7 +66,7 @@ defined('ABSPATH') || exit;
 
         <?php
         submit_button(
-            __('Filter', 'formnova-form'),
+            __('Filter', 'formnova-form-builder'),
             'secondary',
             '',
             false
@@ -84,12 +84,15 @@ defined('ABSPATH') || exit;
 
         if ($formnova_form_id > 0):
 
-            $formnova_export_url = add_query_arg(
-                [
-                    'action' => 'formnova_export_csv',
-                    'form_id' => $formnova_form_id,
-                ],
-                admin_url('admin-post.php')
+            $formnova_export_url = wp_nonce_url(
+                add_query_arg(
+                    [
+                        'action' => 'formnova_export_csv',
+                        'form_id' => $formnova_form_id,
+                    ],
+                    admin_url('admin-post.php')
+                ),
+                'formnova_export_csv_' . $formnova_form_id
             );
 
             ?>
@@ -99,7 +102,7 @@ defined('ABSPATH') || exit;
                 <?php
                 esc_html_e(
                     'Export CSV',
-                    'formnova-form'
+                    'formnova-form-builder'
                 );
                 ?>
 
@@ -124,7 +127,7 @@ defined('ABSPATH') || exit;
         <?php
 
         $table->search_box(
-            __('Search Entries', 'formnova-form'),
+            __('Search Entries', 'formnova-form-builder'),
             'entry'
         );
 

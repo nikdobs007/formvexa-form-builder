@@ -27,7 +27,7 @@ final class SettingsAjaxController
 
             wp_send_json_error(
                 [
-                    'message' => __('Permission denied.', 'formnova-form'),
+                    'message' => __('Permission denied.', 'formnova-form-builder'),
                 ],
                 403
             );
@@ -48,7 +48,7 @@ final class SettingsAjaxController
 
         wp_send_json_success(
             [
-                'message' => __('Google reCAPTCHA configuration looks good.', 'formnova-form'),
+                'message' => __('Google reCAPTCHA configuration looks good.', 'formnova-form-builder'),
             ]
         );
     }

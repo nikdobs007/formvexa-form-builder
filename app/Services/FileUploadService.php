@@ -107,7 +107,7 @@ final class FileUploadService
                 'upload_error',
                 sprintf(
                     /* translators: %d: PHP file upload error code. */
-                    __('File upload failed. Error Code: %d', 'formnova-form'),
+                    __('File upload failed. Error Code: %d', 'formnova-form-builder'),
                     (int) $file['error']
                 )
             );
@@ -116,7 +116,7 @@ final class FileUploadService
         if (!is_uploaded_file($file['tmp_name'])) {
             return new \WP_Error(
                 'invalid_upload',
-                __('Invalid uploaded file.', 'formnova-form')
+                __('Invalid uploaded file.', 'formnova-form-builder')
             );
         }
 
@@ -136,7 +136,7 @@ final class FileUploadService
                 'file_size',
                 sprintf(
                     /* translators: %d: Maximum allowed file size in megabytes. */
-                    __('Maximum file size is %d MB.', 'formnova-form'),
+                    __('Maximum file size is %d MB.', 'formnova-form-builder'),
                     !empty($field['max_size'])
                     ? (int) $field['max_size']
                     : 5
@@ -187,7 +187,7 @@ final class FileUploadService
 
             return new WP_Error(
                 'dangerous_extension',
-                __('This file type is not allowed.', 'formnova-form')
+                __('This file type is not allowed.', 'formnova-form-builder')
             );
         }
 
@@ -225,7 +225,7 @@ final class FileUploadService
                 'file_extension',
                 sprintf(
                     /* translators: %s: Comma-separated list of allowed file extensions. */
-                    __('Allowed file types: %s', 'formnova-form'),
+                    __('Allowed file types: %s', 'formnova-form-builder'),
                     strtoupper(implode(', ', $allowed_extensions))
                 )
             );
@@ -247,7 +247,7 @@ final class FileUploadService
         if (empty($real['ext']) || empty($real['type'])) {
             return new WP_Error(
                 'file_validation',
-                __('The uploaded file could not be validated.', 'formnova-form')
+                __('The uploaded file could not be validated.', 'formnova-form-builder')
             );
         }
 
@@ -269,7 +269,7 @@ final class FileUploadService
 
             return new WP_Error(
                 'file_mime',
-                __('This file type is not supported by WordPress.', 'formnova-form')
+                __('This file type is not supported by WordPress.', 'formnova-form-builder')
             );
         }
 
@@ -296,7 +296,7 @@ final class FileUploadService
 
                 return new WP_Error(
                     'file_mime',
-                    __('Uploaded file type is not allowed.', 'formnova-form')
+                    __('Uploaded file type is not allowed.', 'formnova-form-builder')
                 );
             }
         }
@@ -335,7 +335,7 @@ final class FileUploadService
 
                 return new WP_Error(
                     'invalid_image',
-                    __('Invalid image file.', 'formnova-form')
+                    __('Invalid image file.', 'formnova-form-builder')
                 );
             }
         }

@@ -22,7 +22,7 @@ final class EmailField extends BaseField
      */
     public function title(): string
     {
-        return __('Email', 'formnova-form');
+        return __('Email', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class EmailField extends BaseField
 
             'type' => 'email',
 
-            'label' => __('Email', 'formnova-form'),
+            'label' => __('Email', 'formnova-form-builder'),
 
             'name' => 'email_' . strtolower(wp_generate_password(6, false)),
 
@@ -78,32 +78,32 @@ final class EmailField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form')
+                    __('Default Value', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
 
             ],
@@ -132,7 +132,7 @@ final class EmailField extends BaseField
             $this->required() &&
             $value === ''
         ) {
-            return __('Email is required.', 'formnova-form');
+            return __('Email is required.', 'formnova-form-builder');
         }
 
         if ($value === '') {
@@ -140,7 +140,7 @@ final class EmailField extends BaseField
         }
 
         if (!is_email($value)) {
-            return __('Please enter a valid email address.', 'formnova-form');
+            return __('Please enter a valid email address.', 'formnova-form-builder');
         }
 
         return true;

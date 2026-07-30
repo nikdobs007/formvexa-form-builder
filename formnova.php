@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: FormNova – Drag & Drop Contact Form Builder
- * Plugin URI: https://github.com/nikdobs/formnova-form
+ * Plugin URI: https://github.com/nikdobs007/formnova-form
  * Description: Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management.
  * Version: 1.0.0
  * Author: Nikunj Dobariya
  * Author URI: https://profiles.wordpress.org/nikdobs/
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: formnova-form
+ * Text Domain: formnova-form-builder
  * Domain Path: /languages
  * Requires at least: 6.5
  * Requires PHP: 8.1

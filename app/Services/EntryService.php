@@ -265,21 +265,21 @@ final class EntryService
         if ($form_id <= 0) {
             return new WP_Error(
                 'invalid_form',
-                __('Invalid form.', 'formnova-form')
+                __('Invalid form.', 'formnova-form-builder')
             );
         }
 
         if (empty($fields)) {
             return new WP_Error(
                 'empty_fields',
-                __('No form fields found.', 'formnova-form')
+                __('No form fields found.', 'formnova-form-builder')
             );
         }
 
         if (!is_array($request)) {
             return new WP_Error(
                 'invalid_request',
-                __('Invalid request.', 'formnova-form')
+                __('Invalid request.', 'formnova-form-builder')
             );
         }
 
@@ -325,7 +325,7 @@ final class EntryService
 
             return new WP_Error(
                 'empty_submission',
-                __('Please fill at least one field before submitting.', 'formnova-form')
+                __('Please fill at least one field before submitting.', 'formnova-form-builder')
             );
         }
 
@@ -381,7 +381,7 @@ final class EntryService
                         'required_file',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is required.', 'formnova-form'),
+                            __('%s is required.', 'formnova-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -394,7 +394,7 @@ final class EntryService
                         'upload_error',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('Unable to upload %s.', 'formnova-form'),
+                            __('Unable to upload %s.', 'formnova-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -433,7 +433,7 @@ final class EntryService
                         ? $result
                         : sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is invalid.', 'formnova-form'),
+                            __('%s is invalid.', 'formnova-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -452,7 +452,7 @@ final class EntryService
                         'required_field',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is required.', 'formnova-form'),
+                            __('%s is required.', 'formnova-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -467,7 +467,7 @@ final class EntryService
                     'required_field',
                     sprintf(
                         /* translators: %s: Field label. */
-                        __('%s is required.', 'formnova-form'),
+                        __('%s is required.', 'formnova-form-builder'),
                         $field['label'] ?? $key
                     )
                 );
@@ -635,7 +635,7 @@ final class EntryService
 
             return new \WP_Error(
                 'entry_failed',
-                __('Unable to create entry.', 'formnova-form')
+                __('Unable to create entry.', 'formnova-form-builder')
             );
         }
 
@@ -659,7 +659,7 @@ final class EntryService
 
                 return new \WP_Error(
                     'meta_failed',
-                    __('Unable to save entry fields.', 'formnova-form')
+                    __('Unable to save entry fields.', 'formnova-form-builder')
                 );
             }
         }

@@ -22,7 +22,7 @@ final class CheckboxField extends BaseField
      */
     public function title(): string
     {
-        return __('Checkbox', 'formnova-form');
+        return __('Checkbox', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class CheckboxField extends BaseField
 
             'type' => 'checkbox',
 
-            'label' => __('Checkbox', 'formnova-form'),
+            'label' => __('Checkbox', 'formnova-form-builder'),
 
             'name' => 'checkbox_' . strtolower(wp_generate_password(6, false)),
 
@@ -87,22 +87,22 @@ final class CheckboxField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
 
             ],
@@ -111,7 +111,7 @@ final class CheckboxField extends BaseField
 
                 Setting::options(
                     'options',
-                    __('Options', 'formnova-form')
+                    __('Options', 'formnova-form-builder')
                 ),
 
             ],
@@ -149,7 +149,7 @@ final class CheckboxField extends BaseField
             $this->required() &&
             empty($value)
         ) {
-            return __('Please select at least one option.', 'formnova-form');
+            return __('Please select at least one option.', 'formnova-form-builder');
         }
 
         if (empty($value)) {
@@ -177,7 +177,7 @@ final class CheckboxField extends BaseField
                     true
                 )
             ) {
-                return __('Invalid option selected.', 'formnova-form');
+                return __('Invalid option selected.', 'formnova-form-builder');
             }
         }
 

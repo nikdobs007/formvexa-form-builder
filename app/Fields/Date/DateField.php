@@ -22,7 +22,7 @@ final class DateField extends BaseField
      */
     public function title(): string
     {
-        return __('Date', 'formnova-form');
+        return __('Date', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class DateField extends BaseField
 
             'type' => 'date',
 
-            'label' => __('Date', 'formnova-form'),
+            'label' => __('Date', 'formnova-form-builder'),
 
             'name' => 'date_' . strtolower(wp_generate_password(6, false)),
 
@@ -81,32 +81,32 @@ final class DateField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::date(
                     'default_value',
-                    __('Default Date', 'formnova-form')
+                    __('Default Date', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
             ],
 
@@ -114,12 +114,12 @@ final class DateField extends BaseField
 
                 Setting::date(
                     'min',
-                    __('Minimum Date', 'formnova-form')
+                    __('Minimum Date', 'formnova-form-builder')
                 ),
 
                 Setting::date(
                     'max',
-                    __('Maximum Date', 'formnova-form')
+                    __('Maximum Date', 'formnova-form-builder')
                 ),
             ],
         ];
@@ -143,7 +143,7 @@ final class DateField extends BaseField
             $this->required() &&
             $value === ''
         ) {
-            return __('Date is required.', 'formnova-form');
+            return __('Date is required.', 'formnova-form-builder');
         }
 
         if ($value === '') {
@@ -153,7 +153,7 @@ final class DateField extends BaseField
         $timestamp = strtotime($value);
 
         if ($timestamp === false) {
-            return __('Invalid date.', 'formnova-form');
+            return __('Invalid date.', 'formnova-form-builder');
         }
 
         $min = $this->value('min');
@@ -164,7 +164,7 @@ final class DateField extends BaseField
         ) {
             return sprintf(
                 /* translators: %s: Date in YYYY-MM-DD format. */
-                __('Date must be after %s.', 'formnova-form'),
+                __('Date must be after %s.', 'formnova-form-builder'),
                 $min
             );
         }
@@ -177,7 +177,7 @@ final class DateField extends BaseField
         ) {
             return sprintf(
                 /* translators: %s: Date in YYYY-MM-DD format. */
-                __('Date must be before %s.', 'formnova-form'),
+                __('Date must be before %s.', 'formnova-form-builder'),
                 $max
             );
         }

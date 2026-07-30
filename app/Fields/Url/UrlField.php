@@ -22,7 +22,7 @@ final class URLField extends BaseField
      */
     public function title(): string
     {
-        return __('URL', 'formnova-form');
+        return __('URL', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class URLField extends BaseField
 
             'type' => 'url',
 
-            'label' => __('URL', 'formnova-form'),
+            'label' => __('URL', 'formnova-form-builder'),
 
             'name' => 'url_' . strtolower(wp_generate_password(6, false)),
 
@@ -77,32 +77,32 @@ final class URLField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form')
+                    __('Default Value', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
 
             ],

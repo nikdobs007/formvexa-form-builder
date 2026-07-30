@@ -25,7 +25,7 @@ defined('ABSPATH') || exit;
         );
 
         $table->search_box(
-            __('Search Forms', 'formnova-form'),
+            __('Search Forms', 'formnova-form-builder'),
             'form-search'
         );
         ?>

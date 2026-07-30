@@ -122,7 +122,7 @@ final class CaptchaService
 
             return new WP_Error(
                 'captcha_required',
-                __('Captcha verification is required.', 'formnova-form')
+                __('Captcha verification is required.', 'formnova-form-builder')
             );
 
         }
@@ -153,7 +153,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_failed',
-                __('Captcha verification failed.', 'formnova-form')
+                __('Captcha verification failed.', 'formnova-form-builder')
             );
         }
 
@@ -167,7 +167,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_hostname',
-                __('Invalid captcha hostname.', 'formnova-form')
+                __('Invalid captcha hostname.', 'formnova-form-builder')
             );
         }
 
@@ -193,7 +193,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_failed',
-                __('Captcha verification failed.', 'formnova-form')
+                __('Captcha verification failed.', 'formnova-form-builder')
             );
         }
 
@@ -207,7 +207,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_hostname',
-                __('Invalid captcha hostname.', 'formnova-form')
+                __('Invalid captcha hostname.', 'formnova-form-builder')
             );
         }
 
@@ -218,7 +218,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_action',
-                __('Invalid captcha action.', 'formnova-form')
+                __('Invalid captcha action.', 'formnova-form-builder')
             );
         }
 
@@ -229,7 +229,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_score',
-                __('Captcha verification score is too low.', 'formnova-form')
+                __('Captcha verification score is too low.', 'formnova-form-builder')
             );
         }
 
@@ -252,7 +252,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_secret_missing',
-                __('Captcha Secret Key is missing.', 'formnova-form')
+                __('Captcha Secret Key is missing.', 'formnova-form-builder')
             );
         }
 
@@ -281,7 +281,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_http',
-                __('Captcha server returned an invalid response.', 'formnova-form')
+                __('Captcha server returned an invalid response.', 'formnova-form-builder')
             );
         }
 
@@ -293,7 +293,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_invalid_response',
-                __('Invalid captcha response.', 'formnova-form')
+                __('Invalid captcha response.', 'formnova-form-builder')
             );
         }
 
@@ -326,34 +326,34 @@ final class CaptchaService
             $errors = [];
         }
 
-        $message = __('Captcha verification failed.', 'formnova-form');
+        $message = __('Captcha verification failed.', 'formnova-form-builder');
 
         foreach ($errors as $code) {
 
             switch ($code) {
 
                 case 'missing-input-secret':
-                    $message = __('Captcha secret key is missing.', 'formnova-form');
+                    $message = __('Captcha secret key is missing.', 'formnova-form-builder');
                     break;
 
                 case 'invalid-input-secret':
-                    $message = __('Invalid captcha secret key.', 'formnova-form');
+                    $message = __('Invalid captcha secret key.', 'formnova-form-builder');
                     break;
 
                 case 'missing-input-response':
-                    $message = __('Captcha response is missing.', 'formnova-form');
+                    $message = __('Captcha response is missing.', 'formnova-form-builder');
                     break;
 
                 case 'invalid-input-response':
-                    $message = __('Invalid captcha response.', 'formnova-form');
+                    $message = __('Invalid captcha response.', 'formnova-form-builder');
                     break;
 
                 case 'timeout-or-duplicate':
-                    $message = __('Captcha expired. Please try again.', 'formnova-form');
+                    $message = __('Captcha expired. Please try again.', 'formnova-form-builder');
                     break;
 
                 case 'bad-request':
-                    $message = __('Invalid captcha request.', 'formnova-form');
+                    $message = __('Invalid captcha request.', 'formnova-form-builder');
                     break;
             }
 
@@ -377,7 +377,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'captcha_disabled',
-                __('Captcha is disabled.', 'formnova-form')
+                __('Captcha is disabled.', 'formnova-form-builder')
             );
         }
 
@@ -385,7 +385,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'site_key',
-                __('Site Key is missing.', 'formnova-form')
+                __('Site Key is missing.', 'formnova-form-builder')
             );
         }
 
@@ -393,7 +393,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'secret_key',
-                __('Secret Key is missing.', 'formnova-form')
+                __('Secret Key is missing.', 'formnova-form-builder')
             );
         }
 
@@ -416,7 +416,7 @@ final class CaptchaService
 
             return new \WP_Error(
                 'google',
-                __('Unable to connect to Google.', 'formnova-form')
+                __('Unable to connect to Google.', 'formnova-form-builder')
             );
         }
 

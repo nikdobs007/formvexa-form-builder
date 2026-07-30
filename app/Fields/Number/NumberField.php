@@ -22,7 +22,7 @@ final class NumberField extends BaseField
      */
     public function title(): string
     {
-        return __('Number', 'formnova-form');
+        return __('Number', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class NumberField extends BaseField
 
             'type' => 'number',
 
-            'label' => __('Number', 'formnova-form'),
+            'label' => __('Number', 'formnova-form-builder'),
 
             'name' => 'number_' . strtolower(wp_generate_password(6, false)),
 
@@ -83,32 +83,32 @@ final class NumberField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form')
+                    __('Label', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form')
+                    __('Name', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form')
+                    __('CSS Class', 'formnova-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form')
+                    __('Placeholder', 'formnova-form-builder')
                 ),
 
                 Setting::number(
                     'default_value',
-                    __('Default Value', 'formnova-form')
+                    __('Default Value', 'formnova-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form')
+                    __('Required', 'formnova-form-builder')
                 ),
             ],
 
@@ -116,17 +116,17 @@ final class NumberField extends BaseField
 
                 Setting::number(
                     'min',
-                    __('Minimum Value', 'formnova-form')
+                    __('Minimum Value', 'formnova-form-builder')
                 ),
 
                 Setting::number(
                     'max',
-                    __('Maximum Value', 'formnova-form')
+                    __('Maximum Value', 'formnova-form-builder')
                 ),
 
                 Setting::number(
                     'step',
-                    __('Step', 'formnova-form'),
+                    __('Step', 'formnova-form-builder'),
                     [
                         'default' => 1,
                     ]

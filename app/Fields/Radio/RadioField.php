@@ -22,7 +22,7 @@ final class RadioField extends BaseField
      */
     public function title(): string
     {
-        return __('Radio', 'formnova-form');
+        return __('Radio', 'formnova-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class RadioField extends BaseField
 
             'type' => 'radio',
 
-            'label' => __('Radio Field', 'formnova-form'),
+            'label' => __('Radio Field', 'formnova-form-builder'),
 
             'name' => 'radio_' . strtolower(wp_generate_password(6, false)),
 
@@ -83,45 +83,45 @@ final class RadioField extends BaseField
         return [
 
             [
-                'title' => __('General', 'formnova-form'),
+                'title' => __('General', 'formnova-form-builder'),
 
                 'fields' => [
 
                     Setting::text(
                         'label',
-                        __('Label', 'formnova-form')
+                        __('Label', 'formnova-form-builder')
                     ),
 
                     Setting::text(
                         'name',
-                        __('Name', 'formnova-form')
+                        __('Name', 'formnova-form-builder')
                     ),
 
                     Setting::text(
                         'class',
-                        __('CSS Class', 'formnova-form')
+                        __('CSS Class', 'formnova-form-builder')
                     ),
 
                     Setting::checkbox(
                         'required',
-                        __('Required', 'formnova-form')
+                        __('Required', 'formnova-form-builder')
                     ),
                 ],
             ],
 
             [
-                'title' => __('Options', 'formnova-form'),
+                'title' => __('Options', 'formnova-form-builder'),
 
                 'fields' => [
 
                     Setting::options(
                         'options',
-                        __('Options', 'formnova-form')
+                        __('Options', 'formnova-form-builder')
                     ),
 
                     Setting::text(
                         'default_value',
-                        __('Default Value', 'formnova-form')
+                        __('Default Value', 'formnova-form-builder')
                     ),
                 ],
             ],
@@ -152,7 +152,7 @@ final class RadioField extends BaseField
         ) {
             return __(
                 'This field is required.',
-                'formnova-form'
+                'formnova-form-builder'
             );
         }
 
@@ -174,7 +174,7 @@ final class RadioField extends BaseField
 
         return __(
             'Invalid option selected.',
-            'formnova-form'
+            'formnova-form-builder'
         );
     }
 

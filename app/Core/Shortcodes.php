@@ -56,7 +56,7 @@ final class Shortcodes
         $form_id = absint($atts['id']);
 
         if (!$form_id) {
-            return '<p>' . esc_html__('Invalid form ID', 'formnova-form') . '</p>';
+            return '<p>' . esc_html__('Invalid form ID', 'formnova-form-builder') . '</p>';
         }
 
         global $wpdb;
@@ -71,7 +71,7 @@ final class Shortcodes
         if (!$form) {
             return '<p>' . esc_html__(
                 'Form not found.',
-                'formnova-form'
+                'formnova-form-builder'
             ) . '</p>';
         }
 
@@ -84,7 +84,7 @@ final class Shortcodes
                 <div class="formnova-notice formnova-notice-warning">
                     ' . esc_html__(
                 'Please select at least one field.',
-                'formnova-form'
+                'formnova-form-builder'
             ) . '
                 </div>
             ';

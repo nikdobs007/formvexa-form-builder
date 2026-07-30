@@ -11,7 +11,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
 <div class="wrap">
 
     <h1>
-        <?php esc_html_e('FormNova Settings', 'formnova-form'); ?>
+        <?php esc_html_e('FormNova Settings', 'formnova-form-builder'); ?>
     </h1>
 
     <?php settings_errors('formnova_settings'); ?>
@@ -36,7 +36,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Provider',
-                            'formnova-form'
+                            'formnova-form-builder'
                         );
                         ?>
 
@@ -53,7 +53,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                                     'none'
                                 ); ?>>
 
-                                <?php esc_html_e('None', 'formnova-form'); ?>
+                                <?php esc_html_e('None', 'formnova-form-builder'); ?>
 
                             </option>
 
@@ -92,7 +92,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Site Key',
-                            'formnova-form'
+                            'formnova-form-builder'
                         );
                         ?>
 
@@ -119,7 +119,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Secret Key',
-                            'formnova-form'
+                            'formnova-form-builder'
                         );
                         ?>
 
@@ -147,7 +147,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Minimum Score',
-                            'formnova-form'
+                            'formnova-form-builder'
                         );
                         ?>
 
@@ -170,7 +170,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             <?php
                             esc_html_e(
                                 'Used only for Google reCAPTCHA v3.',
-                                'formnova-form'
+                                'formnova-form-builder'
                             );
                             ?>
 
@@ -186,7 +186,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
 
         <?php
         submit_button(
-            __('Save Settings', 'formnova-form')
+            __('Save Settings', 'formnova-form-builder')
         );
         ?>
 

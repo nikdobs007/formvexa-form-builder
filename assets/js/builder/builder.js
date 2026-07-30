@@ -41,8 +41,6 @@ class FormNovaBuilder {
 
         }
         this.initSaveButton();
-
-        console.log('FormNova Builder Loaded');
     }
 
     registerFields() {
