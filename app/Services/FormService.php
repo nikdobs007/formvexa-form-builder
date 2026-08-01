@@ -4,16 +4,16 @@
  *
  * Acts as the Facade between Controllers and Repositories.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Services;
+namespace formvexa\Services;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\MetaRepository;
-use FormNova\Repository\EntryRepository;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\MetaRepository;
+use formvexa\Repository\EntryRepository;
 
 /**
  * Handles all Form business logic.
@@ -539,7 +539,7 @@ final class FormService
     ): array {
 
         if (!$updating && empty($data['title'])) {
-            $data['title'] = __('Untitled Form', 'formnova-form-builder');
+            $data['title'] = __('Untitled Form', 'formvexa-form-builder');
         }
 
         $data['title'] = sanitize_text_field(
@@ -1080,5 +1080,50 @@ final class FormService
         }
 
         return $settings;
+    }
+
+    /**
+     * Default builder fields.
+     *
+     * @return array
+     */
+    public static function default_builder(): array
+    {
+        return [
+
+            [
+                'id' => uniqid('field_'),
+                'type' => 'text',
+                'label' => 'Name',
+                'name' => 'name',
+                'required' => true,
+            ],
+
+            [
+                'id' => uniqid('field_'),
+                'type' => 'email',
+                'label' => 'Email',
+                'name' => 'email',
+                'required' => true,
+            ],
+
+            [
+                'id' => uniqid('field_'),
+                'type' => 'text',
+                'label' => 'Subject',
+                'name' => 'subject',
+                'required' => true,
+            ],
+
+            [
+                'id' => uniqid('field_'),
+                'type' => 'textarea',
+                'label' => 'Message',
+                'name' => 'message',
+                'rows' => 5,
+                'required' => true,
+            ],
+
+        ];
     }
 }

@@ -2,19 +2,19 @@
 /**
  * Entry Service.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Services;
+namespace formvexa\Services;
 
 defined('ABSPATH') || exit;
 
 use InvalidArgumentException;
 use WP_Error;
-use FormNova\Repository\EntryRepository;
-use FormNova\Repository\EntryMetaRepository;
-use FormNova\Services\FileUploadService;
-use FormNova\Fields\Registry;
+use formvexa\Repository\EntryRepository;
+use formvexa\Repository\EntryMetaRepository;
+use formvexa\Services\FileUploadService;
+use formvexa\Fields\Registry;
 
 /**
  * Handles all business logic for Entries.
@@ -265,21 +265,21 @@ final class EntryService
         if ($form_id <= 0) {
             return new WP_Error(
                 'invalid_form',
-                __('Invalid form.', 'formnova-form-builder')
+                __('Invalid form.', 'formvexa-form-builder')
             );
         }
 
         if (empty($fields)) {
             return new WP_Error(
                 'empty_fields',
-                __('No form fields found.', 'formnova-form-builder')
+                __('No form fields found.', 'formvexa-form-builder')
             );
         }
 
         if (!is_array($request)) {
             return new WP_Error(
                 'invalid_request',
-                __('Invalid request.', 'formnova-form-builder')
+                __('Invalid request.', 'formvexa-form-builder')
             );
         }
 
@@ -325,7 +325,7 @@ final class EntryService
 
             return new WP_Error(
                 'empty_submission',
-                __('Please fill at least one field before submitting.', 'formnova-form-builder')
+                __('Please fill at least one field before submitting.', 'formvexa-form-builder')
             );
         }
 
@@ -381,7 +381,7 @@ final class EntryService
                         'required_file',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is required.', 'formnova-form-builder'),
+                            __('%s is required.', 'formvexa-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -394,7 +394,7 @@ final class EntryService
                         'upload_error',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('Unable to upload %s.', 'formnova-form-builder'),
+                            __('Unable to upload %s.', 'formvexa-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -433,7 +433,7 @@ final class EntryService
                         ? $result
                         : sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is invalid.', 'formnova-form-builder'),
+                            __('%s is invalid.', 'formvexa-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -452,7 +452,7 @@ final class EntryService
                         'required_field',
                         sprintf(
                             /* translators: %s: Field label. */
-                            __('%s is required.', 'formnova-form-builder'),
+                            __('%s is required.', 'formvexa-form-builder'),
                             $field['label'] ?? $key
                         )
                     );
@@ -467,7 +467,7 @@ final class EntryService
                     'required_field',
                     sprintf(
                         /* translators: %s: Field label. */
-                        __('%s is required.', 'formnova-form-builder'),
+                        __('%s is required.', 'formvexa-form-builder'),
                         $field['label'] ?? $key
                     )
                 );
@@ -514,7 +514,7 @@ final class EntryService
             |--------------------------------------------------------------------------
             */
 
-            $fieldObject = \FormNova\Fields\Registry::make(
+            $fieldObject = \formvexa\Fields\Registry::make(
                 $field
             );
 
@@ -635,7 +635,7 @@ final class EntryService
 
             return new \WP_Error(
                 'entry_failed',
-                __('Unable to create entry.', 'formnova-form-builder')
+                __('Unable to create entry.', 'formvexa-form-builder')
             );
         }
 
@@ -659,7 +659,7 @@ final class EntryService
 
                 return new \WP_Error(
                     'meta_failed',
-                    __('Unable to save entry fields.', 'formnova-form-builder')
+                    __('Unable to save entry fields.', 'formvexa-form-builder')
                 );
             }
         }
@@ -688,8 +688,8 @@ final class EntryService
             $mail = new MailService();
 
             $form = new FormService(
-                new \FormNova\Repository\FormRepository($GLOBALS['wpdb']),
-                new \FormNova\Repository\MetaRepository($GLOBALS['wpdb'])
+                new \formvexa\Repository\FormRepository($GLOBALS['wpdb']),
+                new \formvexa\Repository\MetaRepository($GLOBALS['wpdb'])
             );
 
             $formData = $form->find($form_id);

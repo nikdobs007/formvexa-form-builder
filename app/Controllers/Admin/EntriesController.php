@@ -1,14 +1,14 @@
 <?php
 
-namespace FormNova\Controllers\Admin;
+namespace formvexa\Controllers\Admin;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Core\View;
-use FormNova\Services\EntryService;
-use FormNova\Services\FormService;
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\EntryRepository;
+use formvexa\Core\View;
+use formvexa\Services\EntryService;
+use formvexa\Services\FormService;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\EntryRepository;
 
 final class EntriesController
 {
@@ -36,13 +36,13 @@ final class EntriesController
 
             if (!current_user_can('manage_options')) {
                 wp_die(
-                    esc_html__('You do not have permission to view this entry.', 'formnova-form-builder')
+                    esc_html__('You do not have permission to view this entry.', 'formvexa-form-builder')
                 );
             }
 
             $id = absint(wp_unslash($_GET['id']));
             check_admin_referer(
-                'formnova_view_entry_' . $id
+                'formvexa_view_entry_' . $id
             );
 
             $this->view($id);
@@ -76,7 +76,7 @@ final class EntriesController
             wp_die(
                 esc_html__(
                     'You do not have permission to export entries.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 )
             );
         }
@@ -86,14 +86,14 @@ final class EntriesController
             : 0;
 
         check_admin_referer(
-            'formnova_export_csv_' . $form_id
+            'formvexa_export_csv_' . $form_id
         );
 
         if ($form_id <= 0) {
             wp_die(
                 esc_html__(
                     'Invalid form selected.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 )
             );
         }
@@ -141,7 +141,7 @@ final class EntriesController
             wp_die(
                 esc_html__(
                     'No entries found.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 )
             );
         }
@@ -150,7 +150,7 @@ final class EntriesController
             wp_die(
                 esc_html__(
                     'No entries found.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 )
             );
         }

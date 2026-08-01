@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Textarea;
+namespace formvexa\Fields\Textarea;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class TextareaField extends BaseField
 {
@@ -22,7 +22,7 @@ final class TextareaField extends BaseField
      */
     public function title(): string
     {
-        return __('Textarea', 'formnova-form-builder');
+        return __('Textarea', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class TextareaField extends BaseField
 
             'type' => 'textarea',
 
-            'label' => __('Textarea', 'formnova-form-builder'),
+            'label' => __('Textarea', 'formvexa-form-builder'),
 
             'name' => 'textarea_' . strtolower(wp_generate_password(6, false)),
 
@@ -80,32 +80,32 @@ final class TextareaField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder')
+                    __('Default Value', 'formvexa-form-builder')
                 ),
 
                 Setting::number(
                     'rows',
-                    __('Rows', 'formnova-form-builder'),
+                    __('Rows', 'formvexa-form-builder'),
                     [
                         'default' => 5,
                         'min' => 2,
@@ -115,7 +115,7 @@ final class TextareaField extends BaseField
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
 
             ],

@@ -2,10 +2,10 @@
 /**
  * Plugin deactivator.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova;
+namespace formvexa;
 
 defined('ABSPATH') || exit;
 

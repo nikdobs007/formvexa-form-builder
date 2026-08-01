@@ -2,25 +2,25 @@
 /**
  * Hook Loader.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Bootstrap;
+namespace formvexa\Bootstrap;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Controllers\Ajax\BuilderAjaxController;
-use FormNova\Controllers\Ajax\SubmissionAjaxController;
-use FormNova\Providers\AdminServiceProvider;
-use FormNova\Providers\FieldServiceProvider;
-use FormNova\Providers\FrontendServiceProvider;
-use FormNova\Repository\EntryMetaRepository;
-use FormNova\Repository\EntryRepository;
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\MetaRepository;
-use FormNova\Services\EntryService;
-use FormNova\Services\FormService;
-use FormNova\Services\CaptchaService;
+use formvexa\Controllers\Ajax\BuilderAjaxController;
+use formvexa\Controllers\Ajax\SubmissionAjaxController;
+use formvexa\Providers\AdminServiceProvider;
+use formvexa\Providers\FieldServiceProvider;
+use formvexa\Providers\FrontendServiceProvider;
+use formvexa\Repository\EntryMetaRepository;
+use formvexa\Repository\EntryRepository;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\MetaRepository;
+use formvexa\Services\EntryService;
+use formvexa\Services\FormService;
+use formvexa\Services\CaptchaService;
 
 final class HookLoader
 {

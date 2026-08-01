@@ -1,17 +1,17 @@
-class FormNovaMail {
+class formvexaMail {
 
     constructor(state) {
 
         this.state = state;
 
         this.el = document.getElementById(
-            'formnova-mail-panel'
+            'formvexa-mail-panel'
         );
 
         this.activeTextarea = null;
         document.addEventListener(
 
-            'formnova:state:updated',
+            'formvexa:state:updated',
 
             (event) => {
 

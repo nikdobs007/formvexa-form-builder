@@ -2,17 +2,17 @@
 /**
  * Shortcodes handler.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Core;
+namespace formvexa\Core;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\MetaRepository;
-use FormNova\Services\FormService;
-use FormNova\Services\CaptchaService;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\MetaRepository;
+use formvexa\Services\FormService;
+use formvexa\Services\CaptchaService;
 
 /**
  * Handles all plugin shortcodes.
@@ -28,14 +28,14 @@ final class Shortcodes
     public function register(): void
     {
 
-        add_shortcode('formnova_form', [$this, 'render_form']);
+        add_shortcode('formvexa_form', [$this, 'render_form']);
     }
 
     /**
      * Render frontend form via shortcode.
      *
      * Usage:
-     * [formnova_form id="1"]
+     * [formvexa_form id="1"]
      *
      * @param array $atts Shortcode attributes.
      *
@@ -56,7 +56,7 @@ final class Shortcodes
         $form_id = absint($atts['id']);
 
         if (!$form_id) {
-            return '<p>' . esc_html__('Invalid form ID', 'formnova-form-builder') . '</p>';
+            return '<p>' . esc_html__('Invalid form ID', 'formvexa-form-builder') . '</p>';
         }
 
         global $wpdb;
@@ -71,7 +71,7 @@ final class Shortcodes
         if (!$form) {
             return '<p>' . esc_html__(
                 'Form not found.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             ) . '</p>';
         }
 
@@ -81,10 +81,10 @@ final class Shortcodes
         if (empty($builder) || !is_array($builder)) {
 
             return '
-                <div class="formnova-notice formnova-notice-warning">
+                <div class="formvexa-notice formvexa-notice-warning">
                     ' . esc_html__(
                 'Please select at least one field.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             ) . '
                 </div>
             ';
@@ -94,7 +94,7 @@ final class Shortcodes
         ob_start();
         ?>
 
-        <form class="formnova-frontend" method="post" enctype="multipart/form-data"
+        <form class="formvexa-frontend" method="post" enctype="multipart/form-data"
             data-form-id="<?php echo esc_attr($form_id); ?>">
 
             <?php
@@ -105,7 +105,7 @@ final class Shortcodes
                     continue;
                 }
 
-                $definition = \FormNova\Fields\Registry::get(
+                $definition = \formvexa\Fields\Registry::get(
                     $field['type']
                 );
 
@@ -193,7 +193,7 @@ final class Shortcodes
                 $captcha->get_type() === 'v2'
             ):
                 ?>
-                <div class="formnova-captcha">
+                <div class="formvexa-captcha">
                     <div class="g-recaptcha" data-sitekey="<?php echo esc_attr($captcha->get_site_key()); ?>">
                     </div>
                 </div>
@@ -203,15 +203,15 @@ final class Shortcodes
 
                 <input
                     type="text"
-                    id="formnova_hp"
-                    name="formnova_hp"
+                    id="formvexa_hp"
+                    name="formvexa_hp"
                     tabindex="-1"
                     autocomplete="off"
                 />
 
             </div>
 
-            <button type="submit" class="formnova-submit-button">
+            <button type="submit" class="formvexa-submit-button">
 
                 Submit
 

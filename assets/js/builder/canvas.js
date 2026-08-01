@@ -1,13 +1,13 @@
-class FormNovaCanvas {
+class formvexaCanvas {
 
     constructor(state) {
 
         this.state = state;
 
-        this.el = document.getElementById('formnova-canvas');
+        this.el = document.getElementById('formvexa-canvas');
 
         document.addEventListener(
-            'formnova:state:updated',
+            'formvexa:state:updated',
             () => this.render()
         );
     }
@@ -25,18 +25,18 @@ class FormNovaCanvas {
 
         this.state.fields.forEach((field, index) => {
 
-            const registry = window.FormNovaFieldRegistry.get(field.type);
+            const registry = window.formvexaFieldRegistry.get(field.type);
 
             const wrapper = document.createElement('div');
 
-            wrapper.className = 'formnova-field';
+            wrapper.className = 'formvexa-field';
 
             wrapper.dataset.id = field.id;
 
             wrapper.dataset.index = index;
 
             wrapper.innerHTML = `
-                <div class="formnova-field-header">
+                <div class="formvexa-field-header">
 
                     <span
                         class="fn-drag-handle"
@@ -155,7 +155,7 @@ class FormNovaCanvas {
 
         const zone = document.createElement('div');
 
-        zone.className = 'formnova-drop-zone';
+        zone.className = 'formvexa-drop-zone';
 
         zone.dataset.index = index;
 
@@ -211,7 +211,7 @@ class FormNovaCanvas {
                 }
 
                 const definition =
-                    window.FormNovaFieldRegistry.get(type);
+                    window.formvexaFieldRegistry.get(type);
 
                 if (!definition) {
 

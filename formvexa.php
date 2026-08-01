@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: FormNova – Drag & Drop Contact Form Builder
- * Plugin URI: https://github.com/nikdobs007/formnova-form
+ * Plugin Name: Formvexa – Drag & Drop Contact Form Builder
+ * Plugin URI: https://github.com/nikdobs007/formvexa-form
  * Description: Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management.
  * Version: 1.0.0
  * Author: Nikunj Dobariya
  * Author URI: https://profiles.wordpress.org/nikdobs/
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: formnova-form-builder
+ * Text Domain: formvexa-form-builder
  * Domain Path: /languages
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -28,12 +28,12 @@ if (file_exists(NDFB_PLUGIN_PATH . 'vendor/autoload.php')) {
 
 register_activation_hook(
     NDFB_PLUGIN_FILE,
-    [FormNova\Activator::class, 'activate']
+    [formvexa\Activator::class, 'activate']
 );
 
 register_deactivation_hook(
     NDFB_PLUGIN_FILE,
-    [FormNova\Deactivator::class, 'deactivate']
+    [formvexa\Deactivator::class, 'deactivate']
 );
 
-add_action('plugins_loaded', [FormNova\Core\Plugin::class, 'boot']);
+add_action('plugins_loaded', [formvexa\Core\Plugin::class, 'boot']);

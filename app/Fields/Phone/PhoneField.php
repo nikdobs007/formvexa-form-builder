@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Phone;
+namespace formvexa\Fields\Phone;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class PhoneField extends BaseField
 {
@@ -22,7 +22,7 @@ final class PhoneField extends BaseField
      */
     public function title(): string
     {
-        return __('Phone', 'formnova-form-builder');
+        return __('Phone', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class PhoneField extends BaseField
 
             'type' => 'phone',
 
-            'label' => __('Phone', 'formnova-form-builder'),
+            'label' => __('Phone', 'formvexa-form-builder'),
 
             'name' => 'phone_' . strtolower(wp_generate_password(6, false)),
 
@@ -84,32 +84,32 @@ final class PhoneField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder')
+                    __('Default Value', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
             ],
 
@@ -117,17 +117,17 @@ final class PhoneField extends BaseField
 
                 Setting::number(
                     'minlength',
-                    __('Minimum Length', 'formnova-form-builder')
+                    __('Minimum Length', 'formvexa-form-builder')
                 ),
 
                 Setting::number(
                     'maxlength',
-                    __('Maximum Length', 'formnova-form-builder')
+                    __('Maximum Length', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'pattern',
-                    __('Pattern', 'formnova-form-builder')
+                    __('Pattern', 'formvexa-form-builder')
                 ),
 
             ],
@@ -160,7 +160,7 @@ final class PhoneField extends BaseField
         ) {
             return __(
                 'Phone number is required.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             );
         }
 
@@ -176,7 +176,7 @@ final class PhoneField extends BaseField
         ) {
             return __(
                 'Invalid phone number.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             );
         }
 
@@ -200,7 +200,7 @@ final class PhoneField extends BaseField
         ) {
             return sprintf(
                 /* translators: %d: Minimum number of digits allowed. */
-                __('Minimum %d digits required.', 'formnova-form-builder'),
+                __('Minimum %d digits required.', 'formvexa-form-builder'),
                 $min
             );
         }
@@ -211,7 +211,7 @@ final class PhoneField extends BaseField
         ) {
             return sprintf(
                 /* translators: %d: Maximum number of digits allowed. */
-                __('Maximum %d digits allowed.', 'formnova-form-builder'),
+                __('Maximum %d digits allowed.', 'formvexa-form-builder'),
                 $max
             );
         }
@@ -231,7 +231,7 @@ final class PhoneField extends BaseField
             ) {
                 return __(
                     'Invalid phone number format.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 );
             }
         }

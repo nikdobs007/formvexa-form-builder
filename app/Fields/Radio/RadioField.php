@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Radio;
+namespace formvexa\Fields\Radio;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class RadioField extends BaseField
 {
@@ -22,7 +22,7 @@ final class RadioField extends BaseField
      */
     public function title(): string
     {
-        return __('Radio', 'formnova-form-builder');
+        return __('Radio', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class RadioField extends BaseField
 
             'type' => 'radio',
 
-            'label' => __('Radio Field', 'formnova-form-builder'),
+            'label' => __('Radio Field', 'formvexa-form-builder'),
 
             'name' => 'radio_' . strtolower(wp_generate_password(6, false)),
 
@@ -83,45 +83,45 @@ final class RadioField extends BaseField
         return [
 
             [
-                'title' => __('General', 'formnova-form-builder'),
+                'title' => __('General', 'formvexa-form-builder'),
 
                 'fields' => [
 
                     Setting::text(
                         'label',
-                        __('Label', 'formnova-form-builder')
+                        __('Label', 'formvexa-form-builder')
                     ),
 
                     Setting::text(
                         'name',
-                        __('Name', 'formnova-form-builder')
+                        __('Name', 'formvexa-form-builder')
                     ),
 
                     Setting::text(
                         'class',
-                        __('CSS Class', 'formnova-form-builder')
+                        __('CSS Class', 'formvexa-form-builder')
                     ),
 
                     Setting::checkbox(
                         'required',
-                        __('Required', 'formnova-form-builder')
+                        __('Required', 'formvexa-form-builder')
                     ),
                 ],
             ],
 
             [
-                'title' => __('Options', 'formnova-form-builder'),
+                'title' => __('Options', 'formvexa-form-builder'),
 
                 'fields' => [
 
                     Setting::options(
                         'options',
-                        __('Options', 'formnova-form-builder')
+                        __('Options', 'formvexa-form-builder')
                     ),
 
                     Setting::text(
                         'default_value',
-                        __('Default Value', 'formnova-form-builder')
+                        __('Default Value', 'formvexa-form-builder')
                     ),
                 ],
             ],
@@ -152,7 +152,7 @@ final class RadioField extends BaseField
         ) {
             return __(
                 'This field is required.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             );
         }
 
@@ -174,7 +174,7 @@ final class RadioField extends BaseField
 
         return __(
             'Invalid option selected.',
-            'formnova-form-builder'
+            'formvexa-form-builder'
         );
     }
 
@@ -202,7 +202,7 @@ final class RadioField extends BaseField
             );
 
             $html .= sprintf(
-                '<label class="formnova-radio">
+                '<label class="formvexa-radio">
                     <input
                         type="radio"
                         id="%1$s_%2$s"

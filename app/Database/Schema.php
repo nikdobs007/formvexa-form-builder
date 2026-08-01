@@ -2,10 +2,10 @@
 /**
  * Database schema.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Database;
+namespace formvexa\Database;
 
 defined('ABSPATH') || exit;
 

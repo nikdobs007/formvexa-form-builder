@@ -8,11 +8,11 @@
 
     function showMessage(form, message, type) {
 
-        let box = $(form).find('.formnova-message');
+        let box = $(form).find('.formvexa-message');
 
         if (!box.length) {
 
-            box = $('<div class="formnova-message"></div>');
+            box = $('<div class="formvexa-message"></div>');
 
             $(form)
                 .find('[type="submit"]')
@@ -32,16 +32,16 @@
     function clearErrors(form) {
 
         $(form)
-            .find('.formnova-error')
+            .find('.formvexa-error')
             .remove();
 
     }
 
     function showFieldError(field, message) {
 
-        field.next('.formnova-error').remove();
+        field.next('.formvexa-error').remove();
 
-        $('<div class="formnova-error"></div>')
+        $('<div class="formvexa-error"></div>')
             .text(message)
             .insertAfter(field);
 
@@ -50,7 +50,7 @@
     function clearMessage(form) {
 
         $(form)
-            .find('.formnova-message')
+            .find('.formvexa-message')
             .remove();
 
     }
@@ -315,7 +315,7 @@
 
     'use strict';
 
-    $(document).on('submit', '.formnova-frontend', function (e) {
+    $(document).on('submit', '.formvexa-frontend', function (e) {
 
         e.preventDefault();
 
@@ -329,10 +329,10 @@
 
         $submit.prop('disabled', true);
 
-        if (!$submit.next('.formnova-loader').length) {
+        if (!$submit.next('.formvexa-loader').length) {
 
             $submit.after(
-                '<span class="formnova-loader"></span>'
+                '<span class="formvexa-loader"></span>'
             );
 
         }
@@ -369,7 +369,7 @@
 
             $submit.prop('disabled', false);
 
-            $form.find('.formnova-loader').remove();
+            $form.find('.formvexa-loader').remove();
 
             return;
         }
@@ -388,7 +388,7 @@
 
         formData.append(
             'nonce',
-            formnova.nonce
+            formvexa.nonce
         );
 
         /*
@@ -398,8 +398,8 @@
         */
 
         if (
-            typeof FormNovaCaptcha !== 'undefined' &&
-            FormNovaCaptcha.enabled
+            typeof formvexaCaptcha !== 'undefined' &&
+            formvexaCaptcha.enabled
         ) {
 
             /*
@@ -408,12 +408,12 @@
             |--------------------------------------------------------------------------
             */
 
-            if (FormNovaCaptcha.type === 'v3') {
+            if (formvexaCaptcha.type === 'v3') {
 
                 grecaptcha.ready(function () {
 
                     grecaptcha.execute(
-                        FormNovaCaptcha.site_key,
+                        formvexaCaptcha.site_key,
                         {
                             action: 'submit'
                         }
@@ -456,7 +456,7 @@
 
                     $submit.prop('disabled', false);
 
-                    $form.find('.formnova-loader').remove();
+                    $form.find('.formvexa-loader').remove();
 
                     return;
                 }
@@ -572,7 +572,7 @@
 
             $submit.prop('disabled', false);
 
-            $form.find('.formnova-loader').remove();
+            $form.find('.formvexa-loader').remove();
 
             return;
 
@@ -582,7 +582,7 @@
 
             $.ajax({
 
-                url: formnova.ajax_url,
+                url: formvexa.ajax_url,
 
                 type: 'POST',
 
@@ -643,7 +643,7 @@
 
                     $submit.prop('disabled', false);
 
-                    $form.find('.formnova-loader').remove();
+                    $form.find('.formvexa-loader').remove();
 
                 },
 
@@ -664,7 +664,7 @@
 
                     $submit.prop('disabled', false);
 
-                    $form.find('.formnova-loader').remove();
+                    $form.find('.formvexa-loader').remove();
 
                 }
 

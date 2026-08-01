@@ -1,6 +1,6 @@
-# FormNova – Drag & Drop Contact Form Builder
+# Formvexa – Drag & Drop Contact Form Builder
 
-FormNova is a modern, lightweight, and developer-friendly WordPress form builder that allows you to create responsive forms using an intuitive drag-and-drop interface.
+Formvexa is a modern, lightweight, and developer-friendly WordPress form builder that allows you to create responsive forms using an intuitive drag-and-drop interface.
 
 The plugin is built following WordPress Coding Standards and PSR-4 architecture, making it easy to maintain and extend.
 
@@ -61,8 +61,8 @@ The plugin is built following WordPress Coding Standards and PSR-4 architecture,
 wp-content/plugins/
 ```
 
-3. Activate **FormNova** from the Plugins page.
-4. Open **FormNova** from the WordPress Admin menu.
+3. Activate **Formvexa** from the Plugins page.
+4. Open **Formvexa** from the WordPress Admin menu.
 5. Create a new form.
 6. Copy the generated shortcode.
 7. Paste the shortcode into any page or post.
@@ -74,7 +74,7 @@ wp-content/plugins/
 Example shortcode:
 
 ```text
-[formnova_form id="1"]
+[formvexa_form id="1"]
 ```
 
 You can place the shortcode inside:
@@ -102,7 +102,7 @@ Supports:
 
 ## Security
 
-FormNova follows WordPress security best practices.
+Formvexa follows WordPress security best practices.
 
 - Nonce Verification
 - Input Sanitization

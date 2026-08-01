@@ -2,21 +2,21 @@
 /**
  * Meta repository.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Repository;
+namespace formvexa\Repository;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Contracts\RepositoryInterface;
+use formvexa\Contracts\RepositoryInterface;
 use wpdb;
-use FormNova\Helpers\DatabaseHelper;
+use formvexa\Helpers\DatabaseHelper;
 
 /**
  * Meta repository.
  *
- * @package FormNova
+ * @package formvexa
  *
  * phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
  * phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_value

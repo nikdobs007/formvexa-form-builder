@@ -1,12 +1,12 @@
-class FormNovaProperties {
+class formvexaProperties {
 
     constructor(state) {
 
         this.state = state;
-        this.el = document.getElementById('formnova-properties');
+        this.el = document.getElementById('formvexa-properties');
 
         document.addEventListener(
-            'formnova:field:selected',
+            'formvexa:field:selected',
             (e) => this.render(e.detail)
         );
     }
@@ -26,7 +26,7 @@ class FormNovaProperties {
         }
 
         const registry =
-            window.FormNovaFieldRegistry.get(field.type);
+            window.formvexaFieldRegistry.get(field.type);
 
         const rawSchema = registry?.settings || {};
 

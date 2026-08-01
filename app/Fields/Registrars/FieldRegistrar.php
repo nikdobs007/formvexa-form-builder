@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Fields\Registrars;
+namespace formvexa\Fields\Registrars;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\Registry;
+use formvexa\Fields\Registry;
 
 final class FieldRegistrar
 {
@@ -15,67 +15,67 @@ final class FieldRegistrar
     {
         Registry::register(
             'paragraph',
-            \FormNova\Fields\Paragraph\ParagraphField::class
+            \formvexa\Fields\Paragraph\ParagraphField::class
         );
 
         Registry::register(
             'text',
-            \FormNova\Fields\Text\TextField::class
+            \formvexa\Fields\Text\TextField::class
         );
 
         Registry::register(
             'email',
-            \FormNova\Fields\Email\EmailField::class
+            \formvexa\Fields\Email\EmailField::class
         );
 
         Registry::register(
             'phone',
-            \FormNova\Fields\Phone\PhoneField::class
+            \formvexa\Fields\Phone\PhoneField::class
         );
 
         Registry::register(
             'textarea',
-            \FormNova\Fields\Textarea\TextareaField::class
+            \formvexa\Fields\Textarea\TextareaField::class
         );
 
         Registry::register(
             'number',
-            \FormNova\Fields\Number\NumberField::class
+            \formvexa\Fields\Number\NumberField::class
         );
 
         Registry::register(
             'date',
-            \FormNova\Fields\Date\DateField::class
+            \formvexa\Fields\Date\DateField::class
         );
 
         Registry::register(
             'url',
-            \FormNova\Fields\Url\UrlField::class
+            \formvexa\Fields\Url\UrlField::class
         );
 
         Registry::register(
             'file',
-            \FormNova\Fields\File\FileField::class
+            \formvexa\Fields\File\FileField::class
         );
 
         Registry::register(
             'radio',
-            \FormNova\Fields\Radio\RadioField::class
+            \formvexa\Fields\Radio\RadioField::class
         );
 
         Registry::register(
             'checkbox',
-            \FormNova\Fields\Checkbox\CheckboxField::class
+            \formvexa\Fields\Checkbox\CheckboxField::class
         );
 
         Registry::register(
             'select',
-            \FormNova\Fields\Select\SelectField::class
+            \formvexa\Fields\Select\SelectField::class
         );
 
         /**
          * Third-party fields.
          */
-        do_action('formnova_register_fields');
+        do_action('formvexa_register_fields');
     }
 }

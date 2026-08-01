@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Core;
+namespace formvexa\Core;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Bootstrap\Application;
+use formvexa\Bootstrap\Application;
 
 final class Plugin
 {

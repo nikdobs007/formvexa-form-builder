@@ -1,17 +1,17 @@
 <?php
 
-namespace FormNova\Controllers\Ajax;
+namespace formvexa\Controllers\Ajax;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Services\CaptchaService;
+use formvexa\Services\CaptchaService;
 
 final class SettingsAjaxController
 {
     public function register(): void
     {
         add_action(
-            'wp_ajax_formnova_test_captcha',
+            'wp_ajax_formvexa_test_captcha',
             [$this, 'test_captcha']
         );
     }
@@ -27,7 +27,7 @@ final class SettingsAjaxController
 
             wp_send_json_error(
                 [
-                    'message' => __('Permission denied.', 'formnova-form-builder'),
+                    'message' => __('Permission denied.', 'formvexa-form-builder'),
                 ],
                 403
             );
@@ -48,7 +48,7 @@ final class SettingsAjaxController
 
         wp_send_json_success(
             [
-                'message' => __('Google reCAPTCHA configuration looks good.', 'formnova-form-builder'),
+                'message' => __('Google reCAPTCHA configuration looks good.', 'formvexa-form-builder'),
             ]
         );
     }

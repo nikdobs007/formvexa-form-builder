@@ -12,7 +12,7 @@ defined('ABSPATH') || exit;
 
     <p>
 
-        <a href="<?php echo esc_url(admin_url('admin.php?page=formnova-entries')); ?>" class="button">
+        <a href="<?php echo esc_url(admin_url('admin.php?page=formvexa-entries')); ?>" class="button">
             ← Back
         </a>
 
@@ -58,7 +58,7 @@ defined('ABSPATH') || exit;
 
             <?php if (!empty($meta)): ?>
 
-                <?php foreach ($meta as $formnova_field): ?>
+                <?php foreach ($meta as $formvexa_field): ?>
 
                     <tr>
 
@@ -66,8 +66,8 @@ defined('ABSPATH') || exit;
                             <strong>
                                 <?php
                                 echo esc_html(
-                                    $fields[$formnova_field['field_key']]
-                                    ?? $formnova_field['field_key']
+                                    $fields[$formvexa_field['field_key']]
+                                    ?? $formvexa_field['field_key']
                                 );
                                 ?>
                             </strong>
@@ -77,30 +77,30 @@ defined('ABSPATH') || exit;
 
                                     <?php
 
-                                    $formnova_value = $formnova_field['field_value'];
+                                    $formvexa_value = $formvexa_field['field_value'];
 
                                     // Checkbox values
-                                    if (is_array($formnova_value)) {
+                                    if (is_array($formvexa_value)) {
 
                                         echo esc_html(
-                                            implode(', ', $formnova_value)
+                                            implode(', ', $formvexa_value)
                                         );
 
                                     }
 
                                     // Uploaded file
-                                    elseif (filter_var($formnova_value, FILTER_VALIDATE_URL)) {
+                                    elseif (filter_var($formvexa_value, FILTER_VALIDATE_URL)) {
 
-                                        $formnova_ext = strtolower(pathinfo($formnova_value, PATHINFO_EXTENSION));
+                                        $formvexa_ext = strtolower(pathinfo($formvexa_value, PATHINFO_EXTENSION));
 
-                                        if (in_array($formnova_ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
+                                        if (in_array($formvexa_ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
 
-                                            echo '<img src="' . esc_url($formnova_value) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
+                                            echo '<img src="' . esc_url($formvexa_value) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
 
                                         }
 
-                                        echo '<a href="' . esc_url($formnova_value) . '" target="_blank">'
-                                            . esc_html(basename($formnova_value))
+                                        echo '<a href="' . esc_url($formvexa_value) . '" target="_blank">'
+                                            . esc_html(basename($formvexa_value))
                                             . '</a>';
 
                                     }
@@ -109,7 +109,7 @@ defined('ABSPATH') || exit;
                                     else {
 
                                         echo nl2br(
-                                            esc_html($formnova_value)
+                                            esc_html($formvexa_value)
                                         );
 
                                     }

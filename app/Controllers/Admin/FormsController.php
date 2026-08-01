@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Controllers\Admin;
+namespace formvexa\Controllers\Admin;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Core\View;
-use FormNova\Services\FormService;
+use formvexa\Core\View;
+use formvexa\Services\FormService;
 
 /**
  * Forms controller.

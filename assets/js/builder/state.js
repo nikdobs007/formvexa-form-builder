@@ -1,4 +1,4 @@
-class FormNovaState {
+class formvexaState {
 
     constructor() {
 
@@ -40,7 +40,7 @@ class FormNovaState {
 
         this.selectedField = null;
 
-        this.formId = window.FormNovaBuilderData?.form_id || 0;
+        this.formId = window.formvexaBuilderData?.form_id || 0;
 
         this.loadExisting();
     }
@@ -89,7 +89,7 @@ class FormNovaState {
     loadExisting() {
 
         const builder =
-            window.FormNovaBuilderData?.builder || [];
+            window.formvexaBuilderData?.builder || [];
 
         if (Array.isArray(builder)) {
 
@@ -108,7 +108,7 @@ class FormNovaState {
         */
 
         const settings =
-            window.FormNovaBuilderData?.settings || {};
+            window.formvexaBuilderData?.settings || {};
 
         if (settings.mail) {
 
@@ -258,7 +258,7 @@ class FormNovaState {
 
         document.dispatchEvent(
             new CustomEvent(
-                'formnova:field:selected',
+                'formvexa:field:selected',
                 {
                     detail: this.selectedField
                 }
@@ -295,7 +295,7 @@ class FormNovaState {
 
             new CustomEvent(
 
-                'formnova:state:updated',
+                'formvexa:state:updated',
 
                 {
 
@@ -315,7 +315,7 @@ class FormNovaState {
 
         const saveButton =
             document.getElementById(
-                'formnova-save'
+                'formvexa-save'
             );
 
         if (saveButton) {

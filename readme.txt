@@ -1,4 +1,4 @@
-=== FormNova – Drag & Drop Contact Form Builder ===
+=== Formvexa – Drag & Drop Contact Form Builder ===
 Contributors: nikdobs
 Tags: contact form, form builder, drag and drop, ajax forms, file upload, contact forms
 Requires at least: 6.5
@@ -12,7 +12,7 @@ Create responsive contact forms with a modern drag-and-drop builder, AJAX submis
 
 == Description ==
 
-FormNova is a modern WordPress form builder designed for users and developers who need a fast, secure, and flexible way to create contact forms without writing code.
+Formvexa is a modern WordPress form builder designed for users and developers who need a fast, secure, and flexible way to create contact forms without writing code.
 
 Using the intuitive drag-and-drop builder, you can create unlimited forms, manage submissions, configure email notifications, and embed forms anywhere using shortcodes.
 
@@ -64,7 +64,7 @@ The plugin follows WordPress Coding Standards and uses a PSR-4 architecture for 
 
 1. Upload the plugin to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the WordPress Plugins screen.
-3. Open **FormNova** from the admin menu.
+3. Open **Formvexa** from the admin menu.
 4. Create a new form.
 5. Copy the generated shortcode.
 6. Paste the shortcode into any page or post.
@@ -111,7 +111,7 @@ Google reCAPTCHA is loaded only when all of the following conditions are met:
 
 * Google reCAPTCHA is enabled for the form.
 * A valid Google reCAPTCHA Site Key has been configured by the site administrator.
-* A FormNova form that has Google reCAPTCHA enabled is present on the current page.
+* A Formvexa form that has Google reCAPTCHA enabled is present on the current page.
 
 When these conditions are met, the visitor's browser loads the Google reCAPTCHA JavaScript from Google's servers.
 
@@ -161,4 +161,4 @@ https://policies.google.com/privacy
 
 = 1.0.0 =
 
-Initial stable release of FormNova.
+Initial stable release of Formvexa.

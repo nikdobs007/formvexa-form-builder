@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Email;
+namespace formvexa\Fields\Email;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class EmailField extends BaseField
 {
@@ -22,7 +22,7 @@ final class EmailField extends BaseField
      */
     public function title(): string
     {
-        return __('Email', 'formnova-form-builder');
+        return __('Email', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class EmailField extends BaseField
 
             'type' => 'email',
 
-            'label' => __('Email', 'formnova-form-builder'),
+            'label' => __('Email', 'formvexa-form-builder'),
 
             'name' => 'email_' . strtolower(wp_generate_password(6, false)),
 
@@ -78,32 +78,32 @@ final class EmailField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder')
+                    __('Default Value', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
 
             ],
@@ -132,7 +132,7 @@ final class EmailField extends BaseField
             $this->required() &&
             $value === ''
         ) {
-            return __('Email is required.', 'formnova-form-builder');
+            return __('Email is required.', 'formvexa-form-builder');
         }
 
         if ($value === '') {
@@ -140,7 +140,7 @@ final class EmailField extends BaseField
         }
 
         if (!is_email($value)) {
-            return __('Please enter a valid email address.', 'formnova-form-builder');
+            return __('Please enter a valid email address.', 'formvexa-form-builder');
         }
 
         return true;

@@ -1,5 +1,5 @@
 /* =====================================================
-   FormNova Builder UI v2
+   formvexa Builder UI v2
 ===================================================== */
 
 body {
@@ -10,7 +10,7 @@ body {
 Top Bar
 -----------------------------*/
 
-.formnova-topbar {
+.formvexa-topbar {
 
     display: flex;
     justify-content: space-between;
@@ -31,14 +31,14 @@ Top Bar
 
 }
 
-.formnova-header {
+.formvexa-header {
     display: block;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-#formnova-title {
+#formvexa-title {
 
     width: 420px;
 
@@ -56,7 +56,7 @@ Top Bar
 
 }
 
-.formnova-shortcode-box {
+.formvexa-shortcode-box {
 
     display: flex;
 
@@ -66,7 +66,7 @@ Top Bar
 
 }
 
-#formnova-shortcode {
+#formvexa-shortcode {
 
     width: 260px;
 
@@ -448,7 +448,7 @@ Responsive
 
 @media(max-width:900px) {
 
-    .formnova-topbar {
+    .formvexa-topbar {
 
         flex-direction: column;
 
@@ -456,7 +456,7 @@ Responsive
 
     }
 
-    #formnova-title {
+    #formvexa-title {
 
         width: 100%;
 
@@ -508,7 +508,7 @@ Builder Layout
 
 /* Field */
 
-.formnova-draggable {
+.formvexa-draggable {
 
     background: #f8fafc;
 
@@ -528,7 +528,7 @@ Builder Layout
 
 }
 
-.formnova-draggable:hover {
+.formvexa-draggable:hover {
 
     background: #2271b1;
 
@@ -560,7 +560,7 @@ Builder Layout
 
 /* Builder Fields */
 
-.formnova-builder-field {
+.formvexa-builder-field {
 
     background: #fff;
 
@@ -576,7 +576,7 @@ Builder Layout
 
 }
 
-.formnova-builder-field:hover {
+.formvexa-builder-field:hover {
 
     border-color: #2271b1;
 
@@ -586,13 +586,13 @@ Builder Layout
 
 /* Selected */
 
-.formnova-builder-field.active {
+.formvexa-builder-field.active {
 
     border: 2px solid #2271b1;
 
 }
 
-.formnova-field .fn-delete-field {
+.formvexa-field .fn-delete-field {
     min-height: 25px !important;
     width: 25px !important;
     font-size: 16px !important;
@@ -644,7 +644,7 @@ Builder Layout
 
 /* Sortable Placeholder */
 
-.formnova-sort-placeholder {
+.formvexa-sort-placeholder {
 
     height: 70px;
 
@@ -679,7 +679,7 @@ Builder Layout
 }
 
 /* =====================================================
-   FormNova Canvas UI
+   formvexa Canvas UI
 ===================================================== */
 
 .fn-builder-canvas {
@@ -710,7 +710,7 @@ Builder Layout
    Drop Zone
 ===================================================== */
 
-.formnova-drop-zone {
+.formvexa-drop-zone {
 
     height: 15px;
 
@@ -724,13 +724,13 @@ Builder Layout
 
 }
 
-.formnova-drop-zone span {
+.formvexa-drop-zone span {
 
     display: none;
 
 }
 
-.formnova-drop-zone.drag-hover {
+.formvexa-drop-zone.drag-hover {
 
     height: 70px;
 
@@ -740,7 +740,7 @@ Builder Layout
 
 }
 
-.formnova-drop-zone.drag-hover span {
+.formvexa-drop-zone.drag-hover span {
 
     display: flex;
 
@@ -762,7 +762,7 @@ Builder Layout
    Builder Field
 ===================================================== */
 
-.formnova-field {
+.formvexa-field {
 
     background: #fff;
 
@@ -784,7 +784,7 @@ Builder Layout
 
 }
 
-.formnova-field:hover {
+.formvexa-field:hover {
 
     border-color: #2271b1;
 
@@ -794,7 +794,7 @@ Builder Layout
 
 }
 
-.formnova-field.selected {
+.formvexa-field.selected {
 
     border: 2px solid #2271b1;
 
@@ -806,7 +806,7 @@ Builder Layout
    Drag Handle
 ===================================================== */
 
-.formnova-field-header {
+.formvexa-field-header {
 
     position: absolute;
 
@@ -836,7 +836,7 @@ Builder Layout
 
 }
 
-.formnova-field:hover .formnova-field-header {
+.formvexa-field:hover .formvexa-field-header {
 
     background: #2271b1;
 
@@ -848,7 +848,7 @@ Builder Layout
    Labels
 ===================================================== */
 
-.formnova-field label {
+.formvexa-field label {
 
     display: block;
 
@@ -866,9 +866,9 @@ Builder Layout
    Preview Controls
 ===================================================== */
 
-.formnova-field input:not([type=checkbox]):not([type=radio]):not([type=file]),
-.formnova-field textarea,
-.formnova-field select {
+.formvexa-field input:not([type=checkbox]):not([type=radio]):not([type=file]),
+.formvexa-field textarea,
+.formvexa-field select {
 
     width: 100%;
 
@@ -884,21 +884,21 @@ Builder Layout
 
 }
 
-.formnova-field textarea {
+.formvexa-field textarea {
 
     min-height: 90px;
 
 }
 
-.formnova-field input[type=file] {
+.formvexa-field input[type=file] {
 
     width: 100%;
 
 }
 
-.formnova-field input:disabled,
-.formnova-field textarea:disabled,
-.formnova-field select:disabled {
+.formvexa-field input:disabled,
+.formvexa-field textarea:disabled,
+.formvexa-field select:disabled {
 
     opacity: 1;
 
@@ -930,7 +930,7 @@ Builder Layout
    Animation
 ===================================================== */
 
-.formnova-field {
+.formvexa-field {
 
     animation: fnFade .15s ease;
 
@@ -978,13 +978,13 @@ Builder Layout
 
 }
 
-.formnova-field.dragging {
+.formvexa-field.dragging {
 
     opacity: .45;
 
 }
 
-.formnova-drop-zone.active {
+.formvexa-drop-zone.active {
 
     height: 42px;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Checkbox;
+namespace formvexa\Fields\Checkbox;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class CheckboxField extends BaseField
 {
@@ -22,7 +22,7 @@ final class CheckboxField extends BaseField
      */
     public function title(): string
     {
-        return __('Checkbox', 'formnova-form-builder');
+        return __('Checkbox', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class CheckboxField extends BaseField
 
             'type' => 'checkbox',
 
-            'label' => __('Checkbox', 'formnova-form-builder'),
+            'label' => __('Checkbox', 'formvexa-form-builder'),
 
             'name' => 'checkbox_' . strtolower(wp_generate_password(6, false)),
 
@@ -87,22 +87,22 @@ final class CheckboxField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
 
             ],
@@ -111,7 +111,7 @@ final class CheckboxField extends BaseField
 
                 Setting::options(
                     'options',
-                    __('Options', 'formnova-form-builder')
+                    __('Options', 'formvexa-form-builder')
                 ),
 
             ],
@@ -149,7 +149,7 @@ final class CheckboxField extends BaseField
             $this->required() &&
             empty($value)
         ) {
-            return __('Please select at least one option.', 'formnova-form-builder');
+            return __('Please select at least one option.', 'formvexa-form-builder');
         }
 
         if (empty($value)) {
@@ -177,7 +177,7 @@ final class CheckboxField extends BaseField
                     true
                 )
             ) {
-                return __('Invalid option selected.', 'formnova-form-builder');
+                return __('Invalid option selected.', 'formvexa-form-builder');
             }
         }
 
@@ -238,7 +238,7 @@ final class CheckboxField extends BaseField
             ) ? 'checked' : '';
 
             $html .= sprintf(
-                '<label class="formnova-checkbox">
+                '<label class="formvexa-checkbox">
                     <input
                         type="checkbox"
                         name="%1$s"

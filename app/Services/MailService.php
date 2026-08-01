@@ -2,10 +2,10 @@
 /**
  * Mail Service.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Services;
+namespace formvexa\Services;
 
 defined('ABSPATH') || exit;
 
@@ -29,8 +29,8 @@ final class MailService
     ): bool {
 
         $formService = new FormService(
-            new \FormNova\Repository\FormRepository($GLOBALS['wpdb']),
-            new \FormNova\Repository\MetaRepository($GLOBALS['wpdb'])
+            new \formvexa\Repository\FormRepository($GLOBALS['wpdb']),
+            new \formvexa\Repository\MetaRepository($GLOBALS['wpdb'])
         );
 
         $settings = $formService->getMeta(

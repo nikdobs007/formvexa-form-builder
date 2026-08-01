@@ -2,15 +2,15 @@
 /**
  * Forms list table.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Controllers\Admin;
+namespace formvexa\Controllers\Admin;
 
 defined('ABSPATH') || exit;
 
 use WP_List_Table;
-use FormNova\Services\FormService;
+use formvexa\Services\FormService;
 
 /**
  * Forms admin table.
@@ -61,7 +61,7 @@ final class FormsListTable extends WP_List_Table
                 '<input type="text"
                     class="regular-text code"
                     readonly
-                    value="[formnova_form id=&quot;%d&quot;]" 
+                    value="[formvexa_form id=&quot;%d&quot;]" 
                     onclick="this.select();" />',
                 (int) $item->id
             ),
@@ -95,7 +95,7 @@ final class FormsListTable extends WP_List_Table
         $edit_link = wp_nonce_url(
             add_query_arg(
                 [
-                    'page' => 'formnova-builder',
+                    'page' => 'formvexa-builder',
                     'id' => absint($item->id),
                 ],
                 admin_url('admin.php')
@@ -106,7 +106,7 @@ final class FormsListTable extends WP_List_Table
         $delete_link = wp_nonce_url(
             add_query_arg(
                 [
-                    'page' => 'formnova',
+                    'page' => 'formvexa',
                     'action' => 'delete',
                     'id' => absint($item->id),
                 ],
@@ -157,12 +157,12 @@ final class FormsListTable extends WP_List_Table
 
         if (
             isset($_GET['s']) &&
-            isset($_GET['formnova_search_nonce']) &&
+            isset($_GET['formvexa_search_nonce']) &&
             wp_verify_nonce(
                 sanitize_text_field(
-                    wp_unslash($_GET['formnova_search_nonce'])
+                    wp_unslash($_GET['formvexa_search_nonce'])
                 ),
-                'formnova_search'
+                'formvexa_search'
             )
         ) {
             $search = sanitize_text_field(
@@ -195,7 +195,7 @@ final class FormsListTable extends WP_List_Table
     public function get_bulk_actions(): array
     {
         return [
-            'delete' => __('Delete', 'formnova-form-builder'),
+            'delete' => __('Delete', 'formvexa-form-builder'),
         ];
     }
 
@@ -228,9 +228,9 @@ final class FormsListTable extends WP_List_Table
         }
 
         add_settings_error(
-            'formnova',
+            'formvexa',
             'form_deleted',
-            __('Selected forms deleted successfully.', 'formnova-form-builder'),
+            __('Selected forms deleted successfully.', 'formvexa-form-builder'),
             'updated'
         );
 

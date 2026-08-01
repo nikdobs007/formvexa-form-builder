@@ -1,20 +1,20 @@
 <?php
 
-namespace FormNova\Core;
+namespace formvexa\Core;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Controllers\Admin\FormsController;
-use FormNova\Controllers\Admin\EntriesController;
-use FormNova\Controllers\Admin\SettingsController;
-use FormNova\Controllers\Admin\BuilderController;
-use FormNova\Services\EntryService;
-use FormNova\Services\MetaService;
-use FormNova\Repository\EntryMetaRepository;
-use FormNova\Repository\EntryRepository;
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\MetaRepository;
-use FormNova\Services\FormService;
+use formvexa\Controllers\Admin\FormsController;
+use formvexa\Controllers\Admin\EntriesController;
+use formvexa\Controllers\Admin\SettingsController;
+use formvexa\Controllers\Admin\BuilderController;
+use formvexa\Services\EntryService;
+use formvexa\Services\MetaService;
+use formvexa\Repository\EntryMetaRepository;
+use formvexa\Repository\EntryRepository;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\MetaRepository;
+use formvexa\Services\FormService;
 
 
 
@@ -32,7 +32,7 @@ final class AdminMenu
         add_action('admin_menu', [$this, 'register_menu']);
         add_action('admin_init', [$this, 'handle_form_actions']);
         add_action(
-            'admin_post_formnova_export_csv',
+            'admin_post_formvexa_export_csv',
             [$this, 'export_entries_csv']
         );
     }
@@ -43,48 +43,48 @@ final class AdminMenu
     public function register_menu(): void
     {
         add_menu_page(
-            'FormNova',
-            'FormNova',
+            'formvexa',
+            'formvexa',
             'manage_options',
-            'formnova',
+            'formvexa',
             [$this, 'forms_page'],
             'dashicons-feedback',
             26
         );
 
         add_submenu_page(
-            'formnova',
+            'formvexa',
             'All Forms',
             'All Forms',
             'manage_options',
-            'formnova',
+            'formvexa',
             [$this, 'forms_page']
         );
 
         add_submenu_page(
-            'formnova',
+            'formvexa',
             'Add New',
             'Add New',
             'manage_options',
-            'formnova-builder',
+            'formvexa-builder',
             [$this, 'builder_page']
         );
 
         add_submenu_page(
-            'formnova',
+            'formvexa',
             'Entries',
             'Entries',
             'manage_options',
-            'formnova-entries',
+            'formvexa-entries',
             [$this, 'entries_page']
         );
 
         add_submenu_page(
-            'formnova',
+            'formvexa',
             'Settings',
             'Settings',
             'manage_options',
-            'formnova-settings',
+            'formvexa-settings',
             [$this, 'settings_page']
         );
     }
@@ -177,7 +177,7 @@ final class AdminMenu
             ? sanitize_key(wp_unslash($_GET['page']))
             : '';
 
-        if ('formnova' !== $page) {
+        if ('formvexa' !== $page) {
             return;
         }
 
@@ -211,7 +211,7 @@ final class AdminMenu
 
         $service->delete($id);
 
-        wp_safe_redirect(admin_url('admin.php?page=formnova'));
+        wp_safe_redirect(admin_url('admin.php?page=formvexa'));
         exit;
     }
 

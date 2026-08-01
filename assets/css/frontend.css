@@ -1,11 +1,11 @@
-.formnova-frontend .fn-field {
+.formvexa-frontend .fn-field {
 
     margin-bottom: 20px;
 
 }
 
 
-.formnova-frontend label {
+.formvexa-frontend label {
 
     display: block;
 
@@ -16,9 +16,9 @@
 }
 
 
-.formnova-frontend input,
-.formnova-frontend textarea,
-.formnova-frontend select {
+.formvexa-frontend input,
+.formvexa-frontend textarea,
+.formvexa-frontend select {
 
 
     width: 100%;
@@ -54,7 +54,7 @@
     width: auto;
 }
 
-.formnova-message {
+.formvexa-message {
 
     margin-top: 20px;
 
@@ -66,7 +66,7 @@
 
 }
 
-.formnova-message.success {
+.formvexa-message.success {
 
     background: #e7f8ec;
 
@@ -76,7 +76,7 @@
 
 }
 
-.formnova-message.error {
+.formvexa-message.error {
 
     background: #fdeaea;
 
@@ -86,13 +86,13 @@
 
 }
 
-.formnova-error {
+.formvexa-error {
     color: #dc3232;
     font-size: 13px;
     margin-top: 5px;
 }
 
-.formnova-loader {
+.formvexa-loader {
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -100,11 +100,11 @@
     border: 2px solid #ddd;
     border-top: 2px solid #2271b1;
     border-radius: 50%;
-    animation: formnova-spin .7s linear infinite;
+    animation: formvexa-spin .7s linear infinite;
     vertical-align: middle;
 }
 
-@keyframes formnova-spin {
+@keyframes formvexa-spin {
     from {
         transform: rotate(0deg);
     }
@@ -114,12 +114,12 @@
     }
 }
 
-.formnova-frontend button:disabled,
-.formnova-frontend input[type="submit"]:disabled {
+.formvexa-frontend button:disabled,
+.formvexa-frontend input[type="submit"]:disabled {
     opacity: .6;
     cursor: not-allowed;
 }
 
-.formnova-captcha {
+.formvexa-captcha {
     margin-bottom: 15px;
 }

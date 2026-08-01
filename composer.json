@@ -1,11 +1,11 @@
 {
-    "name": "formnova/formnova-form-builder",
-    "description": "FormNova WordPress Form Builder",
+    "name": "formvexa/formvexa-form-builder",
+    "description": "Formvexa WordPress Form Builder",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "FormNova\\": "app/"
+            "formvexa\\": "app/"
         },
         "classmap": [
             "includes/"

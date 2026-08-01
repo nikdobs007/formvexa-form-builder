@@ -1,14 +1,14 @@
 <?php
 
-namespace FormNova\Core;
+namespace formvexa\Core;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Services\FieldSchemaService;
-use FormNova\Services\CaptchaService;
-use FormNova\Services\FormService;
-use FormNova\Repository\FormRepository;
-use FormNova\Repository\MetaRepository;
+use formvexa\Services\FieldSchemaService;
+use formvexa\Services\CaptchaService;
+use formvexa\Services\FormService;
+use formvexa\Repository\FormRepository;
+use formvexa\Repository\MetaRepository;
 
 /**
  * Assets loader
@@ -32,14 +32,14 @@ final class Assets
     public function admin_assets(string $hook_suffix): void
     {
         wp_enqueue_style(
-            'formnova-admin',
+            'formvexa-admin',
             NDFB_PLUGIN_URL . 'assets/css/admin.css',
             [],
             NDFB_VERSION
         );
 
         wp_enqueue_script(
-            'formnova-admin',
+            'formvexa-admin',
             NDFB_PLUGIN_URL . 'assets/js/admin.js',
             ['jquery'],
             NDFB_VERSION,
@@ -47,8 +47,8 @@ final class Assets
         );
 
         wp_localize_script(
-            'formnova-admin',
-            'FormNova',
+            'formvexa-admin',
+            'formvexa',
             [
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('ndfb_nonce'),
@@ -66,7 +66,7 @@ final class Assets
         $base = NDFB_PLUGIN_URL . 'assets/js/builder/';
 
         wp_enqueue_script(
-            'formnova-builder-registry',
+            'formvexa-builder-registry',
             $base . 'registry.js',
             [],
             NDFB_VERSION,
@@ -74,73 +74,73 @@ final class Assets
         );
 
         wp_enqueue_script(
-            'formnova-builder-fields',
+            'formvexa-builder-fields',
             $base . 'fields.js',
-            ['formnova-builder-registry'],
+            ['formvexa-builder-registry'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-state',
+            'formvexa-builder-state',
             $base . 'state.js',
-            ['formnova-builder-fields'],
+            ['formvexa-builder-fields'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-canvas',
+            'formvexa-builder-canvas',
             $base . 'canvas.js',
-            ['formnova-builder-state'],
+            ['formvexa-builder-state'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-properties',
+            'formvexa-builder-properties',
             $base . 'properties.js',
-            ['formnova-builder-canvas'],
+            ['formvexa-builder-canvas'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-mail',
+            'formvexa-builder-mail',
             $base . 'mail.js',
-            ['formnova-builder-properties'],
+            ['formvexa-builder-properties'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-advanced',
+            'formvexa-builder-advanced',
             $base . 'advanced.js',
-            ['formnova-builder-properties'],
+            ['formvexa-builder-properties'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-dragdrop',
+            'formvexa-builder-dragdrop',
             $base . 'dragdrop.js',
-            ['formnova-builder-mail'],
+            ['formvexa-builder-mail'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder-tabs',
+            'formvexa-builder-tabs',
             $base . 'tabs.js',
-            ['formnova-builder-dragdrop'],
+            ['formvexa-builder-dragdrop'],
             NDFB_VERSION,
             true
         );
 
         wp_enqueue_script(
-            'formnova-builder',
+            'formvexa-builder',
             $base . 'builder.js',
-            ['formnova-builder-tabs'],
+            ['formvexa-builder-tabs'],
             NDFB_VERSION,
             true
         );
@@ -157,7 +157,7 @@ final class Assets
         );
 
         $form = [];
-        $builder = [];
+        $builder = FormService::default_builder();
         $settings = [];
 
         if ($form_id) {
@@ -173,14 +173,14 @@ final class Assets
         }
 
         wp_localize_script(
-            'formnova-builder',
-            'FormNovaBuilderData',
+            'formvexa-builder',
+            'formvexaBuilderData',
             [
                 'form_id' => (int) $form_id,
                 'form' => $form,
                 'builder' => $builder ?? [],
                 'settings' => $settings ?? [],
-                'schemas' => (new \FormNova\Services\FieldSchemaService())->all(),
+                'schemas' => (new \formvexa\Services\FieldSchemaService())->all(),
             ]
         );
     }
@@ -197,14 +197,14 @@ final class Assets
     public function frontend_assets(): void
     {
         wp_enqueue_style(
-            'formnova-frontend',
+            'formvexa-frontend',
             NDFB_PLUGIN_URL . 'assets/css/frontend.css',
             [],
             NDFB_VERSION
         );
 
         wp_enqueue_script(
-            'formnova-frontend',
+            'formvexa-frontend',
             NDFB_PLUGIN_URL . 'assets/js/frontend.js',
             ['jquery'],
             NDFB_VERSION,
@@ -244,8 +244,8 @@ final class Assets
             }
 
             wp_localize_script(
-                'formnova-frontend',
-                'FormNovaCaptcha',
+                'formvexa-frontend',
+                'formvexaCaptcha',
                 $captcha->frontend()
             );
         }
@@ -257,11 +257,11 @@ final class Assets
         */
 
         wp_localize_script(
-            'formnova-frontend',
-            'formnova',
+            'formvexa-frontend',
+            'formvexa',
             [
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('formnova_submit'),
+                'nonce' => wp_create_nonce('formvexa_submit'),
             ]
         );
 
@@ -278,13 +278,13 @@ final class Assets
         if (
             !$post ||
             empty($post->post_content) ||
-            !has_shortcode($post->post_content, 'formnova_form')
+            !has_shortcode($post->post_content, 'formvexa_form')
         ) {
             return false;
         }
 
         preg_match_all(
-            '/\[formnova_form\s+[^\]]*id=["\']?(\d+)["\']?[^\]]*\]/',
+            '/\[formvexa_form\s+[^\]]*id=["\']?(\d+)["\']?[^\]]*\]/',
             $post->post_content,
             $matches
         );
@@ -295,9 +295,9 @@ final class Assets
 
         global $wpdb;
 
-        $service = new \FormNova\Services\FormService(
-            new \FormNova\Repository\FormRepository($wpdb),
-            new \FormNova\Repository\MetaRepository($wpdb)
+        $service = new \formvexa\Services\FormService(
+            new \formvexa\Repository\FormRepository($wpdb),
+            new \formvexa\Repository\MetaRepository($wpdb)
         );
 
         foreach ($matches[1] as $form_id) {

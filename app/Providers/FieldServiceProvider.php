@@ -2,26 +2,26 @@
 /**
  * Field Service Provider.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Providers;
+namespace formvexa\Providers;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\Registry;
-use FormNova\Fields\Text\TextField;
-use FormNova\Fields\Email\EmailField;
-use FormNova\Fields\Phone\PhoneField;
-use FormNova\Fields\Textarea\TextareaField;
-use FormNova\Fields\Paragraph\ParagraphField;
-use FormNova\Fields\Number\NumberField;
-use FormNova\Fields\Date\DateField;
-use FormNova\Fields\Url\UrlField;
-use FormNova\Fields\File\FileField;
-use FormNova\Fields\Select\SelectField;
-use FormNova\Fields\Radio\RadioField;
-use FormNova\Fields\Checkbox\CheckboxField;
+use formvexa\Fields\Registry;
+use formvexa\Fields\Text\TextField;
+use formvexa\Fields\Email\EmailField;
+use formvexa\Fields\Phone\PhoneField;
+use formvexa\Fields\Textarea\TextareaField;
+use formvexa\Fields\Paragraph\ParagraphField;
+use formvexa\Fields\Number\NumberField;
+use formvexa\Fields\Date\DateField;
+use formvexa\Fields\Url\UrlField;
+use formvexa\Fields\File\FileField;
+use formvexa\Fields\Select\SelectField;
+use formvexa\Fields\Radio\RadioField;
+use formvexa\Fields\Checkbox\CheckboxField;
 
 final class FieldServiceProvider
 {
@@ -73,6 +73,6 @@ final class FieldServiceProvider
         |--------------------------------------------------------------------------
         */
 
-        do_action('formnova_register_fields');
+        do_action('formvexa_register_fields');
     }
 }

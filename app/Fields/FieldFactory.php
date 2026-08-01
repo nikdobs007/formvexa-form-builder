@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Fields;
+namespace formvexa\Fields;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Contracts\FieldInterface;
+use formvexa\Contracts\FieldInterface;
 
 final class FieldFactory
 {
@@ -14,7 +14,7 @@ final class FieldFactory
      * @param string $type Field type.
      * @param array  $data Field data.
      *
-     * @return \FormNova\Contracts\FieldInterface
+     * @return \formvexa\Contracts\FieldInterface
      *
      * @throws \RuntimeException When the field type is not registered.
      */

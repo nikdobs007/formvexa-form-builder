@@ -1,6 +1,6 @@
 <?php
 
-namespace FormNova\Fields\Schema;
+namespace formvexa\Fields\Schema;
 
 defined('ABSPATH') || exit;
 

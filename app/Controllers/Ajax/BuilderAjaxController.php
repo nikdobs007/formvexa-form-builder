@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Controllers\Ajax;
+namespace formvexa\Controllers\Ajax;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Services\FormService;
+use formvexa\Services\FormService;
 
 final class BuilderAjaxController
 {
@@ -49,7 +49,7 @@ final class BuilderAjaxController
 		if (!current_user_can('manage_options')) {
 			wp_send_json_error(
 				array(
-					'message' => __('Unauthorized', 'formnova-form-builder'),
+					'message' => __('Unauthorized', 'formvexa-form-builder'),
 				)
 			);
 		}
@@ -72,7 +72,7 @@ final class BuilderAjaxController
 		if (JSON_ERROR_NONE !== json_last_error() || !is_array($decoded)) {
 			wp_send_json_error(
 				array(
-					'message' => __('Invalid builder JSON', 'formnova-form-builder'),
+					'message' => __('Invalid builder JSON', 'formvexa-form-builder'),
 				)
 			);
 		}
@@ -98,7 +98,7 @@ final class BuilderAjaxController
 
 		$redirect = wp_nonce_url(
 			admin_url(
-				'admin.php?page=formnova-builder&id=' . $form_id
+				'admin.php?page=formvexa-builder&id=' . $form_id
 			),
 			'ndfb_edit_form_' . $form_id
 		);

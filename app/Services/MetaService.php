@@ -2,14 +2,14 @@
 /**
  * Meta service layer.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Services;
+namespace formvexa\Services;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Repository\MetaRepository;
+use formvexa\Repository\MetaRepository;
 
 /**
  * Handles business logic for form meta.

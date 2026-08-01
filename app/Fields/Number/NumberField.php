@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Number;
+namespace formvexa\Fields\Number;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class NumberField extends BaseField
 {
@@ -22,7 +22,7 @@ final class NumberField extends BaseField
      */
     public function title(): string
     {
-        return __('Number', 'formnova-form-builder');
+        return __('Number', 'formvexa-form-builder');
     }
 
     /**
@@ -52,7 +52,7 @@ final class NumberField extends BaseField
 
             'type' => 'number',
 
-            'label' => __('Number', 'formnova-form-builder'),
+            'label' => __('Number', 'formvexa-form-builder'),
 
             'name' => 'number_' . strtolower(wp_generate_password(6, false)),
 
@@ -83,32 +83,32 @@ final class NumberField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::number(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder')
+                    __('Default Value', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
             ],
 
@@ -116,17 +116,17 @@ final class NumberField extends BaseField
 
                 Setting::number(
                     'min',
-                    __('Minimum Value', 'formnova-form-builder')
+                    __('Minimum Value', 'formvexa-form-builder')
                 ),
 
                 Setting::number(
                     'max',
-                    __('Maximum Value', 'formnova-form-builder')
+                    __('Maximum Value', 'formvexa-form-builder')
                 ),
 
                 Setting::number(
                     'step',
-                    __('Step', 'formnova-form-builder'),
+                    __('Step', 'formvexa-form-builder'),
                     [
                         'default' => 1,
                     ]

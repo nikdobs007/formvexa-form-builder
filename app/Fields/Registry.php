@@ -1,6 +1,6 @@
 <?php
 
-namespace FormNova\Fields;
+namespace formvexa\Fields;
 
 defined('ABSPATH') || exit;
 
@@ -26,12 +26,12 @@ final class Registry
     /**
      * Register field.
      *
-     * @param \FormNova\Contracts\FieldInterface $field Field instance.
+     * @param \formvexa\Contracts\FieldInterface $field Field instance.
      *
      * @return void
      */
     public static function register(
-        \FormNova\Contracts\FieldInterface $field
+        \formvexa\Contracts\FieldInterface $field
     ): void {
 
         self::$fields[$field->type()] = $field;
@@ -56,7 +56,7 @@ final class Registry
      *
      * @return string|null
      */
-    public static function get(string $type): ?\FormNova\Contracts\FieldInterface
+    public static function get(string $type): ?\formvexa\Contracts\FieldInterface
     {
         return self::$fields[$type] ?? null;
     }
@@ -76,11 +76,11 @@ final class Registry
      *
      * @param array $field
      *
-     * @return \FormNova\Contracts\FieldInterface|null
+     * @return \formvexa\Contracts\FieldInterface|null
      */
     public static function make(
         array $field
-    ): ?\FormNova\Contracts\FieldInterface {
+    ): ?\formvexa\Contracts\FieldInterface {
 
         if (
             empty($field['type'])

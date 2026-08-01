@@ -2,14 +2,14 @@
 /**
  * Abstract field.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Fields;
+namespace formvexa\Fields;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Contracts\FieldInterface;
+use formvexa\Contracts\FieldInterface;
 
 abstract class AbstractField implements FieldInterface
 {

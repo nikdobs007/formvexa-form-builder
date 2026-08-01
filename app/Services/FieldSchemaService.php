@@ -2,15 +2,15 @@
 /**
  * Field Schema Service.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Services;
+namespace formvexa\Services;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\Registry;
-use FormNova\Contracts\FieldInterface;
+use formvexa\Fields\Registry;
+use formvexa\Contracts\FieldInterface;
 
 final class FieldSchemaService
 {

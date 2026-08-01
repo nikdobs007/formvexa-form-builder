@@ -1,4 +1,4 @@
-class FormNovaTabs {
+class formvexaTabs {
 
     constructor() {
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Select;
+namespace formvexa\Fields\Select;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class SelectField extends BaseField
 {
@@ -22,7 +22,7 @@ final class SelectField extends BaseField
      */
     public function title(): string
     {
-        return __('Select', 'formnova-form-builder');
+        return __('Select', 'formvexa-form-builder');
     }
 
     /**
@@ -52,13 +52,13 @@ final class SelectField extends BaseField
 
             'type' => 'select',
 
-            'label' => __('Select Field', 'formnova-form-builder'),
+            'label' => __('Select Field', 'formvexa-form-builder'),
 
             'name' => 'select_' . strtolower(wp_generate_password(6, false)),
 
             'class' => '',
 
-            'placeholder' => __('Select...', 'formnova-form-builder'),
+            'placeholder' => __('Select...', 'formvexa-form-builder'),
 
             'required' => false,
 
@@ -67,12 +67,12 @@ final class SelectField extends BaseField
             'options' => [
 
                 [
-                    'label' => __('Option 1', 'formnova-form-builder'),
+                    'label' => __('Option 1', 'formvexa-form-builder'),
                     'value' => 'option_1',
                 ],
 
                 [
-                    'label' => __('Option 2', 'formnova-form-builder'),
+                    'label' => __('Option 2', 'formvexa-form-builder'),
                     'value' => 'option_2',
                 ],
 
@@ -92,27 +92,27 @@ final class SelectField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
 
             ],
@@ -121,22 +121,22 @@ final class SelectField extends BaseField
 
                 Setting::options(
                     'options',
-                    __('Options', 'formnova-form-builder'),
+                    __('Options', 'formvexa-form-builder'),
                     [
                         'description' => __(
                             'Add, remove and reorder options.',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         ),
                     ]
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder'),
+                    __('Default Value', 'formvexa-form-builder'),
                     [
                         'description' => __(
                             'Default option value.',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         ),
                     ]
                 ),
@@ -180,7 +180,7 @@ final class SelectField extends BaseField
         ) {
             return __(
                 'This field is required.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             );
         }
 
@@ -205,7 +205,7 @@ final class SelectField extends BaseField
 
         return __(
             'Invalid selection.',
-            'formnova-form-builder'
+            'formvexa-form-builder'
         );
     }
 

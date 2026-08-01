@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Paragraph;
+namespace formvexa\Fields\Paragraph;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class ParagraphField extends BaseField
 {
@@ -22,7 +22,7 @@ final class ParagraphField extends BaseField
      */
     public function title(): string
     {
-        return __('Paragraph', 'formnova-form-builder');
+        return __('Paragraph', 'formvexa-form-builder');
     }
 
     /**
@@ -52,11 +52,11 @@ final class ParagraphField extends BaseField
 
             'type' => 'paragraph',
 
-            'label' => __('Paragraph', 'formnova-form-builder'),
+            'label' => __('Paragraph', 'formvexa-form-builder'),
 
             'content' => __(
                 'This is a paragraph.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             ),
 
             'class' => '',
@@ -75,17 +75,17 @@ final class ParagraphField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::textarea(
                     'content',
-                    __('Content', 'formnova-form-builder')
+                    __('Content', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
             ],
@@ -114,7 +114,7 @@ final class ParagraphField extends BaseField
     public function render(): string
     {
         $class = trim(
-            'formnova-paragraph ' .
+            'formvexa-paragraph ' .
             $this->value('class')
         );
 

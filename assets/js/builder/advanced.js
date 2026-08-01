@@ -1,10 +1,10 @@
-class FormNovaAdvanced {
+class formvexaAdvanced {
 
     constructor(state) {
 
         this.state = state;
 
-        this.el = document.getElementById('formnova-advanced-panel');
+        this.el = document.getElementById('formvexa-advanced-panel');
 
     }
 

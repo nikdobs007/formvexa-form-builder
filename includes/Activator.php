@@ -2,14 +2,14 @@
 /**
  * Plugin activator.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova;
+namespace formvexa;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Database\Installer;
+use formvexa\Database\Installer;
 
 final class Activator
 {

@@ -2,15 +2,15 @@
 /**
  * Entry Meta Repository.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Repository;
+namespace formvexa\Repository;
 
 defined('ABSPATH') || exit;
 
 use wpdb;
-use FormNova\Helpers\DatabaseHelper;
+use formvexa\Helpers\DatabaseHelper;
 
 final class EntryMetaRepository
 {

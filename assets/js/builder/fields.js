@@ -36,7 +36,7 @@ const COMMON_SETTINGS = [
 
 ];
 
-window.FormNovaFieldRegistry.register('text', {
+window.formvexaFieldRegistry.register('text', {
 
     defaults: {
         label: 'Text',
@@ -58,7 +58,7 @@ window.FormNovaFieldRegistry.register('text', {
 
 });
 
-window.FormNovaFieldRegistry.register('email', {
+window.formvexaFieldRegistry.register('email', {
 
     defaults: {
         label: 'Email',
@@ -80,7 +80,7 @@ window.FormNovaFieldRegistry.register('email', {
 
 });
 
-window.FormNovaFieldRegistry.register('phone', {
+window.formvexaFieldRegistry.register('phone', {
 
     defaults: {
         label: 'Phone',
@@ -102,7 +102,7 @@ disabled>`;
 
 });
 
-window.FormNovaFieldRegistry.register('url', {
+window.formvexaFieldRegistry.register('url', {
 
     defaults: {
         label: 'Website',
@@ -124,7 +124,7 @@ disabled>`;
 
 });
 
-window.FormNovaFieldRegistry.register('date', {
+window.formvexaFieldRegistry.register('date', {
 
     defaults: {
         label: 'Date',
@@ -172,7 +172,7 @@ window.FormNovaFieldRegistry.register('date', {
 
 });
 
-window.FormNovaFieldRegistry.register('textarea', {
+window.formvexaFieldRegistry.register('textarea', {
 
     defaults: {
         label: 'Textarea',
@@ -193,7 +193,7 @@ disabled></textarea>`;
 
 });
 
-window.FormNovaFieldRegistry.register('number', {
+window.formvexaFieldRegistry.register('number', {
 
     defaults: {
         label: 'Number',
@@ -215,7 +215,7 @@ window.FormNovaFieldRegistry.register('number', {
 
 });
 
-window.FormNovaFieldRegistry.register('paragraph', {
+window.formvexaFieldRegistry.register('paragraph', {
 
     defaults: {
         label: 'Text',
@@ -248,7 +248,7 @@ window.FormNovaFieldRegistry.register('paragraph', {
 
 });
 
-window.FormNovaFieldRegistry.register('select', {
+window.formvexaFieldRegistry.register('select', {
 
     defaults: {
         label: 'Select',
@@ -327,7 +327,7 @@ window.FormNovaFieldRegistry.register('select', {
 });
 
 
-window.FormNovaFieldRegistry.register('radio', {
+window.formvexaFieldRegistry.register('radio', {
 
     defaults: {
 
@@ -405,7 +405,7 @@ window.FormNovaFieldRegistry.register('radio', {
 
 });
 
-window.FormNovaFieldRegistry.register('checkbox', {
+window.formvexaFieldRegistry.register('checkbox', {
 
     defaults: {
 
@@ -468,7 +468,7 @@ window.FormNovaFieldRegistry.register('checkbox', {
 
 });
 
-window.FormNovaFieldRegistry.register('file', {
+window.formvexaFieldRegistry.register('file', {
 
     defaults: {
 

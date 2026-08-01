@@ -2,16 +2,16 @@
 /**
  * Submission Ajax Controller.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Controllers\Ajax;
+namespace formvexa\Controllers\Ajax;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Services\EntryService;
-use FormNova\Services\FormService;
-use FormNova\Services\CaptchaService;
+use formvexa\Services\EntryService;
+use formvexa\Services\FormService;
+use formvexa\Services\CaptchaService;
 
 final class SubmissionAjaxController
 {
@@ -82,7 +82,7 @@ final class SubmissionAjaxController
     {
         if (
             !check_ajax_referer(
-                'formnova_submit',
+                'formvexa_submit',
                 'nonce',
                 false
             )
@@ -91,7 +91,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Security check failed.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 403
@@ -105,14 +105,14 @@ final class SubmissionAjaxController
         */
 
         if (
-            !empty($_POST['formnova_hp'])
+            !empty($_POST['formvexa_hp'])
         ) {
 
             wp_send_json_error(
                 [
                     'message' => __(
                         'Spam detected.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 400
@@ -131,7 +131,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Invalid form.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 400
@@ -146,7 +146,7 @@ final class SubmissionAjaxController
 
         $ip = $this->get_client_ip();
 
-        $key = 'formnova_rate_' . $form_id . '_' . md5($ip);
+        $key = 'formvexa_rate_' . $form_id . '_' . md5($ip);
 
         $count = get_transient($key);
 
@@ -166,7 +166,7 @@ final class SubmissionAjaxController
                     [
                         'message' => __(
                             'Too many submissions. Please wait one minute and try again.',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         ),
                     ],
                     429
@@ -192,7 +192,7 @@ final class SubmissionAjaxController
 
             wp_send_json_error(
                 [
-                    'message' => __('Form not found.', 'formnova-form-builder'),
+                    'message' => __('Form not found.', 'formvexa-form-builder'),
                 ],
                 404
             );
@@ -249,7 +249,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Submission data missing.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 400
@@ -269,7 +269,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Invalid request payload.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 400
@@ -301,7 +301,7 @@ final class SubmissionAjaxController
                 [
                     'message' => __(
                         'Form builder not found.',
-                        'formnova-form-builder'
+                        'formvexa-form-builder'
                     ),
                 ],
                 404
@@ -335,7 +335,7 @@ final class SubmissionAjaxController
                 'entry_id' => (int) $result,
                 'message' => __(
                     'Form submitted successfully.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 ),
             ]
         );

@@ -5,27 +5,27 @@ defined('ABSPATH') || exit;
 ?>
 <div class="wrap">
     <h1 class="wp-heading-inline">Forms</h1>
-    <a href="<?php echo esc_url(admin_url('admin.php?page=formnova-builder')); ?>" class="page-title-action">
+    <a href="<?php echo esc_url(admin_url('admin.php?page=formvexa-builder')); ?>" class="page-title-action">
         Add New
     </a>
 
     <hr class="wp-header-end" />
 
-    <?php settings_errors('formnova'); ?>
+    <?php settings_errors('formvexa'); ?>
     
     <!-- Search -->
     <form method="get">
 
-        <input type="hidden" name="page" value="formnova">
+        <input type="hidden" name="page" value="formvexa">
 
         <?php
         wp_nonce_field(
-            'formnova_search',
-            'formnova_search_nonce'
+            'formvexa_search',
+            'formvexa_search_nonce'
         );
 
         $table->search_box(
-            __('Search Forms', 'formnova-form-builder'),
+            __('Search Forms', 'formvexa-form-builder'),
             'form-search'
         );
         ?>

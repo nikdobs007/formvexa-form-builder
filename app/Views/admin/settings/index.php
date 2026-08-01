@@ -2,27 +2,27 @@
 
 defined('ABSPATH') || exit;
 
-$formnova_settings = $settings ?? [];
+$formvexa_settings = $settings ?? [];
 
-$formnova_captcha = $formnova_settings['captcha'] ?? [];
+$formvexa_captcha = $formvexa_settings['captcha'] ?? [];
 
 ?>
 
 <div class="wrap">
 
     <h1>
-        <?php esc_html_e('FormNova Settings', 'formnova-form-builder'); ?>
+        <?php esc_html_e('formvexa Settings', 'formvexa-form-builder'); ?>
     </h1>
 
-    <?php settings_errors('formnova_settings'); ?>
+    <?php settings_errors('formvexa_settings'); ?>
 
     <form method="post">
 
-        <?php wp_nonce_field('formnova_save_settings'); ?>
+        <?php wp_nonce_field('formvexa_save_settings'); ?>
 
         <input
             type="hidden"
-            name="formnova_save_settings"
+            name="formvexa_save_settings"
             value="1">
 
         <table class="form-table" role="presentation">
@@ -36,7 +36,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Provider',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         );
                         ?>
 
@@ -49,18 +49,18 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             <option
                                 value="none"
                                 <?php selected(
-                                    $formnova_captcha['provider'] ?? 'none',
+                                    $formvexa_captcha['provider'] ?? 'none',
                                     'none'
                                 ); ?>>
 
-                                <?php esc_html_e('None', 'formnova-form-builder'); ?>
+                                <?php esc_html_e('None', 'formvexa-form-builder'); ?>
 
                             </option>
 
                             <option
                                 value="v2"
                                 <?php selected(
-                                    $formnova_captcha['provider'] ?? '',
+                                    $formvexa_captcha['provider'] ?? '',
                                     'v2'
                                 ); ?>>
 
@@ -71,7 +71,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             <option
                                 value="v3"
                                 <?php selected(
-                                    $formnova_captcha['provider'] ?? '',
+                                    $formvexa_captcha['provider'] ?? '',
                                     'v3'
                                 ); ?>>
 
@@ -92,7 +92,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Site Key',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         );
                         ?>
 
@@ -105,7 +105,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             class="regular-text"
                             name="captcha[site_key]"
                             value="<?php echo esc_attr(
-                                $formnova_captcha['site_key'] ?? ''
+                                $formvexa_captcha['site_key'] ?? ''
                             ); ?>">
 
                     </td>
@@ -119,7 +119,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Secret Key',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         );
                         ?>
 
@@ -133,7 +133,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             autocomplete="off"
                             name="captcha[secret_key]"
                             value="<?php echo esc_attr(
-                                $formnova_captcha['secret_key'] ?? ''
+                                $formvexa_captcha['secret_key'] ?? ''
                             ); ?>">
 
                     </td>
@@ -147,7 +147,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                         <?php
                         esc_html_e(
                             'Minimum Score',
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         );
                         ?>
 
@@ -162,7 +162,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             max="1"
                             name="captcha[score]"
                             value="<?php echo esc_attr(
-                                $formnova_captcha['score'] ?? '0.5'
+                                $formvexa_captcha['score'] ?? '0.5'
                             ); ?>">
 
                         <p class="description">
@@ -170,7 +170,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
                             <?php
                             esc_html_e(
                                 'Used only for Google reCAPTCHA v3.',
-                                'formnova-form-builder'
+                                'formvexa-form-builder'
                             );
                             ?>
 
@@ -186,7 +186,7 @@ $formnova_captcha = $formnova_settings['captcha'] ?? [];
 
         <?php
         submit_button(
-            __('Save Settings', 'formnova-form-builder')
+            __('Save Settings', 'formvexa-form-builder')
         );
         ?>
 

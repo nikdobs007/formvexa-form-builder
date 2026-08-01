@@ -1,11 +1,11 @@
 <?php
 
-namespace FormNova\Fields\Text;
+namespace formvexa\Fields\Text;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Fields\BaseField;
-use FormNova\Fields\Schema\Setting;
+use formvexa\Fields\BaseField;
+use formvexa\Fields\Schema\Setting;
 
 final class TextField extends BaseField
 {
@@ -26,7 +26,7 @@ final class TextField extends BaseField
      */
     public function title(): string
     {
-        return __('Text', 'formnova-form-builder');
+        return __('Text', 'formvexa-form-builder');
     }
 
     /**
@@ -62,7 +62,7 @@ final class TextField extends BaseField
 
             'type' => 'text',
 
-            'label' => __('Text Field', 'formnova-form-builder'),
+            'label' => __('Text Field', 'formvexa-form-builder'),
 
             'name' => 'text_' . strtolower(wp_generate_password(6, false)),
 
@@ -89,32 +89,32 @@ final class TextField extends BaseField
 
                 Setting::text(
                     'label',
-                    __('Label', 'formnova-form-builder')
+                    __('Label', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'name',
-                    __('Name', 'formnova-form-builder')
+                    __('Name', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'class',
-                    __('CSS Class', 'formnova-form-builder')
+                    __('CSS Class', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'placeholder',
-                    __('Placeholder', 'formnova-form-builder')
+                    __('Placeholder', 'formvexa-form-builder')
                 ),
 
                 Setting::text(
                     'default_value',
-                    __('Default Value', 'formnova-form-builder')
+                    __('Default Value', 'formvexa-form-builder')
                 ),
 
                 Setting::checkbox(
                     'required',
-                    __('Required', 'formnova-form-builder')
+                    __('Required', 'formvexa-form-builder')
                 ),
             ],
         ];

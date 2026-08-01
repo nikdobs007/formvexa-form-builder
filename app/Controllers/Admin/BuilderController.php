@@ -1,12 +1,12 @@
 <?php
 
-namespace FormNova\Controllers\Admin;
+namespace formvexa\Controllers\Admin;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Core\View;
-use FormNova\Services\FormService;
-use FormNova\Services\FieldSchemaService;
+use formvexa\Core\View;
+use formvexa\Services\FormService;
+use formvexa\Services\FieldSchemaService;
 
 final class BuilderController
 {
@@ -50,44 +50,7 @@ final class BuilderController
         }
 
         if ($id === 0) {
-
-            $builder = [
-
-                [
-                    'id' => uniqid('field_'),
-                    'type' => 'text',
-                    'label' => 'Name',
-                    'name' => 'name',
-                    'required' => true,
-                ],
-
-                [
-                    'id' => uniqid('field_'),
-                    'type' => 'email',
-                    'label' => 'Email',
-                    'name' => 'email',
-                    'required' => true,
-                ],
-
-                [
-                    'id' => uniqid('field_'),
-                    'type' => 'text',
-                    'label' => 'Subject',
-                    'name' => 'subject',
-                    'required' => true,
-                ],
-
-                [
-                    'id' => uniqid('field_'),
-                    'type' => 'textarea',
-                    'label' => 'Message',
-                    'name' => 'message',
-                    'rows' => 5,
-                    'required' => true,
-                ],
-
-            ];
-
+            $builder = FormService::default_builder();
         }
 
         $schemas = (new FieldSchemaService())->all();

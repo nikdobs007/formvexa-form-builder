@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Providers;
+namespace formvexa\Providers;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Core\Shortcodes;
+use formvexa\Core\Shortcodes;
 
 class FrontendServiceProvider
 {

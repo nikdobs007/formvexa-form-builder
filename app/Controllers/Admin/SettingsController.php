@@ -1,10 +1,10 @@
 <?php
 
-namespace FormNova\Controllers\Admin;
+namespace formvexa\Controllers\Admin;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Core\View;
+use formvexa\Core\View;
 
 final class SettingsController
 {
@@ -13,7 +13,7 @@ final class SettingsController
      *
      * @var string
      */
-    private string $option_name = 'formnova_settings';
+    private string $option_name = 'formvexa_settings';
 
     /**
      * Display settings page.
@@ -21,8 +21,8 @@ final class SettingsController
     public function index(): void
     {
         if (
-            isset($_POST['formnova_save_settings']) &&
-            check_admin_referer('formnova_save_settings')
+            isset($_POST['formvexa_save_settings']) &&
+            check_admin_referer('formvexa_save_settings')
         ) {
             $this->save();
         }
@@ -49,7 +49,7 @@ final class SettingsController
             wp_die(
                 esc_html__(
                     'You are not allowed to perform this action.',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 )
             );
         }
@@ -114,11 +114,11 @@ final class SettingsController
         );
 
         add_settings_error(
-            'formnova_settings',
+            'formvexa_settings',
             'settings_saved',
             __(
                 'Settings saved successfully.',
-                'formnova-form-builder'
+                'formvexa-form-builder'
             ),
             'updated'
         );

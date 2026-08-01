@@ -1,6 +1,6 @@
 <?php
 
-namespace FormNova\Core;
+namespace formvexa\Core;
 
 defined('ABSPATH') || exit;
 

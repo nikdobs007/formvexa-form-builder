@@ -2,10 +2,10 @@
 /**
  * Field contract.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Contracts;
+namespace formvexa\Contracts;
 
 defined('ABSPATH') || exit;
 

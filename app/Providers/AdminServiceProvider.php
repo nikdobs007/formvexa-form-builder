@@ -1,12 +1,12 @@
 <?php
 
-namespace FormNova\Providers;
+namespace formvexa\Providers;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Bootstrap\ServiceProvider;
-use FormNova\Core\AdminMenu;
-use FormNova\Core\Assets;
+use formvexa\Bootstrap\ServiceProvider;
+use formvexa\Core\AdminMenu;
+use formvexa\Core\Assets;
 
 final class AdminServiceProvider extends ServiceProvider
 {

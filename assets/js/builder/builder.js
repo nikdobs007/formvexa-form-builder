@@ -1,19 +1,19 @@
-class FormNovaBuilder {
+class formvexaBuilder {
 
     constructor() {
 
-        this.state = new FormNovaState();
-        this.canvas = new FormNovaCanvas(this.state);
-        this.dragdrop = new FormNovaDragDrop(this.state, this.canvas);
-        this.properties = new FormNovaProperties(this.state);
+        this.state = new formvexaState();
+        this.canvas = new formvexaCanvas(this.state);
+        this.dragdrop = new formvexaDragDrop(this.state, this.canvas);
+        this.properties = new formvexaProperties(this.state);
         this.tabs = null;
         this.mail =
-            new FormNovaMail(
+            new formvexaMail(
                 this.state
             );
 
         this.advanced =
-            new FormNovaAdvanced(
+            new formvexaAdvanced(
                 this.state
             );
         this.init();
@@ -27,7 +27,7 @@ class FormNovaBuilder {
         this.canvas.render();
         this.dragdrop.init();
         // this.properties.init();
-        this.tabs = new FormNovaTabs();
+        this.tabs = new formvexaTabs();
         this.tabs.init();
         if (this.mail) {
 
@@ -46,13 +46,13 @@ class FormNovaBuilder {
     registerFields() {
 
         const schemas =
-            window.FormNovaBuilderData?.schemas || {};
+            window.formvexaBuilderData?.schemas || {};
 
         Object.entries(schemas).forEach(
             ([type, schema]) => {
 
                 const registry =
-                    window.FormNovaFieldRegistry.get(type);
+                    window.formvexaFieldRegistry.get(type);
 
                 if (!registry) {
                     return;
@@ -72,7 +72,7 @@ class FormNovaBuilder {
     saveForm() {
 
         const title =
-            document.getElementById('formnova-title')?.value || 'Untitled';
+            document.getElementById('formvexa-title')?.value || 'Untitled';
 
         const payload = new URLSearchParams();
 
@@ -82,7 +82,7 @@ class FormNovaBuilder {
         };
 
         payload.append('action', 'ndfb_save_form');
-        payload.append('nonce', window.FormNova.nonce);
+        payload.append('nonce', window.formvexa.nonce);
         payload.append('form_id', this.state.formId || 0);
         payload.append('title', title);
         payload.append(
@@ -90,7 +90,7 @@ class FormNovaBuilder {
             JSON.stringify(builderState)
         );
 
-        fetch(window.FormNova.ajax_url, {
+        fetch(window.formvexa.ajax_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -105,32 +105,24 @@ class FormNovaBuilder {
                     return;
                 }
 
-                const isNew = !this.state.formId;
-
-                this.state.formId = res.data.form_id;
+                this.state.formId = Number(res.data.form_id);
 
                 const shortcode =
-                    document.getElementById('formnova-shortcode');
+                    document.getElementById('formvexa-shortcode');
 
                 if (shortcode) {
                     shortcode.value =
-                        `[formnova_form id="${res.data.form_id}"]`;
-                }
-
-                if (isNew && res.data.redirect) {
-
-                    document
-                        .getElementById('formnova-save')
-                        ?.classList.remove('fn-unsaved');
-
-                    window.location.replace(res.data.redirect);
-
-                    return;
+                        `[formvexa_form id="${this.state.formId}"]`;
                 }
 
                 document
-                    .getElementById('formnova-save')
+                    .getElementById('formvexa-save')
                     ?.classList.remove('fn-unsaved');
+
+                if (res.data.redirect) {
+                    window.location.href = res.data.redirect;
+                    return;
+                }
 
                 window.location.reload();
 
@@ -148,7 +140,7 @@ class FormNovaBuilder {
 
         const button =
             document.getElementById(
-                'formnova-save'
+                'formvexa-save'
             );
 
         if (!button) {
@@ -157,12 +149,12 @@ class FormNovaBuilder {
 
         }
 
-       button.addEventListener(
-    'click',
-    (e) => {
+        button.addEventListener(
+            'click',
+            (e) => {
 
-        e.preventDefault();
-        e.stopPropagation();
+                e.preventDefault();
+                e.stopPropagation();
 
                 button.disabled = true;
 
@@ -187,12 +179,12 @@ class FormNovaBuilder {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new FormNovaBuilder();
+    new formvexaBuilder();
 });
 
-window.FormNovaCopyShortcode = function () {
+window.formvexaCopyShortcode = function () {
 
-    const input = document.getElementById('formnova-shortcode');
+    const input = document.getElementById('formvexa-shortcode');
 
     if (!input) return;
 

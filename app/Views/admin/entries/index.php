@@ -23,7 +23,7 @@ defined('ABSPATH') || exit;
                             '%d entry deleted successfully.',
                             '%d entries deleted successfully.',
                             $deleted,
-                            'formnova-form-builder'
+                            'formvexa-form-builder'
                         ),
                         $deleted
                     )
@@ -37,15 +37,15 @@ defined('ABSPATH') || exit;
     <!-- Filter   Form -->
     <form method="get">
 
-        <input type="hidden" name="page" value="formnova-entries">
+        <input type="hidden" name="page" value="formvexa-entries">
 
         <select name="form_id">
 
             <option value="0">All Forms</option>
 
-            <?php foreach ($forms as $formnova_form): ?>
+            <?php foreach ($forms as $formvexa_form): ?>
 
-                <option value="<?php echo absint($formnova_form->id); ?>" <?php selected(
+                <option value="<?php echo absint($formvexa_form->id); ?>" <?php selected(
                        absint(
                            filter_input(
                                INPUT_GET,
@@ -53,10 +53,10 @@ defined('ABSPATH') || exit;
                                FILTER_SANITIZE_NUMBER_INT
                            )
                        ),
-                       $formnova_form->id
+                       $formvexa_form->id
                    ); ?>>
 
-                    <?php echo esc_html($formnova_form->title); ?>
+                    <?php echo esc_html($formvexa_form->title); ?>
 
                 </option>
 
@@ -66,7 +66,7 @@ defined('ABSPATH') || exit;
 
         <?php
         submit_button(
-            __('Filter', 'formnova-form-builder'),
+            __('Filter', 'formvexa-form-builder'),
             'secondary',
             '',
             false
@@ -74,7 +74,7 @@ defined('ABSPATH') || exit;
         ?>
 
         <?php
-        $formnova_form_id = absint(
+        $formvexa_form_id = absint(
             filter_input(
                 INPUT_GET,
                 'form_id',
@@ -82,27 +82,27 @@ defined('ABSPATH') || exit;
             )
         );
 
-        if ($formnova_form_id > 0):
+        if ($formvexa_form_id > 0):
 
-            $formnova_export_url = wp_nonce_url(
+            $formvexa_export_url = wp_nonce_url(
                 add_query_arg(
                     [
-                        'action' => 'formnova_export_csv',
-                        'form_id' => $formnova_form_id,
+                        'action' => 'formvexa_export_csv',
+                        'form_id' => $formvexa_form_id,
                     ],
                     admin_url('admin-post.php')
                 ),
-                'formnova_export_csv_' . $formnova_form_id
+                'formvexa_export_csv_' . $formvexa_form_id
             );
 
             ?>
 
-            <a href="<?php echo esc_url($formnova_export_url); ?>" class="button button-primary">
+            <a href="<?php echo esc_url($formvexa_export_url); ?>" class="button button-primary">
 
                 <?php
                 esc_html_e(
                     'Export CSV',
-                    'formnova-form-builder'
+                    'formvexa-form-builder'
                 );
                 ?>
 
@@ -119,7 +119,7 @@ defined('ABSPATH') || exit;
 
         <?php wp_nonce_field('bulk-entries'); ?>
 
-        <input type="hidden" name="page" value="formnova-entries">
+        <input type="hidden" name="page" value="formvexa-entries">
 
         <input type="hidden" name="form_id"
             value="<?php echo absint(filter_input(INPUT_GET, 'form_id', FILTER_SANITIZE_NUMBER_INT)); ?>">
@@ -127,7 +127,7 @@ defined('ABSPATH') || exit;
         <?php
 
         $table->search_box(
-            __('Search Entries', 'formnova-form-builder'),
+            __('Search Entries', 'formvexa-form-builder'),
             'entry'
         );
 

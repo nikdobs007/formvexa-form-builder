@@ -2,16 +2,16 @@
 /**
  * Form repository.
  *
- * @package FormNova
+ * @package formvexa
  */
 
-namespace FormNova\Repository;
+namespace formvexa\Repository;
 
 defined('ABSPATH') || exit;
 
-use FormNova\Contracts\RepositoryInterface;
+use formvexa\Contracts\RepositoryInterface;
 use wpdb;
-use FormNova\Helpers\DatabaseHelper;
+use formvexa\Helpers\DatabaseHelper;
 
 /**
  * Form repository.

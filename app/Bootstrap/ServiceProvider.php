@@ -1,6 +1,6 @@
 <?php
 
-namespace FormNova\Bootstrap;
+namespace formvexa\Bootstrap;
 
 defined('ABSPATH') || exit;
 

@@ -1,7 +1,7 @@
 <?php
 
-namespace FormNova\Bootstrap;
-use FormNova\Database\Installer;
+namespace formvexa\Bootstrap;
+use formvexa\Database\Installer;
 
 defined('ABSPATH') || exit;
 

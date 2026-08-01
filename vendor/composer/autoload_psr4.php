@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'FormNova\\' => array($baseDir . '/app'),
+    'formvexa\\' => array($baseDir . '/app'),
 );

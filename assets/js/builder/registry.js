@@ -1,4 +1,4 @@
-class FormNovaFieldRegistry {
+class formvexaFieldRegistry {
 
     constructor() {
         this.fields = {};
@@ -17,4 +17,4 @@ class FormNovaFieldRegistry {
     }
 }
 
-window.FormNovaFieldRegistry = new FormNovaFieldRegistry();
+window.formvexaFieldRegistry = new formvexaFieldRegistry();

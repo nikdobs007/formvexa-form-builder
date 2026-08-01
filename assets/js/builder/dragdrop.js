@@ -1,11 +1,11 @@
-class FormNovaDragDrop {
+class formvexaDragDrop {
 
     constructor(state, canvas) {
 
         this.state = state;
         this.canvas = canvas;
 
-        this.fieldsPanel = document.getElementById('formnova-fields');
+        this.fieldsPanel = document.getElementById('formvexa-fields');
     }
 
     init() {
@@ -25,7 +25,7 @@ class FormNovaDragDrop {
 
         this.fieldsPanel.innerHTML = '';
 
-        const fields = window.FormNovaFieldRegistry.all();
+        const fields = window.formvexaFieldRegistry.all();
 
         Object.keys(fields).forEach(type => {
 
@@ -33,7 +33,7 @@ class FormNovaDragDrop {
 
             const item = document.createElement('div');
 
-            item.className = 'formnova-draggable';
+            item.className = 'formvexa-draggable';
 
             item.dataset.type = type;
 
@@ -59,7 +59,7 @@ class FormNovaDragDrop {
         }
 
         this.fieldsPanel
-            .querySelectorAll('.formnova-draggable')
+            .querySelectorAll('.formvexa-draggable')
             .forEach(field => {
 
                 field.draggable = true;
