@@ -21,7 +21,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: formvexa.php
-msgid "https://github.com/nikdobs007/formvexa-form"
+msgid "https://github.com/nikdobs007/formvexa-form-builder"
 msgstr ""
 
 #. Description of the plugin

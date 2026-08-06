@@ -146,10 +146,20 @@ final class Assets
         );
 
         global $wpdb;
-        
-        $form_id = isset($_GET['id'])
-            ? absint(wp_unslash($_GET['id']))
-            : 0;
+
+        $form_id = 0;
+
+        if (
+            current_user_can('manage_options')
+            && isset($_GET['page'], $_GET['id'], $_GET['_wpnonce'])
+            && sanitize_key(wp_unslash($_GET['page'])) === 'formvexa-builder'
+            && wp_verify_nonce(
+                sanitize_text_field(wp_unslash($_GET['_wpnonce'])),
+                'ndfb_edit_form_' . absint(wp_unslash($_GET['id']))
+            )
+        ) {
+            $form_id = absint(wp_unslash($_GET['id']));
+        }
 
         $formService = new FormService(
             new FormRepository($wpdb),
@@ -160,7 +170,7 @@ final class Assets
         $builder = FormService::default_builder();
         $settings = [];
 
-        if ($form_id) {
+        if ($form_id > 0) {
 
             $data = $formService->find($form_id);
 

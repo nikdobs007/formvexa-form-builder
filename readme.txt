@@ -1,6 +1,6 @@
 === Formvexa – Drag & Drop Contact Form Builder ===
 Contributors: nikdobs
-Tags: contact form, form builder, drag and drop, ajax forms, file upload, contact forms
+Tags: contact form, form builder, drag and drop, ajax forms, file upload
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
