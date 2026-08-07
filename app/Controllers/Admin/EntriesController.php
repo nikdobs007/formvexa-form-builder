@@ -102,10 +102,10 @@ final class EntriesController
             ->export_csv($form_id);
 
         /*
-|--------------------------------------------------------------------------
-| Load Field Labels From Builder
-|--------------------------------------------------------------------------
-*/
+        |--------------------------------------------------------------------------
+        | Load Field Labels From Builder
+        |--------------------------------------------------------------------------
+        */
 
         $field_labels = [];
 
@@ -137,16 +137,6 @@ final class EntriesController
         }
 
         if (empty($rows)) {
-
-            wp_die(
-                esc_html__(
-                    'No entries found.',
-                    'formvexa-form-builder'
-                )
-            );
-        }
-
-        if (empty($rows)) {
             wp_die(
                 esc_html__(
                     'No entries found.',
@@ -164,27 +154,35 @@ final class EntriesController
         $headers = [];
         $entries = [];
 
+        $form_name = $form->title ?? '';
+
         foreach ($rows as $row) {
 
-            $field_key = (string) $row->field_key;
+            $entry = [
+                'Entry ID' => $row->id,
+                'Form' => $form_name,
+                'Submitted At' => $row->submitted_at,
+            ];
 
-            $field_label = $field_labels[$field_key] ?? $field_key;
+            if (!empty($row->entry_data) && is_array($row->entry_data)) {
 
-            if (!isset($headers[$field_key])) {
-                $headers[$field_key] = $field_label;
+                foreach ($row->entry_data as $key => $value) {
+
+                    $label = $field_labels[$key] ?? $key;
+
+                    if (!isset($headers[$label])) {
+                        $headers[$label] = $label;
+                    }
+
+                    if (is_array($value)) {
+                        $value = implode(', ', $value);
+                    }
+
+                    $entry[$label] = $value;
+                }
             }
 
-            if (!isset($entries[$row->id])) {
-
-                $entries[$row->id] = [
-                    'Entry ID' => $row->id,
-                    'Form' => $row->form_name,
-                    'Submitted At' => $row->submitted_at,
-                ];
-
-            }
-
-            $entries[$row->id][$field_label] = $row->field_value;
+            $entries[] = $entry;
         }
 
         /*
@@ -274,18 +272,13 @@ final class EntriesController
             $line[] = $entry['Entry ID'];
             $line[] = $entry['Form'];
 
-            foreach ($headers as $field_label) {
-
-                $line[] = $entry[$field_label] ?? '';
-
+            foreach ($headers as $label) {
+                $line[] = $entry[$label] ?? '';
             }
 
             $line[] = $entry['Submitted At'];
 
-            fputcsv(
-                $output,
-                $line
-            );
+            fputcsv($output, $line);
         }
 
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
@@ -298,7 +291,15 @@ final class EntriesController
     {
         $entry = $this->service->find($id);
 
-        $meta = $this->service->get_meta($id);
+        if (!$entry) {
+            wp_die(
+                esc_html__('Entry not found.', 'formvexa-form-builder')
+            );
+        }
+
+        $entryData = is_array($entry->entry_data)
+            ? $entry->entry_data
+            : [];
 
         $form = $this->formService->find(
             (int) $entry->form_id
@@ -306,7 +307,10 @@ final class EntriesController
 
         $fields = [];
 
-        if (!empty($form->builder['builder'])) {
+        if (
+            $form &&
+            !empty($form->builder['builder'])
+        ) {
 
             foreach ($form->builder['builder'] as $field) {
 
@@ -322,7 +326,7 @@ final class EntriesController
             'admin/entries/view',
             [
                 'entry' => $entry,
-                'meta' => $meta,
+                'entry_data' => $entryData,
                 'fields' => $fields,
                 'form_name' => $form->title ?? 'Unknown Form',
             ]

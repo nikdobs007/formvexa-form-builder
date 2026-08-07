@@ -4,7 +4,7 @@ Tags: contact form, form builder, drag and drop, ajax forms, file upload
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,6 +140,17 @@ https://policies.google.com/privacy
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Improved entry storage by saving form submissions as JSON.
+* Improved entry management performance.
+* Improved CSV export functionality.
+* Improved entry view screen.
+* Removed unnecessary Entry Meta dependency.
+* Simplified entry retrieval and rendering.
+* Improved code quality and WordPress coding standards compliance.
+* Minor bug fixes and performance improvements.
+
 = 1.0.0 =
 
 * Initial public release.
@@ -158,6 +169,10 @@ https://policies.google.com/privacy
 * WordPress Coding Standards.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+
+This update improves entry storage, CSV export, and entry management while simplifying the internal architecture and fixing several bugs.
 
 = 1.0.0 =
 

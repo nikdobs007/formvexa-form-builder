@@ -123,14 +123,6 @@ final class MailService
 
         }
 
-        if (!empty($mail['admin_cc'])) {
-            $headers[] = 'Cc: ' . implode(',', $mail['admin_cc']);
-        }
-
-        if (!empty($mail['admin_bcc'])) {
-            $headers[] = 'Bcc: ' . implode(',', $mail['admin_bcc']);
-        }
-
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
         return wp_mail(

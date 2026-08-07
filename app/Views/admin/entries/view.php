@@ -56,9 +56,9 @@ defined('ABSPATH') || exit;
 
         <tbody>
 
-            <?php if (!empty($meta)): ?>
+            <?php if (!empty($entry_data)): ?>
 
-                <?php foreach ($meta as $formvexa_field): ?>
+                <?php foreach ($entry_data as $formvexa_field_key  => $formvexa_value): ?>
 
                     <tr>
 
@@ -66,67 +66,70 @@ defined('ABSPATH') || exit;
                             <strong>
                                 <?php
                                 echo esc_html(
-                                    $fields[$formvexa_field['field_key']]
-                                    ?? $formvexa_field['field_key']
+                                    $fields[$formvexa_field_key ] ?? $formvexa_field_key 
                                 );
                                 ?>
                             </strong>
-                                </td>
+                        </td>
 
-                                <td>
+                        <td>
 
-                                    <?php
+                            <?php
 
-                                    $formvexa_value = $formvexa_field['field_value'];
+                            if (is_array($formvexa_value)) {
 
-                                    // Checkbox values
-                                    if (is_array($formvexa_value)) {
+                                echo esc_html(
+                                    implode(', ', $formvexa_value)
+                                );
 
-                                        echo esc_html(
-                                            implode(', ', $formvexa_value)
-                                        );
+                            } elseif (
+                                is_string($formvexa_value)
+                                && filter_var($formvexa_value, FILTER_VALIDATE_URL)
+                            ) {
 
-                                    }
+                                $formvexa_ext = strtolower(
+                                    pathinfo($formvexa_value, PATHINFO_EXTENSION)
+                                );
 
-                                    // Uploaded file
-                                    elseif (filter_var($formvexa_value, FILTER_VALIDATE_URL)) {
+                                if (
+                                    in_array(
+                                        $formvexa_ext,
+                                        ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+                                        true
+                                    )
+                                ) {
 
-                                        $formvexa_ext = strtolower(pathinfo($formvexa_value, PATHINFO_EXTENSION));
+                                    echo '<img src="' . esc_url($formvexa_value) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
 
-                                        if (in_array($formvexa_ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
+                                }
 
-                                            echo '<img src="' . esc_url($formvexa_value) . '" style="max-width:200px;height:auto;border:1px solid #ddd;"><br><br>';
+                                echo '<a href="' . esc_url($formvexa_value) . '" target="_blank">'
+                                    . esc_html(basename($formvexa_value))
+                                    . '</a>';
 
-                                        }
+                            } else {
 
-                                        echo '<a href="' . esc_url($formvexa_value) . '" target="_blank">'
-                                            . esc_html(basename($formvexa_value))
-                                            . '</a>';
+                                echo nl2br(
+                                    esc_html((string) $formvexa_value)
+                                );
 
-                                    }
+                            }
 
-                                    // Normal text
-                                    else {
+                            ?>
 
-                                        echo nl2br(
-                                            esc_html($formvexa_value)
-                                        );
-
-                                    }
-
-                                    ?>
-                                </td>
-
-                            </tr>
-
-                    <?php endforeach; ?>
-         <?php else: ?>
-                    <tr>
-                        <td colspan="2">
-                            No submitted fields found.
                         </td>
 
                     </tr>
+
+                <?php endforeach; ?>
+
+            <?php else: ?>
+
+                <tr>
+                    <td colspan="2">
+                        No submitted fields found.
+                    </td>
+                </tr>
 
             <?php endif; ?>
 

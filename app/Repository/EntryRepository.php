@@ -39,7 +39,7 @@ final class EntryRepository implements RepositoryInterface
      * @var string[]
      */
     private const SELECT_COLUMNS =
-        'id, form_id, user_id, status, ip, browser, referer, submitted_at';
+        'id, form_id, user_id, status, entry_data, ip, browser, referer, submitted_at';
 
     /**
      * Constructor.
@@ -62,20 +62,37 @@ final class EntryRepository implements RepositoryInterface
      */
     public function find(int $id): ?object
     {
-
         global $wpdb;
 
         $result = DatabaseHelper::get_row(
             $wpdb->prepare(
-                "SELECT id, form_id, user_id, status, ip, browser, referer, submitted_at
-             FROM {$wpdb->prefix}ndfb_entries
-             WHERE id = %d
-             LIMIT 1",
+                "SELECT
+                id,
+                form_id,
+                user_id,
+                status,
+                entry_data,
+                ip,
+                browser,
+                referer,
+                submitted_at
+                FROM {$wpdb->prefix}ndfb_entries
+                WHERE id = %d
+                LIMIT 1",
                 absint($id)
             )
         );
 
-        return ($result instanceof \stdClass) ? $result : null;
+        if (!($result instanceof \stdClass)) {
+            return null;
+        }
+
+        // Decode JSON entry data
+        $result->entry_data = !empty($result->entry_data)
+            ? json_decode($result->entry_data, true)
+            : [];
+
+        return $result;
     }
 
     /**
@@ -91,15 +108,34 @@ final class EntryRepository implements RepositoryInterface
 
         $results = DatabaseHelper::get_results(
             $wpdb->prepare(
-                "SELECT id, form_id, user_id, status, ip, browser, referer, submitted_at
-             FROM {$wpdb->prefix}ndfb_entries
-             WHERE form_id = %d
-             ORDER BY submitted_at DESC",
+                "SELECT
+                id,
+                form_id,
+                user_id,
+                status,
+                entry_data,
+                ip,
+                browser,
+                referer,
+                submitted_at
+            FROM {$wpdb->prefix}ndfb_entries
+            WHERE form_id = %d
+            ORDER BY submitted_at DESC",
                 absint($form_id)
             )
         );
 
-        return is_array($results) ? $results : [];
+        if (!is_array($results)) {
+            return [];
+        }
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
+        }
+
+        return $results;
     }
 
     /**
@@ -137,9 +173,9 @@ final class EntryRepository implements RepositoryInterface
             ? 'ASC'
             : 'DESC';
 
-        return DatabaseHelper::get_results(
+        $results = DatabaseHelper::get_results(
             $wpdb->prepare(
-                "SELECT id, form_id, user_id, status, ip, browser, referer, submitted_at
+                "SELECT id, form_id, user_id, status, entry_data, ip, browser, referer, submitted_at
             FROM {$wpdb->prefix}ndfb_entries
             ORDER BY " . esc_sql($orderby) . ' ' . esc_sql($order) . "
             LIMIT %d OFFSET %d",
@@ -147,6 +183,14 @@ final class EntryRepository implements RepositoryInterface
                 $offset
             )
         );
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
+        }
+
+        return $results ?: [];
     }
 
     public function paginate_filtered(
@@ -204,10 +248,18 @@ final class EntryRepository implements RepositoryInterface
         $args[] = absint($per_page);
         $args[] = absint($offset);
 
-        return DatabaseHelper::get_results(
+        $results = DatabaseHelper::get_results(
             // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             $wpdb->prepare($sql, ...$args)
         ) ?: [];
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
+        }
+
+        return $results;
     }
 
     /**
@@ -311,6 +363,7 @@ final class EntryRepository implements RepositoryInterface
                 'form_id' => absint($data['form_id'] ?? 0),
                 'user_id' => absint($data['user_id'] ?? get_current_user_id()),
                 'status' => sanitize_key($data['status'] ?? 'completed'),
+                'entry_data' => wp_json_encode($data['entry_data'] ?? []),
                 'ip' => sanitize_text_field($data['ip'] ?? ''),
                 'browser' => sanitize_textarea_field($data['browser'] ?? ''),
                 'referer' => esc_url_raw($data['referer'] ?? ''),
@@ -319,6 +372,7 @@ final class EntryRepository implements RepositoryInterface
             [
                 '%d',
                 '%d',
+                '%s',
                 '%s',
                 '%s',
                 '%s',
@@ -371,6 +425,11 @@ final class EntryRepository implements RepositoryInterface
         if (array_key_exists('user_id', $data)) {
             $fields['user_id'] = absint($data['user_id']);
             $formats[] = '%d';
+        }
+
+        if (array_key_exists('entry_data', $data)) {
+            $fields['entry_data'] = wp_json_encode($data['entry_data']);
+            $formats[] = '%s';
         }
 
         if (empty($fields)) {
@@ -472,13 +531,14 @@ final class EntryRepository implements RepositoryInterface
 
             $like = '%' . $wpdb->esc_like(wp_unslash($keyword)) . '%';
 
-            return DatabaseHelper::get_results(
+            $results = DatabaseHelper::get_results(
                 $wpdb->prepare(
                     "SELECT
                     id,
                     form_id,
                     user_id,
                     status,
+                    entry_data,
                     ip,
                     browser,
                     referer,
@@ -495,27 +555,43 @@ final class EntryRepository implements RepositoryInterface
                     $per_page,
                     $offset
                 )
-            ) ?: [];
+            );
+
+        } else {
+
+            $results = DatabaseHelper::get_results(
+                $wpdb->prepare(
+                    "SELECT
+                    id,
+                    form_id,
+                    user_id,
+                    status,
+                    entry_data,
+                    ip,
+                    browser,
+                    referer,
+                    submitted_at
+                FROM {$wpdb->prefix}ndfb_entries
+                ORDER BY submitted_at DESC
+                LIMIT %d OFFSET %d",
+                    $per_page,
+                    $offset
+                )
+            );
+
         }
 
-        return DatabaseHelper::get_results(
-            $wpdb->prepare(
-                "SELECT
-                id,
-                form_id,
-                user_id,
-                status,
-                ip,
-                browser,
-                referer,
-                submitted_at
-            FROM {$wpdb->prefix}ndfb_entries
-            ORDER BY submitted_at DESC
-            LIMIT %d OFFSET %d",
-                $per_page,
-                $offset
-            )
-        ) ?: [];
+        if (!is_array($results)) {
+            return [];
+        }
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
+        }
+
+        return $results;
     }
 
     /**
@@ -707,40 +783,32 @@ final class EntryRepository implements RepositoryInterface
     {
         global $wpdb;
 
-        $entries_table = $wpdb->prefix . 'ndfb_entries';
-        $meta_table = $wpdb->prefix . 'ndfb_entry_meta';
-        $forms_table = $wpdb->prefix . 'ndfb_forms';
-
-        $sql = "
-            SELECT
-                e.id,
-                e.form_id,
-                f.title AS form_name,
-                e.status,
-                e.ip,
-                e.browser,
-                e.referer,
-                e.submitted_at,
-                m.field_key,
-                m.field_value
-            FROM {$entries_table} AS e
-            INNER JOIN {$meta_table} AS m
-                ON m.entry_id = e.id
-            INNER JOIN {$forms_table} AS f
-                ON f.id = e.form_id
-            WHERE e.form_id = %d
-            ORDER BY
-                e.id DESC,
-                m.id ASC
-        ";
-
         $results = DatabaseHelper::get_results(
-            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-            $wpdb->prepare($sql,absint($form_id))
+            $wpdb->prepare(
+                "SELECT
+                id,
+                form_id,
+                status,
+                entry_data,
+                ip,
+                browser,
+                referer,
+                submitted_at
+            FROM {$wpdb->prefix}ndfb_entries
+            WHERE form_id = %d
+            ORDER BY id DESC",
+                absint($form_id)
+            )
         );
 
         if (!is_array($results)) {
             return [];
+        }
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
         }
 
         return $results;
@@ -774,7 +842,16 @@ final class EntryRepository implements RepositoryInterface
         $order = ('ASC' === $order) ? 'ASC' : 'DESC';
 
         $query = sprintf(
-            "SELECT id, form_id, user_id, status, ip, browser, referer, submitted_at
+            "SELECT
+            id,
+            form_id,
+            user_id,
+            status,
+            entry_data,
+            ip,
+            browser,
+            referer,
+            submitted_at
         FROM %s
         ORDER BY %s %s",
             $wpdb->prefix . 'ndfb_entries',
@@ -784,6 +861,16 @@ final class EntryRepository implements RepositoryInterface
 
         $results = DatabaseHelper::get_results($query);
 
-        return is_array($results) ? $results : [];
+        if (!is_array($results)) {
+            return [];
+        }
+
+        foreach ($results as $row) {
+            $row->entry_data = !empty($row->entry_data)
+                ? json_decode($row->entry_data, true)
+                : [];
+        }
+
+        return $results;
     }
 }

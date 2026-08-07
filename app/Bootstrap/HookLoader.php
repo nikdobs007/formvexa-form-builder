@@ -14,7 +14,6 @@ use formvexa\Controllers\Ajax\SubmissionAjaxController;
 use formvexa\Providers\AdminServiceProvider;
 use formvexa\Providers\FieldServiceProvider;
 use formvexa\Providers\FrontendServiceProvider;
-use formvexa\Repository\EntryMetaRepository;
 use formvexa\Repository\EntryRepository;
 use formvexa\Repository\FormRepository;
 use formvexa\Repository\MetaRepository;
@@ -68,8 +67,6 @@ final class HookLoader
 
         $entryRepository = new EntryRepository($wpdb);
 
-        $entryMetaRepository = new EntryMetaRepository($wpdb);
-
         /*
 |--------------------------------------------------------------------------
 | Services
@@ -83,7 +80,6 @@ final class HookLoader
 
         $entryService = new EntryService(
             $entryRepository,
-            $entryMetaRepository
         );
 
         $captchaService = new CaptchaService();

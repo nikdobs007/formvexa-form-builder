@@ -10,7 +10,6 @@ use formvexa\Controllers\Admin\SettingsController;
 use formvexa\Controllers\Admin\BuilderController;
 use formvexa\Services\EntryService;
 use formvexa\Services\MetaService;
-use formvexa\Repository\EntryMetaRepository;
 use formvexa\Repository\EntryRepository;
 use formvexa\Repository\FormRepository;
 use formvexa\Repository\MetaRepository;
@@ -142,7 +141,6 @@ final class AdminMenu
 
         $entryService = new EntryService(
             new EntryRepository($wpdb),
-            new EntryMetaRepository($wpdb)
         );
 
         $formService = new FormService(
@@ -224,7 +222,6 @@ final class AdminMenu
 
         $entryService = new EntryService(
             new EntryRepository($wpdb),
-            new EntryMetaRepository($wpdb)
         );
 
         $formService = new FormService(

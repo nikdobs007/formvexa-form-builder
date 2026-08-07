@@ -3,7 +3,7 @@
  * Plugin Name: Formvexa – Drag & Drop Contact Form Builder
  * Plugin URI: https://github.com/nikdobs007/formvexa-form-builder
  * Description: Build powerful WordPress contact forms with drag-and-drop builder, AJAX submissions, file uploads, custom fields, analytics, email notifications, and submission management.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Nikunj Dobariya
  * Author URI: https://profiles.wordpress.org/nikdobs/
  * License: GPLv2 or later
@@ -16,8 +16,8 @@
 
 defined('ABSPATH') || exit;
 
-define( 'NDFB_VERSION', '1.0.0' );
-define( 'NDFB_DB_VERSION', '1.0.0' );
+define( 'NDFB_VERSION', '1.0.1' );
+define( 'NDFB_DB_VERSION', '1.0.1' );
 define('NDFB_PLUGIN_FILE', __FILE__);
 define('NDFB_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('NDFB_PLUGIN_URL', plugin_dir_url(__FILE__));

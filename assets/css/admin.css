@@ -350,9 +350,7 @@ Merge Tags
 Email Rows
 -----------------------------*/
 
-#fn-admin-to-list p,
-#fn-admin-cc-list p,
-#fn-admin-bcc-list p {
+#fn-admin-to-list p {
 
     margin-bottom: 10px;
 

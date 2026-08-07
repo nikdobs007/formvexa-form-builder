@@ -87,42 +87,6 @@ class formvexaMail {
 
                     <p>
 
-                        <label>CC</label>
-
-                        <div id="fn-admin-cc-list">
-
-                        </div>
-
-                        <button
-                            type="button"
-                            class="button"
-                            id="fn-add-admin-cc">
-
-                            Add CC
-
-                        </button>
-
-                    </p>
-
-                    <p>
-
-                        <label>BCC</label>
-
-                        <div id="fn-admin-bcc-list"></div>
-
-                        <button
-                            type="button"
-                            class="button"
-                            id="fn-add-admin-bcc">
-
-                            Add BCC
-
-                        </button>
-
-                    </p>
-
-                    <p>
-
                         <label>
 
                             <input
@@ -339,28 +303,6 @@ class formvexaMail {
 
         });
 
-        // Admin CC
-        (mail.admin_cc || []).forEach(email => {
-
-            this.addAdminInput(
-                'fn-admin-cc-list',
-                email
-            );
-
-        });
-
-        (mail.admin_bcc || []).forEach(email => {
-
-            this.addAdminInput(
-
-                'fn-admin-bcc-list',
-
-                email
-
-            );
-
-        });
-
         document.getElementById(
             'fn-html-email'
         ).checked = mail.is_html;
@@ -382,30 +324,6 @@ class formvexaMail {
 
                 this.addAdminInput(
                     'fn-admin-to-list'
-                );
-
-            };
-
-        document
-            .getElementById(
-                'fn-add-admin-cc'
-            )
-            .onclick = () => {
-
-                this.addAdminInput(
-                    'fn-admin-cc-list'
-                );
-
-            };
-
-        document
-            .getElementById(
-                'fn-add-admin-bcc'
-            )
-            .onclick = () => {
-
-                this.addAdminInput(
-                    'fn-admin-bcc-list'
                 );
 
             };
@@ -790,18 +708,6 @@ class formvexaMail {
                         case 'fn-admin-to-list':
 
                             key = 'admin_to';
-
-                            break;
-
-                        case 'fn-admin-cc-list':
-
-                            key = 'admin_cc';
-
-                            break;
-
-                        case 'fn-admin-bcc-list':
-
-                            key = 'admin_bcc';
 
                             break;
 

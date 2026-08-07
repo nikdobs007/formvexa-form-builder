@@ -33,7 +33,6 @@ final class Schema
             self::forms_table($prefix, $charset_collate),
             self::form_meta_table($prefix, $charset_collate),
             self::entries_table($prefix, $charset_collate),
-            self::entry_meta_table($prefix, $charset_collate),
         ];
     }
 
@@ -104,42 +103,19 @@ final class Schema
     ): string {
 
         return "CREATE TABLE {$prefix}ndfb_entries (
-			id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-			form_id BIGINT(20) UNSIGNED NOT NULL,
-			user_id BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
-			status VARCHAR(20) NOT NULL DEFAULT 'completed',
-			ip VARCHAR(45) DEFAULT NULL,
-			browser TEXT NULL,
-			referer TEXT NULL,
-			submitted_at DATETIME NOT NULL,
-			PRIMARY KEY (id),
-			KEY form_id (form_id),
-			KEY user_id (user_id),
-			KEY status (status)
-		) {$charset_collate};";
-    }
-
-    /**
-     * Entry meta table.
-     *
-     * @param string $prefix            Table prefix.
-     * @param string $charset_collate   Charset and collation.
-     *
-     * @return string
-     */
-    private static function entry_meta_table(
-        string $prefix,
-        string $charset_collate
-    ): string {
-
-        return "CREATE TABLE {$prefix}ndfb_entry_meta (
-			id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-			entry_id BIGINT(20) UNSIGNED NOT NULL,
-			field_key VARCHAR(191) NOT NULL,
-			field_value LONGTEXT NULL,
-			PRIMARY KEY (id),
-			KEY entry_id (entry_id),
-			KEY field_key (field_key)
-		) {$charset_collate};";
+            id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+            form_id BIGINT(20) UNSIGNED NOT NULL,
+            user_id BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
+            entry_data LONGTEXT NOT NULL,
+            status VARCHAR(20) NOT NULL DEFAULT 'completed',
+            ip VARCHAR(45) DEFAULT NULL,
+            browser TEXT NULL,
+            referer TEXT NULL,
+            submitted_at DATETIME NOT NULL,
+            PRIMARY KEY (id),
+            KEY form_id (form_id),
+            KEY user_id (user_id),
+            KEY status (status)
+        ) {$charset_collate};";
     }
 }

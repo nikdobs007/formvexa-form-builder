@@ -10,10 +10,6 @@ class formvexaState {
 
                 admin_to: [''],
 
-                admin_cc: [''],
-
-                admin_bcc: [''],
-
                 reply_to: '',
 
                 attach_files: true,

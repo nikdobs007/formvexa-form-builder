@@ -93,8 +93,6 @@ Supports:
 - Admin Email
 - User Auto Reply
 - Reply-To
-- CC
-- BCC
 - Custom Subject
 - HTML Email Templates
 

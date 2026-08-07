@@ -1055,8 +1055,6 @@ final class FormService
                 case 'from_email':
                 case 'reply_to':
                 case 'admin_to':
-                case 'admin_cc':
-                case 'admin_bcc':
                     $settings[$key] = sanitize_email($value);
                     break;
 

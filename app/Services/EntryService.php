@@ -12,7 +12,6 @@ defined('ABSPATH') || exit;
 use InvalidArgumentException;
 use WP_Error;
 use formvexa\Repository\EntryRepository;
-use formvexa\Repository\EntryMetaRepository;
 use formvexa\Services\FileUploadService;
 use formvexa\Fields\Registry;
 
@@ -29,24 +28,14 @@ final class EntryService
     private EntryRepository $repository;
 
     /**
-     * Entry meta repository.
-     *
-     * @var EntryMetaRepository
-     */
-    private EntryMetaRepository $meta;
-
-    /**
      * Constructor.
      *
      * @param EntryRepository     $repository Entry repository.
-     * @param EntryMetaRepository $meta       Entry meta repository.
      */
     public function __construct(
-        EntryRepository $repository,
-        EntryMetaRepository $meta
+        EntryRepository $repository
     ) {
         $this->repository = $repository;
-        $this->meta = $meta;
     }
 
     /* -----------------------------------------------------------------
@@ -121,26 +110,6 @@ final class EntryService
     }
 
     /**
-     * Get entry meta.
-     *
-     * @param int $entry_id Entry ID.
-     *
-     * @return array
-     */
-    public function get_meta(
-        int $entry_id
-    ): array {
-
-        return $this->meta->all(
-            $entry_id
-        );
-    }
-
-    /* -----------------------------------------------------------------
-    | CRUD
-    |-----------------------------------------------------------------*/
-
-    /**
      * Create entry.
      *
      * @param array $data Entry data.
@@ -213,13 +182,7 @@ final class EntryService
             return false;
         }
 
-        $this->meta->delete_by_entry(
-            $id
-        );
-
-        return $this->repository->delete(
-            $id
-        );
+        return $this->repository->delete($id);
     }
 
     /**
@@ -619,6 +582,7 @@ final class EntryService
                 'form_id' => $form_id,
                 'user_id' => get_current_user_id(),
                 'status' => 'new',
+                'entry_data' => $clean, // Save all form fields as JSON
                 'ip' => sanitize_text_field(
                     wp_unslash($_SERVER['REMOTE_ADDR'] ?? '')
                 ),
@@ -637,31 +601,6 @@ final class EntryService
                 'entry_failed',
                 __('Unable to create entry.', 'formvexa-form-builder')
             );
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | Save Entry Meta
-        |--------------------------------------------------------------------------
-        */
-
-        foreach ($clean as $key => $value) {
-
-            $saved = $this->meta->create(
-                $entry_id,
-                $key,
-                $value
-            );
-
-            if (!$saved) {
-
-                $this->repository->delete($entry_id);
-
-                return new \WP_Error(
-                    'meta_failed',
-                    __('Unable to save entry fields.', 'formvexa-form-builder')
-                );
-            }
         }
 
         /*
@@ -697,6 +636,7 @@ final class EntryService
             if ($formData) {
                 $clean['form_title'] = $formData->title;
             }
+
             $mail->send(
                 $form_id,
                 $entry_id,
@@ -704,95 +644,11 @@ final class EntryService
             );
 
         } catch (\Throwable $e) {
-
+            // Optional: log error
         }
 
         return (int) $entry_id;
     }
-
-    /* -----------------------------------------------------------------
-    | Meta Helpers
-    |-----------------------------------------------------------------*/
-
-    /**
-     * Get single field value.
-     *
-     * @param int    $entry_id
-     * @param string $field_key
-     *
-     * @return mixed
-     */
-    public function get_field(
-        int $entry_id,
-        string $field_key
-    ) {
-
-        return $this->meta->get(
-            $entry_id,
-            $field_key
-        );
-    }
-
-    /**
-     * Update field.
-     *
-     * @param int    $entry_id
-     * @param string $field_key
-     * @param mixed  $value
-     *
-     * @return bool
-     */
-    public function update_field(
-        int $entry_id,
-        string $field_key,
-        $value
-    ): bool {
-
-        return $this->meta->upsert(
-            $entry_id,
-            $field_key,
-            $value
-        );
-    }
-
-    /**
-     * Delete field.
-     *
-     * @param int    $entry_id
-     * @param string $field_key
-     *
-     * @return bool
-     */
-    public function delete_field(
-        int $entry_id,
-        string $field_key
-    ): bool {
-
-        return $this->meta->delete(
-            $entry_id,
-            $field_key
-        );
-    }
-
-    /**
-     * Delete all entry meta.
-     *
-     * @param int $entry_id
-     *
-     * @return bool
-     */
-    public function delete_meta(
-        int $entry_id
-    ): bool {
-
-        return $this->meta->delete_by_entry(
-            $entry_id
-        );
-    }
-
-    /* -----------------------------------------------------------------
-    | Repository Helpers
-    |-----------------------------------------------------------------*/
 
     /**
      * Repository name.
